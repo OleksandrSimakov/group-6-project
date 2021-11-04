@@ -1,12 +1,14 @@
-import { Background , Cabbages, MobileTopCabbage, MobileBottomCabbage, Header, HederDescr} from './Main.styled';
+import { Background , Cabbages, MobileTopCabbage, MobileBottomCabbage, Header, HeaderDescr} from './Main.styled';
 
 export default function Main() {
     return (
         <>
            <Background>
                 <Cabbages />
-                <Header />
-                <HederDescr>Smart Finance</HederDescr>
+                <Header>
+                   <HeaderDescr>Smart Finance</HeaderDescr>
+                </Header>
+                
               <MobileTopCabbage />
            </Background>
             <MobileBottomCabbage />

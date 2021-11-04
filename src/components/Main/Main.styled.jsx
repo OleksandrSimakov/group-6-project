@@ -61,8 +61,11 @@ export const Header = styled.div`
 }
 `;
 
-export const HederDescr = styled.p`
+export const HeaderDescr = styled.p`
 @media screen and (max-width: 767px) {
+position: relative;
+top: 49px;
+left: 26px;
 text-transform: uppercase;
 font-weight: 700;
 font-size: 13px;
