@@ -27,7 +27,7 @@ export default function UserMenu() {
           <VerticalLine/>
           <ExitButton type="button">Выйти</ExitButton>
           <MobileExitButton>
-             <IoLogOutOutline fill='#CBCCD0'/>
+             <IoLogOutOutline color='#CBCCD0'/>
           </MobileExitButton>
       {/* <ExitButton type="button" text="Выйти" onClick={() => handleLogOut()}/>   */}
     </UserMenuContainer>
