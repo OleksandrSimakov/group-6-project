@@ -3,12 +3,15 @@ import { Switch } from 'react-router-dom'
 import { MainContainer } from './components/Container/Container.styled'
 import Header from './components/Header/Header'
 import { Main } from './components/Main/Main.styled'
+import ReportsButton from './components/ReportsButton/ReportsButton.jsx'
+
 
 export default function App() {
   return (
     <MainContainer>
       <Header />
       <Main>
+        <ReportsButton />
         <Switch>
           <Suspense fallback={<p>Загружаем...</p>}></Suspense>
           
