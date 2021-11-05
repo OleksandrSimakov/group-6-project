@@ -1,3 +1,4 @@
+
 import { Suspense, lazy } from 'react'
 import { Switch } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
@@ -24,5 +25,5 @@ export default function App() {
         />
       </Switch>
     </MainContainer>
-  )
+  );
 }
