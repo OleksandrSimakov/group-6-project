@@ -43,20 +43,19 @@ export const MobileTopCabbage = styled.div`
 
 export const MobileBottomCabbage = styled.div`
  position: relative;
+ top: 404px;
+ left: 35px;
  background-image: url(${cabbage});
  background-repeat: no-repeat;
  height: 89px;
- bottom: 0px;
- left: 35px;
- height: 89px;
+ width: 83px;
    
  @media screen and (min-width: 768px) {
-   bottom: 90px;
+   top: 250px;
    left: 103px;  
  }
- @media screen and (min-width: 768px) {
-   margin-top: 155px;
-   bottom: 84px;
+ @media screen and (min-width: 1280px) {
+   top: 95px;
    left: 230px;  
  }
 `;
@@ -71,7 +70,7 @@ export const Header = styled.div`
   width: 183px;
   @media screen and (min-width: 768px) {
     top: 90px;
-    left: 171px;
+    left: 166px;
     height: 78px;
     width: 307px;
     background-size: contain;

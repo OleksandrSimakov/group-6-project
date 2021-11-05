@@ -1,19 +1,31 @@
 import styled from '@emotion/styled';
 
 export const AccessContainer = styled.div`
-// display: flex;
-// flex-direction: column;
-width: 300px;
-margin-left: auto;
-margin-right: auto;
-min-height:183px;
-background-color: #ffffff;
-box-shadow: 0px 4px 12px #AAB2C5;
-border-radius: 30px;
-padding: 40px 17px 53px 17px;
-@media screen and (min-width: 768px) {
+  position: absolute;
+  top: 255px;
+  z-index: 10;
+  width: 300px;
+  min-height:183px;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 30px;
+  padding: 40px 17px 53px 17px;
+
+  @media screen and (min-width: 768px) {
     width: 436px;
-}
+    top: 310px;
+  }
+
+  @media screen and (max-width: 1279px) {
+   left: 0px;
+   right: 0px;
+   margin: auto;
+  }
+
+  @media screen and (min-width: 1280px) {
+      top: 174px;
+      right: 110px;
+  }
 `;
 
 export const Description = styled.p`
