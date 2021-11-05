@@ -1,7 +1,8 @@
+import React from 'react';
 // import { useSelector } from 'react-redux';
-import { HeaderSection, Logo } from './Header.styled';
+import { HeaderSection, Logo} from './Header.styled';
 import UserMenu from '../UserMenu/UserMenu';
-import logo from '../../images/logo.svg';
+import {ReactComponent as LogoIcon} from '../../images/logo.svg';
 // console.log('logo :>> ', logo);
 
 export default function Header() {
@@ -10,7 +11,7 @@ export default function Header() {
     return (
         <HeaderSection>
             <Logo>
-                <use href={logo}></use>
+               <LogoIcon/>
             </Logo>
             <UserMenu/>
         {/* {isLoggedIn && <UserMenu/>} */}
