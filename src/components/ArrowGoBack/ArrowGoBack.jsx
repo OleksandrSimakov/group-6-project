@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 
-import s from './ArrowToGoBack.module.css';
-import useWindowDimensions from 'hooks/useWindowDimensions';
+import s from './ArrowGoBack.module.css';
 
-const ArrowToGoBack = () => {
-  const viewPort = useWindowDimensions();
+
+const ArrowGoBack = () => {
+ 
 
   return (
-    <div type="button" className={s.toGoBack}>
+    <div type="button" className={s.ArrowGoBack}>
       <NavLink className={s.link} to="/balance">
         <svg
           width="18"
@@ -28,4 +28,4 @@ const ArrowToGoBack = () => {
   );
 };
 
-export default ArrowToGoBack;
+export default ArrowGoBack;

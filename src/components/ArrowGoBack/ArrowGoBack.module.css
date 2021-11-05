@@ -1,4 +1,4 @@
-.toGoBack {
+.ArrowGoBack {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +14,7 @@
   color: rgba(82, 85, 95, 0.7);
 }
 @media screen and (max-width: 1279px) {
-  .toGoBack {
+  .ArrowGoBack {
     margin-right: auto;
   }
 }
