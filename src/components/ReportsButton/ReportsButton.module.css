@@ -1,0 +1,42 @@
+@media screen and (min-width: 768px) {
+  .ReportsButton {
+    display: flex;
+    margin-left: 110px;
+  }
+
+  .title {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  .link {
+    display: flex;
+    width: 154px;
+    height: 24px;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+
+    color: #52555f;
+    fill: #52555f;
+    cursor: pointer;
+  }
+  .icon {
+    fill: #52555f;
+  }
+  .icon:hover,
+  .link:hover {
+    fill: #ff751d;
+    color: #ff751d;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .ReportsButton {
+    margin-left: 205px;
+  }
+}
