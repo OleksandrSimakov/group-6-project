@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux'
-import { Route, Redirect } from 'react-router-dom'
-import { authSelectors } from '../redux/auth'
+import { useSelector } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
+import { authSelectors } from '../redux/auth';
 
 /**
  * 1. Он должен повторять API Route
@@ -14,10 +14,13 @@ export default function PrivateRoute({
   redirectTo = '/',
   ...routeProps
 }) {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn)
+
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
   return (
     <Route {...routeProps}>
       {isLoggedIn ? children : <Redirect to="{redirectTo}" />}
     </Route>
-  )
+
+  );
 }
