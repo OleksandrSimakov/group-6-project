@@ -41,6 +41,13 @@ export const Input = styled.input`
   outline: none;
   border-right: 2px solid #ffffff;
   border-radius: 22px 0px 0px 22px;
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   @media screen and (min-width: 768px) {
     width: 100%;
     padding-left: 5px;
@@ -51,13 +58,17 @@ export const Input = styled.input`
 
 export const Currency = styled.span`
   position: absolute;
-  top: 34%;
+  top: 28%;
   right: 70px;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.02em;
 
   color: #000000;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `
 export const CalculatorIcon = styled.div`
   width: 60px;
@@ -70,5 +81,9 @@ export const CalculatorIcon = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    background-color: transparent;
   }
 `
