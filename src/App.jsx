@@ -12,10 +12,9 @@ const BalanceView = lazy(() =>
 
 export default function App() {
   return (
-
-        <MainContainer>
+    <MainContainer>
       <Header />
-      <Main/>
+      <Main />
       <Switch>
         <Suspense fallback={<p>Загружаем...</p>}></Suspense>
         <PrivateRoute
@@ -24,6 +23,6 @@ export default function App() {
           redirectTo={routes.home}
         />
       </Switch>
-        </MainContainer>
+    </MainContainer>
   )
 }
