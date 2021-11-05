@@ -8,7 +8,7 @@ import { Main } from './components/Main/Main.styled'
 import StatsChart from './components/Chart/StatsChart'
 
 const BalanceView = lazy(() =>
-  import('./views/BalanceView' /*webpackChunkName: "balance-view" */),
+  import('./views/BalanceView/BalanceView' /*webpackChunkName: "balance-view" */),
 )
 
 export default function App() {
@@ -16,6 +16,7 @@ export default function App() {
     <MainContainer>
       <Header />
       <Main />
+      <BalanceView />
       <Switch>
         <Suspense fallback={<p>Загружаем...</p>}></Suspense>
         <PrivateRoute
