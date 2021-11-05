@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
 import { authReducer } from './auth'
-import { balance } from 'redux/transactions'
+import { balance } from '../redux/transactions'
 
 import {
   persistStore,

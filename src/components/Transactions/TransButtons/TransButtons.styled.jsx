@@ -37,7 +37,7 @@ export const Button = styled.button`
   cursor: pointer;
   transition: all 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 
-  &:first-child {
+  &:first-of-type {
     margin-right: 15px;
   }
 

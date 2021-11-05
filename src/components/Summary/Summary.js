@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './Summary.module.css'
-import * as selectors from '../redux/transactions/transactions-selectors'
-import transactionsOperations from '../redux/transactions/transactions-operations'
-import data from '../data/month.json'
+import * as selectors from '../../redux/transactions/transactions-selectors'
+import transactionsOperations from '../../redux/transactions/transactions-operations'
+import data from '../../data/month.json'
 
 const Summary = ({ year }) => {
   const totalBalance = useSelector(selectors.getTotalBalance)
