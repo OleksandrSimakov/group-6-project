@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import cabbages from '../../images/cabbages.svg';
 import halfCabbage from '../../images/m-top-cabbage.svg';
 import cabbage from '../../images/m-bottom-cabbage.svg';
+import cabbageBot from '../../images/cabbage-bot.svg';
 import header from '../../images/kapusta.svg'
 
 export const Background = styled.div`
@@ -43,7 +44,7 @@ export const MobileTopCabbage = styled.div`
 
 export const MobileBottomCabbage = styled.div`
  position: relative;
- top: 404px;
+ top: 444px;
  left: 35px;
  background-image: url(${cabbage});
  background-repeat: no-repeat;
@@ -51,12 +52,34 @@ export const MobileBottomCabbage = styled.div`
  width: 83px;
    
  @media screen and (min-width: 768px) {
-   top: 250px;
-   left: 103px;  
+   top: 290px;
+   left: 90px;  
  }
  @media screen and (min-width: 1280px) {
-   top: 95px;
+   top: 110px;
    left: 230px;  
+ }
+`;
+
+export const BottomCabbage = styled.div`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+  
+ @media screen and (min-width: 768px) {
+   position: relative;
+   top: 182px;
+   left: 183px;
+   z-index: 30;
+   background-image: url(${cabbageBot});
+   background-repeat: no-repeat;
+   height: 89px;
+   width: 83px; 
+ }
+
+ @media screen and (min-width: 1280px) {
+   top: 1px;
+   left: 340px;  
  }
 `;
 

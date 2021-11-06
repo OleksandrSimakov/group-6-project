@@ -41,10 +41,11 @@ text-align: center;
 `;
 
 export const Google = styled.div`
-display: flex;
-justify-content: center;
 margin-top: 24px;
 margin-bottom: 30px;
+margin-left:auto;
+margin-right: auto;
+width: 122px;
 `;
 
 
