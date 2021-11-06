@@ -1,63 +1,59 @@
-import axios from 'axios'
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as authAPI from '../../services/auth-api';
 
-axios.defaults.baseURL = 'http://localhost:3000/group-6-project'
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = ''
-  },
-}
-
-const register = createAsyncThunk('auth/register', async (credentials) => {
-  try {
-    const { data } = await axios.post('/users/signup', credentials)
-    token.set(data.token)
-    return data
-  } catch (error) {}
-})
-
-const logIn = createAsyncThunk('auth/login', async (credentials) => {
-  try {
-    const { data } = await axios.post('/users/login', credentials)
-    token.set(data.token)
-    return data
-  } catch (error) {}
-})
-
-const logOut = createAsyncThunk('auth/logout', async () => {
-  try {
-    await axios.post('/users/logout')
-    token.unset()
-  } catch (error) {}
-})
-
-const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState()
-    const persistedToken = state.auth.token
-
-    if (persistedToken === null) {
-      console.log('Токена нет, уходим из fetchCurrentUser')
-      return thunkAPI.rejectWithValue()
-    }
-
-    token.set(persistedToken)
+const register = createAsyncThunk('auth/register',
+    async (newUser, { rejectWithValue }) => {
+        console.log(`newUser`, newUser);
     try {
-      const { data } = await axios.get('/users/current')
-      return data
-    } catch (error) {}
-  },
-)
+        const data = await authAPI.postSignUp(newUser);
+        console.log(`data`, data);
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.message);
+    }
+});
 
-const operations = {
-  register,
-  logOut,
-  logIn,
-  fetchCurrentUser,
-}
-export default operations
+const logIn = createAsyncThunk('auth/login',
+    async (user, { rejectWithValue }) => {
+    try {
+        const data = await authAPI.postLogIn(user);
+        return data;
+    } catch (error) {
+         return rejectWithValue(error.message);        
+    }
+});
+
+const logOut = createAsyncThunk('auth/logout', async (credentials, { rejectWithValue }) => {
+    try {
+        const data = await authAPI.postLogOut(credentials);
+        return data;
+    } catch (error) {
+         return rejectWithValue(error.message);
+    }
+});
+
+const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+       
+    try {
+         if (persistedToken === null){
+          return thunkAPI.rejectWithValue();
+        }
+        authAPI.token.set(persistedToken);
+        const currentUser = await authAPI.getCurrentUser();
+        return currentUser;
+    } catch (error) {
+       return thunkAPI.rejectWithValue(error.message);
+    }
+    
+});
+
+const authOperations = {
+    register,
+    logIn,
+    logOut,
+    fetchCurrentUser
+};
+
+export default authOperations;
