@@ -2,7 +2,6 @@
   "name": "group-6-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Sima7777.github.io/group-6-project",
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
