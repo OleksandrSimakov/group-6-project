@@ -11,9 +11,9 @@ import Header from "./components/Header/Header";
 import BalanceView from "./views/BalanceView/BalanceView";
 import Home from "./views/Home";
 
-// const HomeView = lazy(() => import('./views/Home' /* webpackChunkName: "home-page" */));
 
 export default function App() {
+
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(
     authSelectors.getIsFetchingCurrentUser
