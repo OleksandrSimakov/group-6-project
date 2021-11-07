@@ -49,8 +49,8 @@ const BalanceView = () => {
           Доход
         </button>
       </div>
-      {expense && viewPort.width > 771 && <Summary />}
-      {!expense && viewPort.width > 771 && <Summary profits={profits} />}
+      {expense && viewPort.width >= 768 && <Summary />}
+      {!expense && viewPort.width >= 768 && <Summary profits={profits} />}
     </>
   )
 }
