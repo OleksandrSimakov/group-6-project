@@ -11,7 +11,8 @@ export const StatsChartContainer = styled.div`
   padding-right: 10px;
   padding-top: 50px;
   padding-bottom: 20px;
-  @media (min-width: 767px) {
+
+  @media (min-width: 1200px) {
     padding-left: 150px;
     padding-right: 150px;
   }
