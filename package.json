@@ -2,7 +2,6 @@
   "name": "group-6-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Sima7777.github.io/group-6-project",
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
@@ -24,7 +23,8 @@
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.1.0",
     "react-icons": "^4.3.1",
-    "react-media": "^1.10.0",
+    "react-js-loader": "^0.1.0",
+    "react-number-format": "^4.7.3",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
@@ -40,7 +40,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [

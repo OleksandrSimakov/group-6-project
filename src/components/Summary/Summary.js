@@ -1,36 +1,73 @@
+import React, { useCallback } from 'react'
+import NumberFormat from 'react-number-format'
+import Loader from 'react-js-loader'
 import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import styles from './Summary.module.css'
-import * as selectors from '../../redux/transactions/transactions-selectors'
-import transactionsOperations from '../../redux/transactions/transactions-operations'
-import data from '../../data/month.json'
+import { useDispatch, useSelector } from 'react-redux'
+import s from './Summary.module.css'
 
-const Summary = ({ year }) => {
-  const totalBalance = useSelector(selectors.getTotalBalance)
+import { summaryOperations, summarySelectors } from '../../redux/transactions'
+
+export default function Summary({ profits }) {
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(transactionsOperations.getMonthlyBalancesYear(year))
-  }, [totalBalance, year, dispatch])
+  const expense = useSelector(summarySelectors.getExpenseBySixMonth)
+  const income = useSelector(summarySelectors.getIncomeBySixMonth)
+  const isLoading = useSelector(summarySelectors.getSummaryIsLoading)
 
-  const balances = useSelector(selectors.getMonthlyBalances)
-  const sortedBalances = [...balances].sort((a, b) => b.month - a.month)
+  const items = profits ? income : expense
+
+  const getIncome = useCallback(() => {
+    dispatch(summaryOperations.getIncomeByMonth())
+  }, [dispatch])
+
+  const getExpense = useCallback(() => {
+    dispatch(summaryOperations.getExpenseByMonth())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (profits) {
+      getIncome()
+    }
+    if (!profits) {
+      getExpense()
+    }
+  }, [getIncome, getExpense, profits])
 
   return (
-    <div className={styles.summaryContainer}>
-      <h4 className={styles.summaryTitle}>Сводка</h4>
-      <ul className={styles.summaryList}>
-        {sortedBalances.map(({ month, value }, index) => (
-          <li key={index} className={styles.summaryItem}>
-            <p className={styles.summaryDescription}>
-              {data.find((monthData) => monthData.id === month).name}
-            </p>
-            <p className={styles.summaryDescription}>{value}</p>
+    <div className={s.summary__wrapper}>
+      <p className={s.summary__title}>СВОДКА</p>
+      <ul className={s.summary__list}>
+        {isLoading ? (
+          <li>
+            <Loader
+              type="spinner-circle"
+              bgColor={'#ff751d'}
+              color={'#ff751d'}
+              size={60}
+            />
           </li>
-        ))}
+        ) : (
+          items.length > 0 &&
+          items.map((item) => (
+            <li className={s.summary__item} key={`${item.id}`}>
+              <span className={s.field_month}>{item.month.toUpperCase()}</span>
+              <span className={s.field_summ}>
+                <NumberFormat
+                  thousandsGroupStyle="thousand"
+                  decimalScale={2}
+                  type="text"
+                  value={item.total}
+                  displayType="text"
+                  allowNegative={true}
+                  thousandSeparator={' '}
+                  fixedDecimalScale={true}
+                  allowEmptyFormatting={false}
+                />
+              </span>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   )
 }
-
-export default Summary

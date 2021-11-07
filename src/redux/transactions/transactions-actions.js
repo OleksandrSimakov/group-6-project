@@ -1,18 +1,20 @@
 import { createAction } from '@reduxjs/toolkit'
 
-const getMonthlyBalanceRequest = createAction('getMonthlyBalanceRequest')
-const getMonthlyBalanceSuccess = createAction('getMonthlyBalanceSuccess')
-const getMonthlyBalanceError = createAction('getMonthlyBalanceError')
+const getIncomeSummaryRequest = createAction('income/summary/request')
+const getIncomeSummarySuccess = createAction('income/summary/success')
+const getIncomeSummaryError = createAction('income/summary/error')
 
-const setTotalBalanceRequest = createAction('setTotalBalanceRequest')
-const setTotalBalanceSuccess = createAction('setTotalBalanceSuccess')
-const setTotalBalanceError = createAction('setTotalBalanceError')
+const getExpenseSummaryRequest = createAction('expense/summary/request')
+const getExpenseSummarySuccess = createAction('expense/summary/success')
+const getExpenseSummaryError = createAction('expense/summary/error')
 
-export {
-  getMonthlyBalanceRequest,
-  getMonthlyBalanceSuccess,
-  getMonthlyBalanceError,
-  setTotalBalanceRequest,
-  setTotalBalanceSuccess,
-  setTotalBalanceError,
+const summaryActions = {
+  getIncomeSummaryRequest,
+  getIncomeSummarySuccess,
+  getIncomeSummaryError,
+  getExpenseSummaryRequest,
+  getExpenseSummarySuccess,
+  getExpenseSummaryError,
 }
+
+export default summaryActions

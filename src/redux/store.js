@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
 import { authReducer } from './auth'
-import { balance } from '../redux/transactions'
+import { summaryReducer } from './transactions'
 
 import {
   persistStore,
@@ -31,7 +31,7 @@ const middleware = [
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    balance,
+    summary: summaryReducer,
   },
   middleware,
   devTools: true,

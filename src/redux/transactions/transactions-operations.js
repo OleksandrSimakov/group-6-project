@@ -1,53 +1,31 @@
-import * as actions from './transactions-actions'
-import { fetch } from '../../services/fetchApi'
+import axios from 'axios'
+import summaryActions from './transactions-actions'
 
-const setBalance = (balance) => async (dispatch) => {
-  dispatch(actions.setTotalBalanceRequest())
+const getExpenseByMonth = () => async (dispatch) => {
+  dispatch(summaryActions.getExpenseSummaryRequest())
 
   try {
-    const response = await fetch.setBalance(balance)
-    dispatch(actions.setTotalBalanceSuccess(response.data.data.balance))
-  } catch ({ response }) {
-    dispatch(actions.setTotalBalanceError(response.data.message))
+    const { data } = await axios.get('/api/transactions/getExpenseByMonth')
+    dispatch(summaryActions.getExpenseSummarySuccess(data))
+  } catch (error) {
+    dispatch(summaryActions.getExpenseSummaryError(error.message))
   }
 }
 
-const calculateBalancesPerMonth = (transactions) => {
-  const result = []
-  transactions.map((transaction) => {
-    const balanceByMonth = result.find(
-      (item) => item.month === transaction.month,
-    )
-    if (!balanceByMonth) {
-      return result.push({
-        month: transaction.month,
-        value:
-          transaction.type === 'income' ? +transaction.sum : -transaction.sum,
-      })
-    } else {
-      return transaction.type === 'income'
-        ? (balanceByMonth.value += transaction.sum)
-        : (balanceByMonth.value -= transaction.sum)
-    }
-  })
+const getIncomeByMonth = () => async (dispatch) => {
+  dispatch(summaryActions.getIncomeSummaryRequest())
 
-  return result
-}
-
-const getMonthlyBalancesYear = (year) => async (dispatch) => {
-  dispatch(actions.getMonthlyBalanceRequest())
   try {
-    const response = await fetch.getTransactionsByPeriod(year)
-    const balances = calculateBalancesPerMonth(response.data.result)
-    dispatch(actions.getMonthlyBalanceSuccess(balances))
-  } catch ({ response }) {
-    dispatch(actions.getMonthlyBalanceError(response.data.message))
+    const { data } = await axios.get('/api/transactions/getIncomeByMonth')
+    dispatch(summaryActions.getIncomeSummarySuccess(data))
+  } catch (error) {
+    dispatch(summaryActions.getIncomeSummaryError(error.message))
   }
 }
 
-const transactionsOperations = {
-  getMonthlyBalancesYear,
-  setBalance,
+const summaryOperations = {
+  getExpenseByMonth,
+  getIncomeByMonth,
 }
 
-export default transactionsOperations
+export default summaryOperations
