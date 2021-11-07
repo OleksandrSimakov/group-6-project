@@ -1,6 +1,10 @@
 import styled from '@emotion/styled/macro'
 
 export const TableContainer = styled.div`
+  // @media screen and (max-width: 767px) {
+  //   display: none;
+  // }
+
   width: 605px;
   height: 344px;
   margin-top: 60px;
