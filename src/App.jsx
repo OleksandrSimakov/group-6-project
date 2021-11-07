@@ -9,7 +9,7 @@ import { MainContainer } from './components/Container/Container.styled'
 import Header from './components/Header/Header'
 import StatsChart from './components/Chart/StatsChart'
 import BalanceView from './views/BalanceView/BalanceView'
-//import Home from './views/Home'
+import Home from './views/Home'
 
 // const HomeView = lazy(() => import('./views/Home' /* webpackChunkName: "home-page" */));
 
@@ -28,7 +28,7 @@ export default function App() {
       ) : (  
       <MainContainer>
         <Header />
-        {/* <Home/> */}
+        { <Home/> }
         <BalanceView />
         <StatsChart />
         {/* <Switch>
