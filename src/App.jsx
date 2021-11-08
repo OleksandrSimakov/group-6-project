@@ -28,7 +28,7 @@ export default function App() {
   ) : (
     <MainContainer>
       <Header />
-      {/* <Home /> */}
+      <Home />
       <BalanceView />
       <ChartComponent />
 

@@ -25,36 +25,40 @@ const BalanceView = () => {
   const viewPort = useWindowDimensions()
 
   return (
-    <TransactionsWrapper>
-      <div>
-        <button
-          type="button"
-          onClick={clickExpense}
-          className={
-            expense
-              ? `${s.counter_tab_header_buttons} ${s.counter_tab_active}`
-              : `${s.counter_tab_header_buttons}`
-          }
-        >
-          Расход
-        </button>
-        <button
-          type="button"
-          onClick={clickProfits}
-          className={
-            profits
-              ? `${s.counter_tab_header_buttons} ${s.counter_tab_active}`
-              : `${s.counter_tab_header_buttons}`
-          }
-        >
-          Доход
-        </button>
-      </div>
-      {expense && viewPort.width > 771 && <Summary />}
-      {!expense && viewPort.width > 771 && <Summary profits={profits} />}
-      <ExpenseView />
-    </TransactionsWrapper>
+    <>
+      <Balance />
+
+      <TransactionsWrapper>
+        <div>
+          <button
+            type="button"
+            onClick={clickExpense}
+            className={
+              expense
+                ? `${s.counter_tab_header_buttons} ${s.counter_tab_active}`
+                : `${s.counter_tab_header_buttons}`
+            }
+          >
+            Расход
+          </button>
+          <button
+            type="button"
+            onClick={clickProfits}
+            className={
+              profits
+                ? `${s.counter_tab_header_buttons} ${s.counter_tab_active}`
+                : `${s.counter_tab_header_buttons}`
+            }
+          >
+            Доход
+          </button>
+        </div>
+        {expense && viewPort.width > 771 && <Summary />}
+        {!expense && viewPort.width > 771 && <Summary profits={profits} />}
+        <ExpenseView />
+      </TransactionsWrapper>
+    </>
   )
 }
 
-export default BalanceView;
+export default BalanceView
