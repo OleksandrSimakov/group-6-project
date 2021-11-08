@@ -1,4 +1,4 @@
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import React, { useState } from "react";
 import {
   ZeroBalanceModalContainer,
