@@ -10,10 +10,9 @@ import Header from "./components/Header/Header";
 
 import BalanceView from "./views/BalanceView/BalanceView";
 import Home from "./views/Home";
-
+import { ZeroBalanceModal } from "./components/Modal/ZeroBanalceModal/ZeroBalanceModal";
 
 export default function App() {
-
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(
     authSelectors.getIsFetchingCurrentUser
@@ -29,8 +28,10 @@ export default function App() {
   ) : (
     <MainContainer>
       <Header />
+
       <Home />
       <BalanceView />
+      <ZeroBalanceModal />
 
       {/* <Switch>
             <Suspense fallback={<h2>Загружаем...</h2>}/>
