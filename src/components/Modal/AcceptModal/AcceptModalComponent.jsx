@@ -7,9 +7,9 @@ import {
   AcceptModal,
   AcceptModalFooterButton,
   AcceptModalHeader,
-} from "./AceptModal.styled";
+} from "./AcceptModal.styled";
 
-export const AceptModal = ({ children }) => {
+export const AcceptModalComponent = ({ children }) => {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
@@ -21,6 +21,7 @@ export const AceptModal = ({ children }) => {
         centered
         show={show}
         onHide={handleClose}
+        backdrop={false}
       >
         <AcceptModalHeader closeButton></AcceptModalHeader>
         <AcceptModalBody>{children}</AcceptModalBody>
