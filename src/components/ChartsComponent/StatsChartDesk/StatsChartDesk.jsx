@@ -2,7 +2,8 @@ import React from "react";
 import { Chart } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
-import { StatsChartContainer } from "./Chart.styles";
+
+import { StatsChartDesk } from "./StatsChartDesk.styled";
 
 Chart.register(ChartDataLabels);
 
@@ -66,9 +67,13 @@ const options = {
     x: {
       grid: {
         display: false,
+        borderColor: "white",
       },
     },
     y: {
+      grid: {
+        borderColor: "white",
+      },
       ticks: {
         display: false,
       },
@@ -82,9 +87,9 @@ const options = {
 };
 
 const StatsChart = () => (
-  <StatsChartContainer>
+  <StatsChartDesk>
     <Bar data={data} options={options} />
-  </StatsChartContainer>
+  </StatsChartDesk>
 );
 
 export default StatsChart;

@@ -40,7 +40,7 @@ export const ArrowIcon = styled.div`
 
 export const CategoriesList = styled.button`
   position: relative;
-  width: 275px;
+  width: 280px;
   margin: 0 auto;
   background: #ffffff;
   border: 2px solid #f5f6fb;
@@ -48,11 +48,11 @@ export const CategoriesList = styled.button`
   z-index: 99;
 
   @media screen and (min-width: 768px) {
-    width: 171px;
+    width: 165px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 184px;
+    width: 180px;
   }
 `
 

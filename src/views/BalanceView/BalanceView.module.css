@@ -1,3 +1,26 @@
-.summary {
-  margin-right: auto;
+.counter_tab_header_buttons {
+  margin: 0;
+  padding: 14px 48px;
+
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background-color: #f1f1f1;
+  border-radius: 20px 20px 0 0;
+  border: none;
+  color: inherit;
+
+  cursor: pointer;
+  transition: color 100ms linear;
+}
+.counter_tab_header_buttons:hover {
+  color: #ff751d;
+}
+
+.counter_tab_active {
+  color: #ff751d;
+  background-color: #fefefe;
 }
