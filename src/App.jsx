@@ -9,6 +9,7 @@ import { MainContainer } from './components/Container/Container.styled'
 import Header from './components/Header/Header'
 import ChartComponent from './components/ChartsComponent/ChartComponent'
 
+
 import BalanceView from './views/BalanceView/BalanceView'
 import Home from './views/Home'
 
@@ -28,6 +29,7 @@ export default function App() {
   ) : (
     <MainContainer>
       <Header />
+
       <Home />
       <BalanceView />
       <ChartComponent />
