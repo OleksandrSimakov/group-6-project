@@ -1,3 +1,4 @@
+import Balance from '../../components/Balance/Balance'
 import { useState } from 'react'
 import ExpenseView from '../BalanceView/ExpencesView/ExpencesView'
 import Summary from '../../components/Summary'
@@ -24,6 +25,9 @@ const BalanceView = () => {
 
   return (
     <>
+      <>
+        <Balance />
+        </>
       <ExpenseView />
       <div>
         <button
@@ -55,4 +59,4 @@ const BalanceView = () => {
   )
 }
 
-export default BalanceView
+export default BalanceView;

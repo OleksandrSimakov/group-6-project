@@ -24,15 +24,16 @@ export default function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  return isFetchingCurrentUser ? (
-    <h2>Loading...</h2>
-  ) : (
-    <MainContainer>
-      <Header />
-      <Home />
-      <BalanceView />
-
-      {/* <Switch>
+  return (
+    isFetchingCurrentUser ? (
+        <h2>Loading...</h2>
+      ) : (  
+      <MainContainer>
+        <Header />
+        { <Home/> }
+        <BalanceView />
+        <StatsChart />
+        {/* <Switch>
             <Suspense fallback={<h2>Загружаем...</h2>}/>
             <PublicRoute path="/"  exact restricted redirectTo="/transactions" >
               <HomeView />
