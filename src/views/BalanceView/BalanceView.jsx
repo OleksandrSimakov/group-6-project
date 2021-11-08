@@ -4,6 +4,7 @@ import ExpenseView from '../BalanceView/ExpencesView/ExpencesView'
 import Summary from '../../components/Summary'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import s from './BalanceView.module.css'
+import { TransactionsWrapper } from '../../components/TransactionsWrapper/TransactionsWrapper.styled'
 
 const BalanceView = () => {
   const [expense, setExpense] = useState(true)
@@ -24,11 +25,7 @@ const BalanceView = () => {
   const viewPort = useWindowDimensions()
 
   return (
-    <>
-      <>
-        <Balance />
-        </>
-      <ExpenseView />
+    <TransactionsWrapper>
       <div>
         <button
           type="button"
@@ -53,9 +50,10 @@ const BalanceView = () => {
           Доход
         </button>
       </div>
-      {expense && viewPort.width >= 768 && <Summary />}
-      {!expense && viewPort.width >= 768 && <Summary profits={profits} />}
-    </>
+      {expense && viewPort.width > 771 && <Summary />}
+      {!expense && viewPort.width > 771 && <Summary profits={profits} />}
+      <ExpenseView />
+    </TransactionsWrapper>
   )
 }
 

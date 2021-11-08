@@ -8,14 +8,18 @@ export const TableContainer = styled.div`
   width: 605px;
   height: 344px;
   margin-top: 60px;
-  margin-bottom: 60px;
 
   box-shadow: none;
   border-radius: 20px 20px 0 0;
   outline: 2px solid #f5f6fb;
 
+  @media screen and (min-width: 768px) {
+    margin: 0 auto;
+  }
   @media screen and (min-width: 1280px) {
     width: 760px;
+    margin-left: 20px;
+    margin-right: 30px;
   }
 `
 

@@ -10,7 +10,7 @@ const ExpenseView = () => {
     <div>
       <TransForm />
       {width <= 767 && <MobTransTable />}
-      {width > 768 && <TransTable />}
+      {width >= 768 && <TransTable />}
     </div>
   )
 }
