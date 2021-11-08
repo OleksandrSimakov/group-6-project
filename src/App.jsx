@@ -10,7 +10,7 @@ import Home from './views/Home'
 export default function App() {
   const dispatch = useDispatch()
   const isFetchingCurrentUser = useSelector(
-    authSelectors.getIsFetchingCurrentUser,
+    authSelectors.getIsFetchingCurrentUser
   )
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function App() {
   ) : (
     <MainContainer>
       <Header />
-      <Home />
+      {/* <Home /> */}
       <BalanceView />
       <StatsChart />
     </MainContainer>

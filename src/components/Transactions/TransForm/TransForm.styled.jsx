@@ -11,13 +11,15 @@ export const Form = styled.div`
     display: flex;
     align-items: center;
     width: 604px;
-    margin: 0;
+    margin: 0 auto;
+    margin-top: 28px;
     margin-bottom: 122px;
   }
 
   @media screen and (min-width: 1280px) {
     display: flex;
     width: 1020px;
+    margin-top: 33px;
     margin-bottom: 59px;
   }
 `
