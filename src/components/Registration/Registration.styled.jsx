@@ -40,12 +40,18 @@ margin-bottom: 20px;
 text-align: center;
 `;
 
-export const Google = styled.div`
+export const Google = styled.button`
+display: block;
 margin-top: 24px;
 margin-bottom: 30px;
 margin-left:auto;
 margin-right: auto;
+padding: 0;
 width: 122px;
+border: none;
+border-radius: 30px;
+background-color: #ffffff;
+cursor: pointer;
 `;
 
 
