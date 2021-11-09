@@ -11,13 +11,15 @@ export const Form = styled.div`
     display: flex;
     align-items: center;
     width: 604px;
-    margin: 0;
+    margin: 0 auto;
+    margin-top: 28px;
     margin-bottom: 122px;
   }
 
   @media screen and (min-width: 1280px) {
     display: flex;
     width: 1020px;
+    margin-top: 33px;
     margin-bottom: 59px;
   }
 `
@@ -34,13 +36,13 @@ export const FormContainer = styled.div`
 
   @media (min-width: 768px) {
     display: flex;
-    width: 361px;
+    width: 460px;
     height: 44px;
     border-radius: 16px 0 0 16px;
     background-color: #ffffff;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 473px;
+    width: 570px;
   }
 `
