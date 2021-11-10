@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://back-group-6-test.herokuapp.com/'
+axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
 export const token = {
   set(token) {
@@ -13,7 +13,7 @@ export const token = {
 
 export async function postSignUp(newUser) {
   const { data } = await axios.post(`api/auth/signup`, newUser)
-  console.log(`data`, data)
+  console.log(`data in auth-api`, data)
   token.set(data.token)
   return data
 }
@@ -37,6 +37,7 @@ export async function getCurrentUser() {
 
 export async function getGoogleAuth() {
   const { data } = await axios.get(`api/auth/google`)
+  console.log(`data`, data)
   token.set(data.token)
   return data
 }

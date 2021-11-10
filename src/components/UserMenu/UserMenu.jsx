@@ -26,7 +26,7 @@ export default function UserMenu() {
           {/* <UserName >{name} </UserName> */}
           <UserName>{userEmail}</UserName>
           <VerticalLine/>
-          <ExitButton type="button" onClick={() => handleLogOut()}>Выйти</ExitButton>
+          <ExitButton type="button" onClick={handleLogOut}>Выйти</ExitButton>
           <MobileExitButton type="button" onClick={() => handleLogOut()}>
              <IoLogOutOutline color='#CBCCD0'/>
           </MobileExitButton>
