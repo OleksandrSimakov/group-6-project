@@ -11,7 +11,7 @@ export const ZeroBalanceModal = () => {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
-  //   const handleShow = () => setShow(true);
+  const handleShow = () => setShow(true);
   return (
     <ZeroBalanceModalContainer className="arrow-top">
       <Modal.Dialog bsPrefix centered>
