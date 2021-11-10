@@ -32,6 +32,16 @@ const logOut = createAsyncThunk('auth/logout', async (credentials, { rejectWithV
     }
 });
 
+const googleLogIn = createAsyncThunk('auth/login',
+    async (_, { rejectWithValue }) => {
+    try {
+        const data = await authAPI.getGoogleAuth();
+        return data;
+    } catch (error) {
+         return rejectWithValue(error.message);        
+    }
+});
+
 const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -53,7 +63,8 @@ const authOperations = {
     register,
     logIn,
     logOut,
-    fetchCurrentUser
+    fetchCurrentUser,
+    googleLogIn
 };
 
 export default authOperations;

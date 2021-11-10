@@ -40,6 +40,11 @@ export default function Registration(){
         reset();
     }
 
+    const handleGoogleAuth = e => {
+        dispatch(authOperations.googleLogIn());
+        reset();
+    }
+
     const reset = () => {
     setEmail('');
     setPassword('');
@@ -48,7 +53,7 @@ export default function Registration(){
     return(
         <AccessContainer>
             <Description>Вы можете авторизоваться с помощью Google Account:</Description>
-            <Google>
+            <Google type="submit" onClick={handleGoogleAuth}>
                <GoogleIcon/>
             </Google>
             <Description>Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:</Description>
