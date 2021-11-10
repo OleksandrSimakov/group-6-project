@@ -1,44 +1,18 @@
-import { createReducer, combineReducers } from '@reduxjs/toolkit'
-import summaryActions from './transactions-actions'
-import { nanoid } from 'nanoid'
+import { createReducer } from '@reduxjs/toolkit'
+// import transactionsActions from './transactions-actions'
+import {
+  addUserTransaction,
+  deleteTransaction,
+} from './transactions-operations'
+// const deleteUserTransaction = createReducer([], {
+//   [transactionsActions.deleteUserTransactionSuccess]: (state, { payload }) =>
+//     state.filter(({ id }) => id !== payload),
+// })
 
-const formatter = Intl.DateTimeFormat('ru', { month: 'long' })
-
-export const getFormattedMonth = (payload) => {
-  return payload.map(({ total, _id: { month, year } }) => {
-    const date = new Date(year, month - 1)
-
-    const obj = {
-      id: nanoid(),
-      month: formatter.format(date).toUpperCase(),
-      total,
-    }
-
-    return obj
-  })
-}
-
-const sixMonthsIncome = createReducer([], {
-  [summaryActions.getIncomeSummarySuccess]: (_, { payload }) =>
-    getFormattedMonth(payload.incomeByMonth),
+const transactions = createReducer([], {
+  [addUserTransaction.fulfilled]: (state, { payload }) => [...state, payload],
+  [deleteTransaction.fulfilled]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 })
 
-const sixMonthsExpense = createReducer([], {
-  [summaryActions.getExpenseSummarySuccess]: (_, { payload }) =>
-    getFormattedMonth(payload.expenseByMonth),
-})
-
-const summaryIsLoading = createReducer([], {
-  [summaryActions.getIncomeSummaryRequest]: () => true,
-  [summaryActions.getIncomeSummarySuccess]: () => false,
-  [summaryActions.getIncomeSummaryError]: () => false,
-  [summaryActions.getExpenseSummaryRequest]: () => true,
-  [summaryActions.getExpenseSummarySuccess]: () => false,
-  [summaryActions.getExpenseSummaryError]: () => false,
-})
-
-export default combineReducers({
-  sixMonthsIncome,
-  sixMonthsExpense,
-  summaryIsLoading,
-})
+export default transactions

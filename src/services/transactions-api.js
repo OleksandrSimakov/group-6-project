@@ -1,28 +1,12 @@
 import axios from 'axios'
 
-const updatedExpenses = async (year, month) => {
-  const { data } = await axios.get('/api/transactions/getExpenseByMonth')
+axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
-  const newData = data?.expenseByMonth?.find(
-    (report) => report._id.month === month && report._id.year === year,
-  )
-
-  return newData === undefined ? 0 : newData.total
+function addUserTransaction(transaction) {
+  return axios.post(`api/transactions/expense`, transaction)
+}
+function deleteTransaction(transactionId) {
+  return axios.delete(`api/transactions/:${transactionId}`)
 }
 
-const updatedIncomes = async (year, month) => {
-  const { data } = await axios.get('/api/transactions/getIncomeByMonth')
-
-  const newData = data?.incomeByMonth?.find(
-    (report) => report._id.month === month && report._id.year === year,
-  )
-
-  return newData === undefined ? 0 : newData.total
-}
-
-const balanceServices = {
-  updatedExpenses,
-  updatedIncomes,
-}
-
-export default balanceServices
+export { addUserTransaction, deleteTransaction }

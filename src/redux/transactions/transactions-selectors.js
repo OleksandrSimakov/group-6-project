@@ -1,14 +1,4 @@
-const getSummary = (state) => state.summary
-const getExpenseBySixMonth = (state) => getSummary(state).sixMonthsExpense
+const getClearedInputValues = (state) => state.transactions.resetValuesOfInput
+const datepickerValue = (state) => state.transactions.setDateValue
 
-const getIncomeBySixMonth = (state) => getSummary(state).sixMonthsIncome
-const getSummaryIsLoading = (state) => state.summary.summaryIsLoading
-
-const summarySelectors = {
-  getSummary,
-  getExpenseBySixMonth,
-  getIncomeBySixMonth,
-  getSummaryIsLoading,
-}
-
-export default summarySelectors
+export { datepickerValue, getClearedInputValues }

@@ -1,31 +1,22 @@
-import axios from 'axios'
-import summaryActions from './transactions-actions'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import * as transactionsAPI from '../../services/transactions-api'
 
-const getExpenseByMonth = () => async (dispatch) => {
-  dispatch(summaryActions.getExpenseSummaryRequest())
-
-  try {
-    const { data } = await axios.get('/api/transactions/getExpenseByMonth')
-    dispatch(summaryActions.getExpenseSummarySuccess(data))
-  } catch (error) {
-    dispatch(summaryActions.getExpenseSummaryError(error.message))
+const addUserTransaction = createAsyncThunk(
+  'transactions/addUserExpense',
+  async (newTransaction) => {
+    const transactions = await transactionsAPI.addUserTransaction(
+      newTransaction
+    )
+    return transactions
   }
-}
+)
 
-const getIncomeByMonth = () => async (dispatch) => {
-  dispatch(summaryActions.getIncomeSummaryRequest())
-
-  try {
-    const { data } = await axios.get('/api/transactions/getIncomeByMonth')
-    dispatch(summaryActions.getIncomeSummarySuccess(data))
-  } catch (error) {
-    dispatch(summaryActions.getIncomeSummaryError(error.message))
+const deleteTransaction = createAsyncThunk(
+  'contacts/deleteTransaction',
+  async (transactionId) => {
+    await transactionsAPI.deleteTransaction(transactionId)
+    return transactionId
   }
-}
+)
 
-const summaryOperations = {
-  getExpenseByMonth,
-  getIncomeByMonth,
-}
-
-export default summaryOperations
+export { addUserTransaction, deleteTransaction }
