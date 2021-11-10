@@ -2,17 +2,37 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   cursor: pointer;
 }
 
 .link {
   display: flex;
-  font-size: 12px;
-  line-height: 10px;
-  letter-spacing: 0.04em;
-  color: rgba(82, 85, 95, 0.7);
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  height: 24px;
 }
+
+.img {
+  width: 24px;
+  height: 24px;
+  fill: #ff751d;
+}
+
+.title {
+  color: #52555f;
+  font-family: var(--bs-body-font-family);
+  margin: 0;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+  margin-left: 15px;
+}
+.ArrowGoBack:hover .title {
+  color: #ff751d;
+}
+
 @media screen and (max-width: 1279px) {
   .ArrowGoBack {
     margin-right: auto;
