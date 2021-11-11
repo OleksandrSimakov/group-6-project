@@ -1,5 +1,13 @@
 import styled from '@emotion/styled';
 
+
+export const Container = styled.div`
+  margin-bottom: 30px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+  }
+`;
+
 export const Div = styled.div`
   display: flex;
   justify-content: center;
