@@ -54,11 +54,6 @@ export default function Registration() {
     setPassword('')
   }
 
-  const reset = () => {
-    setEmail('')
-    setPassword('')
-  }
-
   return (
     <AccessContainer>
       <Description>
