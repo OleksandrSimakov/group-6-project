@@ -1,11 +1,11 @@
-import { ZeroBalanceModal } from "../Modal/ZeroBanalceModal/ZeroBalanceModal";
+import { ZeroBalanceModal } from '../Modal/ZeroBanalceModal/ZeroBalanceModal'
 import {
   BalanceForm,
   BalanceLabel,
   BalanceInput,
   BalanceButton,
   BalanceWrapper,
-} from "./Balance.styled";
+} from './Balance.styled'
 
 export default function Balance({ value }) {
   return (
@@ -24,5 +24,5 @@ export default function Balance({ value }) {
       </BalanceForm>
       <ZeroBalanceModal></ZeroBalanceModal>
     </>
-  );
+  )
 }
