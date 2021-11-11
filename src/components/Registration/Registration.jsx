@@ -54,11 +54,6 @@ export default function Registration() {
     setPassword('')
   }
 
-  const handleGoogleAuth = (e) => {
-    dispatch(authOperations.googleLogIn())
-    reset()
-  }
-
   const reset = () => {
     setEmail('')
     setPassword('')
