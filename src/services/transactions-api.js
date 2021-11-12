@@ -2,9 +2,15 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
-function addUserTransaction(transaction) {
-  return axios.post(`api/transactions/expense`, transaction)
+export const endpoints = {
+  income: 'api/transactions/addIncome',
+  expense: 'api/transactions/addExpense',
 }
+
+function addUserTransaction(endpoint, transaction) {
+  return axios.post(endpoint, transaction)
+}
+
 function deleteTransaction(transactionId) {
   return axios.delete(`api/transactions/:${transactionId}`)
 }

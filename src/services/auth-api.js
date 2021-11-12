@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://back-group-6-test.herokuapp.com/'
+axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
 export const token = {
   set(token) {
