@@ -1,18 +1,23 @@
 import styled from "@emotion/styled/macro";
 import { Modal } from "react-bootstrap";
+
 export const ZeroBalanceModalContainer = styled.div`
   max-width: 292px;
   display: flex;
-  position: relative;
+  position: absolute;
 
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
   float: left;
+  z-index: 10000;
   &.arrow-top {
     &:after {
       background: linear-gradient(117.84deg, #1d346a 2.84%, #031634 67.28%);
       content: " ";
       position: absolute;
-      left: 90px;
-      top: -15px;
+      left: 25%;
+      top: -10px;
       border-top: none;
       border-right: 15px solid transparent;
       border-left: 15px solid transparent;
@@ -25,6 +30,12 @@ export const ModalBodyContainer = styled(Modal.Body)`
   border-radius: 30px;
   color: #fff;
   padding: 30px 25px;
+  animation: mymove 4s infinite;
+  @keyframes mymove {
+    50% {
+      box-shadow: 10px 10px 30px #1d346a;
+    }
+  }
 `;
 export const ModalBodyMainText = styled.p`
   font-family: Roboto;

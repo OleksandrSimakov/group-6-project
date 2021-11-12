@@ -1,26 +1,28 @@
+import { ZeroBalanceModal } from '../Modal/ZeroBanalceModal/ZeroBalanceModal'
 import {
   BalanceForm,
   BalanceLabel,
   BalanceInput,
   BalanceButton,
-  BalanceWrapper 
+  BalanceWrapper,
+} from './Balance.styled'
 
-} from './Balance.styled';
-
-export default function Balance({value}) {
-  
+export default function Balance({ value }) {
   return (
-    <BalanceForm>
-      <BalanceLabel>Баланс:</BalanceLabel>
-      <BalanceWrapper>
-        <BalanceInput
+    <>
+      <BalanceForm>
+        <BalanceLabel>Баланс:</BalanceLabel>
+        <BalanceWrapper>
+          <BalanceInput
             type="text"
             name="balance"
-            defaultValue = '00.00 UAH'
+            defaultValue="00.00 UAH"
             required
-        />
-        <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
-      </BalanceWrapper>
-  </BalanceForm>
+          />
+          <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
+        </BalanceWrapper>
+      </BalanceForm>
+      <ZeroBalanceModal></ZeroBalanceModal>
+    </>
   )
 }
