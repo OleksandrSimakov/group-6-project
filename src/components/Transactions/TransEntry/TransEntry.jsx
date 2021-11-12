@@ -5,19 +5,35 @@ import {
   CalculatorIcon,
 } from './TransEntry.styled'
 import { ReactComponent as Calculator } from '../../../images/calculator.svg'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import transactionSelectors from '../../../redux/transactions/transactions-selectors'
 
-const InputValue = () => {
+const InputValue = ({ handleSum }) => {
   const entryBalance = 0
-  const [balance, setBalance] = useState(entryBalance.toFixed(2))
+  const [sum, setSum] = useState(entryBalance.toFixed(2))
+  const clearInput = useSelector(transactionSelectors.getClearedInputValues)
 
   const handleBalanceChange = (e) => {
-    setBalance(e.target.value)
+    setSum(e.target.value)
   }
+
+  useEffect(() => {
+    handleSum(sum)
+  }, [sum])
+
+  useEffect(() => {
+    setSum(entryBalance.toFixed(2))
+  }, [clearInput])
 
   return (
     <InputWrapper>
-      <Input type="number" onChange={handleBalanceChange} value={balance} />
+      <Input
+        type="number"
+        onChange={handleBalanceChange}
+        value={sum}
+        onFocus={() => setSum('')}
+      />
       <Currency>UAH</Currency>
       <CalculatorIcon>
         <Calculator />
