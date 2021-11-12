@@ -33,7 +33,7 @@ export default function UserMenu() {
       <ExitButton type="button" onClick={() => setShow(!show)}>
         Выйти
       </ExitButton>
-      <MobileExitButton type="button" onClick={() => handleLogOut()}>
+      <MobileExitButton type="button" onClick={() => setShow(!show)}>
         <IoLogOutOutline color="#CBCCD0" />
       </MobileExitButton>
       <AcceptModalComponent
