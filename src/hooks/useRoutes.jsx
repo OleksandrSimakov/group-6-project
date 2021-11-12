@@ -13,6 +13,7 @@ const ReportPage = lazy(() =>
 
 export default function useRoutes() {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
+  console.log(authSelectors)
   return (
     <Suspense fallback={<h2>Загружаем...</h2>}>
       <Switch>
