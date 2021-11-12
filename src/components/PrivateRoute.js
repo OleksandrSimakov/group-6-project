@@ -1,24 +1,29 @@
-import { useSelector } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { authSelectors } from '../redux/auth'
 
-/**
- * 1. Он должен повторять API Route
- *  2. Он должен рендерить Route
- * - Если маршрут приватный и пользователь залогинен, рендерит компонент
- * - В противном случае рендерит Redirect на redirectTo
- */
+import Header from './Header/Header'
 
-export default function PrivateRoute({
-  children,
-  redirectTo = '/',
-  ...routeProps
-}) {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn)
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
 
   return (
-    <Route {...routeProps}>
-      {isLoggedIn ? children : <Redirect to="{redirectTo}" />}
-    </Route>
+    <Route
+      {...rest}
+      render={(props) => {
+        if (isAuthenticated) {
+          return (
+            <>
+              <Header />
+              <Component {...props} />
+            </>
+          )
+        } else {
+          return <Redirect to={{ pathname: '/login' }} />
+        }
+      }}
+    />
   )
 }
+
+export default PrivateRoute

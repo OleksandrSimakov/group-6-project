@@ -1,24 +1,38 @@
-import { useSelector } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
-import { authSelectors } from '../redux/auth';
+import {
+  Background,
+  Cabbages,
+  MobileTopCabbage,
+  BottomCabbage,
+  MobileBottomCabbage,
+} from '../components/Home/Home.styled'
 
-/**
- * - Если маршрут ограниченный, и юзер залогинен, рендерит редирект на redirectTo
- * - В противном случае рендерит компонент
- *
- */
+import { Route, Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { authSelectors } from '../redux/auth'
 
-export default function PublicRoute({
-  children,
-  restricted = false,
-  redirectTo = '/',
-  ...routeProps
-}) {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const shouldRedirect = isLoggedIn && restricted;
+const PublicRoute = ({ component: Component, ...rest }) => {
+  const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
   return (
-    <Route {...routeProps}>
-      {shouldRedirect ? <Redirect to={redirectTo} /> : children}
-    </Route>
-  );
-};
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated ? (
+          <Redirect to={{ pathname: '/balance' }} />
+        ) : (
+          <>
+            <Background>
+              <Cabbages>
+                <Component {...props} />
+              </Cabbages>
+              <MobileTopCabbage />
+            </Background>
+            <MobileBottomCabbage />
+            <BottomCabbage />
+          </>
+        )
+      }
+    />
+  )
+}
+
+export default PublicRoute

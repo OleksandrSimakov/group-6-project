@@ -9,11 +9,14 @@ import {
   AcceptModalHeader,
 } from "./AcceptModal.styled";
 
-export const AcceptModalComponent = ({ children }) => {
-  const [show, setShow] = useState(true);
-
+export const AcceptModalComponent = ({
+  children,
+  show,
+  setShow,
+  handleLogOut,
+}) => {
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
   return (
     <AcceptModalContainer closeButton>
       <AcceptModal
@@ -21,12 +24,11 @@ export const AcceptModalComponent = ({ children }) => {
         centered
         show={show}
         onHide={handleClose}
-        backdrop={false}
       >
         <AcceptModalHeader closeButton></AcceptModalHeader>
         <AcceptModalBody>{children}</AcceptModalBody>
         <AcceptModalFooter>
-          <AcceptModalFooterButton variant="secondary" onClick={handleClose}>
+          <AcceptModalFooterButton variant="secondary" onClick={handleLogOut}>
             Да
           </AcceptModalFooterButton>
           <AcceptModalFooterButton variant="primary" onClick={handleClose}>
