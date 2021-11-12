@@ -10,7 +10,7 @@ import Header from './components/Header/Header'
 import ChartComponent from './components/ChartsComponent/ChartComponent'
 
 import BalanceView from './views/BalanceView/BalanceView'
-import Home from './views/Home'
+import Home from './views/HomeView'
 
 export default function App() {
   const dispatch = useDispatch()
@@ -34,7 +34,7 @@ export default function App() {
 
       {/* <Switch>
             <Suspense fallback={<h2>Загружаем...</h2>}/>
-            <PublicRoute path="/"  exact restricted redirectTo="/transactions" >
+            <PublicRoute path="/"  exact >
               <HomeView />
             </PublicRoute>
 
