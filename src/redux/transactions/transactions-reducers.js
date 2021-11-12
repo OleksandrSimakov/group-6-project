@@ -6,11 +6,10 @@ import transactionActions from './transactions-actions'
 //     state.filter(({ id }) => id !== payload),
 // })
 
-// const transactions = createReducer([], {
-//   [addTransaction.fulfilled]: (state, { payload }) => [...state, payload],
-//   [deleteTransaction.fulfilled]: (state, { payload }) =>
-//     state.filter(({ id }) => id !== payload),
-// })
+const addTransaction = createReducer([], {
+  [transactionActions.addTransactionSuccess]: (state, { payload }) => [...state, payload],
+})
+
 const deleteTransaction = createReducer([], {
   [transactionActions.deleteUserTransactionSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
@@ -26,6 +25,7 @@ const resetValuesOfInput = createReducer(0, {
 })
 
 export default combineReducers({
+  addTransaction,
   deleteTransaction,
   setDateValue,
   resetValuesOfInput,

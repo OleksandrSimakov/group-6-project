@@ -1,13 +1,17 @@
 import { createAction } from '@reduxjs/toolkit'
 
 const transactionActions = {
-  addExpenseRequest: createAction('transactions/addExpenseRequest'),
-  addExpenseSuccess: createAction('transactions/addExpenseSuccess'),
-  addExpenseError: createAction('transactions/addExpenseError'),
+  // addTransactionRequest: createAction('transactions/addTransactionRequest'),
+  // addTransactionSuccess: createAction('transactions/addTransactionSuccess'),
+  // addTransactionError: createAction('transactions/addTransactionError'),
 
   addIncomeRequest: createAction('transactions/addIncomeRequest'),
   addIncomeSuccess: createAction('transactions/addIncomeSuccess'),
   addIncomeError: createAction('transactions/addIncomeError'),
+
+  addExpenseRequest: createAction('transactions/addExpenseRequest'),
+  addExpenseSuccess: createAction('transactions/addExpenseSuccess'),
+  addExpenseError: createAction('transactions/addExpenseError'),
 
   deleteUserTransactionRequest: createAction(
     'transactions/deleteUserTransactionRequest'
