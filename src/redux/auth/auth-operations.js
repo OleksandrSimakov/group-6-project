@@ -1,48 +1,63 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as authAPI from '../../services/auth-api';
 
-const register = createAsyncThunk('auth/register',
+const register = createAsyncThunk('api/auth/signup',
     async (newUser, { rejectWithValue }) => {
-        console.log(`newUser`, newUser);
+        console.log(`newUser in auth-operation`, newUser);
     try {
         const data = await authAPI.postSignUp(newUser);
-        console.log(`data`, data);
+        console.log(`data in auth-operation`, data);
         return data;
     } catch (error) {
         return rejectWithValue(error.message);
     }
 });
 
-const logIn = createAsyncThunk('auth/login',
+const logIn = createAsyncThunk('api/auth/login',
     async (user, { rejectWithValue }) => {
     try {
         const data = await authAPI.postLogIn(user);
+        console.log(`data in auth-operation`, data);
         return data;
     } catch (error) {
          return rejectWithValue(error.message);        
     }
 });
 
-const logOut = createAsyncThunk('auth/logout', async (credentials, { rejectWithValue }) => {
+const logOut = createAsyncThunk('api/auth/logout', async (credentials, { rejectWithValue }) => {
     try {
         const data = await authAPI.postLogOut(credentials);
+        console.log(`data in auth-operation`, data);
         return data;
     } catch (error) {
          return rejectWithValue(error.message);
     }
 });
 
-const googleLogIn = createAsyncThunk('auth/login',
+const googleLogIn = createAsyncThunk('api/auth/google',
     async (_, { rejectWithValue }) => {
     try {
         const data = await authAPI.getGoogleAuth();
+         console.log(`data in auth-operation`, data)
         return data;
     } catch (error) {
          return rejectWithValue(error.message);        
     }
 });
 
-const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+// const googleAuth = createAsyncThunk('api/auth/google-redirect',
+//     async (_, { rejectWithValue }) => {
+//     try {
+//         const data = await authAPI.getGoogleAuth();
+//          console.log(`data in auth-operation`, data)
+//         return data;
+//     } catch (error) {
+//          return rejectWithValue(error.message);        
+//     }
+// });
+
+
+const fetchCurrentUser = createAsyncThunk('api/auth/refresh', async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
        
