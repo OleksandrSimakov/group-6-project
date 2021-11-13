@@ -21,6 +21,10 @@ const Balance = () => {
 
   const dispatch = useDispatch()
 
+  // useEffect(() => {
+  //   dispatch(balanceOperations.getBalance())
+  // }, [dispatch])
+
   const handleChange = (e) => {
     const balance = e.target.value
     setBalance(balance)
@@ -30,14 +34,14 @@ const Balance = () => {
     (e) => {
       e.preventDefault()
       setBalance(balance)
-      dispatch(balanceOperations.addBalance(balance))
+      dispatch(balanceOperations.addBalance(+balance))
     },
     [dispatch, balance]
   )
 
-  useEffect(() => {
-    setBalance(() => balance)
-  }, [balance])
+  // useEffect(() => {
+  //   setBalance(() => balance)
+  // }, [balance])
 
   const handleClose = (condition) => setNotifyShow(condition)
 
@@ -60,7 +64,7 @@ const Balance = () => {
           <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
         </BalanceWrapper>
       </BalanceForm>
-      {notifyShow && balance === 0 && (
+      {notifyShow && currentBalance !== 0 && (
         <ZeroBalanceModal handleClose={handleClose}></ZeroBalanceModal>
       )}
     </>
