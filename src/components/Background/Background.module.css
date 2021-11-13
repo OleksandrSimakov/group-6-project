@@ -1,0 +1,51 @@
+.container {
+  position: relative;
+}
+
+.background {
+  height: 100%;
+  z-index: -1;
+}
+
+.mainTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 342px;
+  border-bottom-left-radius: 200px;
+  box-shadow: 4px 0px 4px 0px #00000025;
+  background: #f5f6fb;
+}
+@media screen and (min-width: 768px) {
+  .mainTop {
+    height: 583px;
+  }
+}
+.mainBottom {
+  background-image: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .mainBottom {
+    background-image: url('../../images/kapusta_jump.png');
+    background-position: right 88px bottom 0;
+    position: absolute;
+    background-repeat: no-repeat;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 232px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .mainBottom {
+    background-image: url('../../images/kapustaGroup.png');
+    position: absolute;
+    background-repeat: repeat-x;
+    bottom: -20px;
+    left: 10px;
+    width: 100%;
+    height: 232px;
+  }
+}
