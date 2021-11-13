@@ -7,12 +7,11 @@ import { Suspense, lazy } from 'react'
 
 const LoginPage = lazy(() => import('../views/HomeView'))
 const MainPage = lazy(() => import('../views/BalanceView/BalanceView'))
-const ReportPage = lazy(() =>
-  import('../components/ChartsComponent/ChartComponent'),
-)
+const ReportPage = lazy(() => import('../views/ReportView/ReportView'))
 
 export default function useRoutes() {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
+  console.log(authSelectors)
   return (
     <Suspense fallback={<h2>Загружаем...</h2>}>
       <Switch>

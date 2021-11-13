@@ -1,31 +1,94 @@
 import axios from 'axios'
-import summaryActions from './transactions-actions'
+import transactionActions from './transactions-actions'
+// import toast from 'react-hot-toast'
+// import {
+//   addTransactionApi,
+//   deleteTransactionApi,
+// } from '../../services/transactions-api'
 
-const getExpenseByMonth = () => async (dispatch) => {
-  dispatch(summaryActions.getExpenseSummaryRequest())
+// import { createAsyncThunk } from '@reduxjs/toolkit'
+// import * as transactionsAPI from '../../services/transactions-api'
+
+export const expenseOptions = {
+  products: 'Продукты',
+  alcohol: 'Алкоголь',
+  entertainment: 'Развлечения',
+  health: 'Здоровье',
+  transport: 'Транспорт',
+  housing: 'Всё для дома',
+  technique: 'Техника',
+  utilityCommunication: 'Коммуналка, связь',
+  sportsHobbies: 'Спорт, хобби',
+  education: 'Образование',
+  other: 'Прочее',
+}
+
+axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
+
+const addTransactionIncome = (data, onSuccess, onError) => async (dispatch) => {
+  dispatch(transactionActions.addIncomeRequest())
 
   try {
-    const { data } = await axios.get('/api/transactions/getExpenseByMonth')
-    dispatch(summaryActions.getExpenseSummarySuccess(data))
+    await axios.post('api/transactions/addIncome', data)
+    dispatch(transactionActions.addIncomeSuccess)
+    onSuccess()
   } catch (error) {
-    dispatch(summaryActions.getExpenseSummaryError(error.message))
+    dispatch(transactionActions.addIncomeError(error.message))
+    // toast.error(error.response.message)
   }
 }
 
-const getIncomeByMonth = () => async (dispatch) => {
-  dispatch(summaryActions.getIncomeSummaryRequest())
+const addTransactionExpense =
+  (data, onSuccess, onError) => async (dispatch) => {
+    dispatch(transactionActions.addExpenseRequest())
 
-  try {
-    const { data } = await axios.get('/api/transactions/getIncomeByMonth')
-    dispatch(summaryActions.getIncomeSummarySuccess(data))
-  } catch (error) {
-    dispatch(summaryActions.getIncomeSummaryError(error.message))
+    try {
+      await axios.post('api/transactions/addExpense', data)
+      dispatch(transactionActions.addExpenseSuccess)
+      onSuccess()
+    } catch (error) {
+      dispatch(transactionActions.addExpenseError(error.message))
+      // toast.error(error.response.message)
+    }
   }
-}
+// const deleteTransaction = (transactionId) => async (dispatch) => {
+//   dispatch(transactionActions.deleteUserTransactionRequest())
+//   try {
+//     const response = await axios.delete(`/api/transactions/${transactionId}`)
 
-const summaryOperations = {
-  getExpenseByMonth,
-  getIncomeByMonth,
-}
+//     await dispatch(
+//       transactionActions.deleteUserTransactionSuccess(transactionId)
+//     )
+//     // await dispatch(userActions.setCurrentBalanceSuccess(response.data.balance))
+//     await dispatch(
+//       transactionActions.getUserTransactionsByYearSuccess(response.data.ledger)
+//     )
+//   } catch (error) {
+//     dispatch(transactionActions.deleteUserTransactionError(error.message))
+//     toast.error(error.response.message)
+//   }
+// }
 
-export default summaryOperations
+// const addUserTransaction = createAsyncThunk(
+//   'transactions/addUserExpense',
+//   async (newTransaction) => {
+//     const transactions = await transactionsAPI.addUserTransaction(
+//       newTransaction
+//     )
+//     return transactions
+//   }
+// )
+
+// const deleteTransaction = createAsyncThunk(
+//   'contacts/deleteTransaction',
+//   async (transactionId) => {
+//     await transactionsAPI.deleteTransaction(transactionId)
+//     return transactionId
+//   }
+// )
+
+const transactionOperations = {
+  addTransactionIncome,
+  addTransactionExpense,
+}
+export default transactionOperations

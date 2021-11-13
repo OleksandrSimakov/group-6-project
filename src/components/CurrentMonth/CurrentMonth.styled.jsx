@@ -1,8 +1,21 @@
 import styled from '@emotion/styled';
 
+
+export const Container = styled.div`
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+  }
+`;
+
 export const Div = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 175px;
 
 `;
 export const Button = styled.button`
@@ -30,8 +43,6 @@ export const Span = styled.span`
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  margin-right: 9px;
-  margin-left: 9px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #000000;

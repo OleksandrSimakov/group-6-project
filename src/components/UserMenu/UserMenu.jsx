@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { authOperations, authSelectors } from '../../redux/auth'
@@ -12,6 +12,7 @@ import {
   MobileExitButton,
   ExitButton,
 } from './UserMenu.styled'
+import { AcceptModalComponent } from '../Modal/AcceptModal/AcceptModalComponent'
 
 export default function UserMenu() {
   const dispatch = useDispatch()
@@ -23,18 +24,25 @@ export default function UserMenu() {
     dispatch(authOperations.logOut())
     history.push('/login')
   }
-
+  const [show, setShow] = useState(false)
   return (
     <UserMenuContainer>
       <UserImg src={avatar} alt="" width="32" />
       <UserName>{userEmail}</UserName>
       <VerticalLine />
-      <ExitButton type="button" onClick={() => handleLogOut()}>
+      <ExitButton type="button" onClick={() => setShow(!show)}>
         Выйти
       </ExitButton>
-      <MobileExitButton type="button" onClick={() => handleLogOut()}>
+      <MobileExitButton type="button" onClick={() => setShow(!show)}>
         <IoLogOutOutline color="#CBCCD0" />
       </MobileExitButton>
+      <AcceptModalComponent
+        show={show}
+        setShow={setShow}
+        handleLogOut={handleLogOut}
+      >
+        Вы уверены что хотите выйти?
+      </AcceptModalComponent>
     </UserMenuContainer>
   )
 }

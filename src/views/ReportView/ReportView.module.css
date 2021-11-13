@@ -1,0 +1,42 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  max-width: 1064px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 15px;
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+.container {
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.amoumt {
+  margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .navigation {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 40px;
+    padding-left: 0;
+  }
+  .amoumt {
+    margin-bottom: 30px;
+  }
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+}

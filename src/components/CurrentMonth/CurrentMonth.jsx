@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import { Button, Div, H4, Span, Svg } from './CurrentMonth.styled';
+import { Container, Button, Div, H4, Span, Svg } from './CurrentMonth.styled';
 import sprite from '../../images/sprite.svg';
 
 const CurrentMonth = () => {
@@ -22,7 +22,7 @@ const CurrentMonth = () => {
   const month = date.toLocaleDateString("ru", { month: "long" });
 
   return (
-    <div>
+    <Container>
       <H4>Текущий период :</H4>
       <Div>
         <Button type="button" onClick={() => changeMonth("prev")}>
@@ -37,7 +37,7 @@ const CurrentMonth = () => {
           </Svg>
         </Button>
       </Div>
-    </div>
+    </Container>
   );
 }
 

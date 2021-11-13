@@ -1,37 +1,29 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import {
   Button,
   CategoriesList,
   CategoryItem,
   ArrowIcon,
 } from './TransCategory.styled'
-import { ReactComponent as Arrow } from '../../../images/arrow.svg'
+import transactionSelectors from '../../../redux/transactions/transactions-selectors'
+import { ReactComponent as ArrowUp } from '../../../images/arrowUp.svg'
+import { ReactComponent as ArrowDown } from '../../../images/arrowDown.svg'
+import { Category } from '../MobileTransTable/MobTransTable.styled'
 
-const TransCategory = ({ category, categoryOption, categoryChange }) => {
-  const expencesCategories = [
-    'Транспорт',
-    'Продукты',
-    'Здоровье',
-    'Алкоголь',
-    'Развлечения',
-    'Всё для дома',
-    'Техника',
-    'Коммуналка, связь',
-    'Спорт, хобби',
-    'Образование',
-    'Прочее',
-  ]
-
+const TransCategory = ({ category, categoryType, changeCategory }) => {
   const [open, setOpen] = useState(false)
-  const [chosenOption, setChosenOption] = useState(categoryOption)
+  const [value, setValue] = useState(categoryType)
   const [categories, setCategories] = useState([])
 
-  useEffect(() => setCategories(categories), [categories])
+  const clearInput = useSelector(transactionSelectors.getClearedInputValues)
+
+  useEffect(() => setCategories(category), [category])
 
   const openCategoriesOnClick = () => setOpen(!open)
 
-  const handleOnClick = (e) => {
-    setChosenOption(e.target.textContent)
+  const handleCategoriesClick = (e) => {
+    setValue(e.target.textContent)
     setOpen(false)
   }
 
@@ -49,27 +41,34 @@ const TransCategory = ({ category, categoryOption, categoryChange }) => {
     []
   )
 
+  useEffect(() => {
+    changeCategory(value)
+  }, [value])
+
+  useEffect(() => {
+    setValue(categoryType)
+  }, [clearInput])
+
+  const keyDown = () => null
+
   return (
     <div>
       <Button type="button" onClick={openCategoriesOnClick}>
-        Категория товара
+        {value ? value : categoryType}
         <ArrowIcon>
-          <Arrow />
+          {value === categoryType ? <ArrowUp /> : <ArrowDown />}
         </ArrowIcon>
-        {/* {!chosenOption ? categoryOption : chosenOption} */}
       </Button>
 
-      {open && expencesCategories && (
+      {open && category && (
         <CategoriesList>
-          {expencesCategories &&
-            expencesCategories.map((item) => (
+          {category &&
+            category.map((item) => (
               <CategoryItem
                 key={item}
-                /*  className={s.item} */
-                onClick={handleOnClick}
-                value={chosenOption}
-                /* onKeyDown={keyDown} */
-                /*  role="none" */
+                onClick={handleCategoriesClick}
+                value={value}
+                onKeyDown={keyDown}
               >
                 {item}
               </CategoryItem>
