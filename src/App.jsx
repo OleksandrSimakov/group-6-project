@@ -4,6 +4,8 @@ import useRoutes from './hooks/useRoutes'
 import { MainContainer } from './components/Container/Container.styled'
 import { authOperations } from './redux/auth'
 
+import BalanceView from './views/BalanceView/BalanceView'
+
 export default function App() {
   const dispatch = useDispatch()
 
@@ -14,7 +16,8 @@ export default function App() {
   const routes = useRoutes()
   return (
     <>
-      <MainContainer>{routes}</MainContainer>
+      {/* <MainContainer>{routes}</MainContainer> */}
+      <BalanceView />
     </>
   )
 }
