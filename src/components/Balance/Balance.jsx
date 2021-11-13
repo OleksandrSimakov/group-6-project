@@ -11,19 +11,15 @@ import {
   BalanceWrapper,
 } from './Balance.styled'
 import balanceOperations from '../../redux/balance/balance-operations'
-import getBalance from '../../redux/balance/balance-selectors'
+// import getBalance from '../../redux/balance/balance-selectors'
 
 const Balance = () => {
-  const currentBalance = useSelector(getBalance)
-  // const entryBalance = ''
-  const [balance, setBalance] = useState(currentBalance)
+  // const currentBalance = useSelector(getBalance)
+  const entryBalance = ''
+  const [balance, setBalance] = useState(entryBalance)
   const [notifyShow, setNotifyShow] = useState(true)
 
   const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(balanceOperations.getBalance())
-  // }, [dispatch])
 
   const handleChange = (e) => {
     const balance = e.target.value
@@ -35,6 +31,10 @@ const Balance = () => {
     dispatch(balanceOperations.addBalance(+balance))
     setBalance('')
   }
+
+  useEffect(() => {
+    setBalance(() => balance)
+  }, [balance])
 
   const handleClose = (condition) => setNotifyShow(condition)
 

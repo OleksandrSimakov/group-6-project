@@ -16,13 +16,11 @@ axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 //   }
 // }
 
-const addBalance = (balanceValue) => async (dispatch) => {
+const addBalance = (balance) => async (dispatch) => {
   dispatch(userBalanceActions.addBalanceRequest())
 
   try {
-    const response = await axios.patch('api/auth/setBalance', {
-      value: balanceValue,
-    })
+    const response = await axios.patch('api/auth/balance', { balance })
 
     dispatch(userBalanceActions.addBalanceSuccess(response.data.balance))
   } catch (error) {

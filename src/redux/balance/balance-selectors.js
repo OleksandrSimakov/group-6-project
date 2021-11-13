@@ -1,3 +1,3 @@
-const getBalance = (state) => state.auth.user.setBalance
+const getBalance = (state) => state.auth.user.balance
 
 export default getBalance
