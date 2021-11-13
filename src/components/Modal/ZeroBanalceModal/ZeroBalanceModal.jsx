@@ -1,19 +1,23 @@
-import { Modal } from "react-bootstrap";
-import React, { useState } from "react";
+import { Modal } from 'react-bootstrap'
+import React, { useState } from 'react'
 import {
   ZeroBalanceModalContainer,
   ModalBodyContainer,
   ModalBodyMainText,
   ModalBodySecondaryText,
-} from "./ZeroBalanceModal.styled";
+} from './ZeroBalanceModal.styled'
 
-export const ZeroBalanceModal = () => {
-  const [show, setShow] = useState(true);
+export const ZeroBalanceModal = ({ handleClose }) => {
+  // const [show, setShow] = useState(true)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // // const handleClose = () => setShow(false)
+  // const handleShow = () => setShow(true)
   return (
-    <ZeroBalanceModalContainer className="arrow-top">
+    <ZeroBalanceModalContainer
+      className="arrow-top"
+      onClick={() => handleClose(false)}
+      role="none"
+    >
       <Modal.Dialog bsPrefix centered>
         <ModalBodyContainer>
           <ModalBodyMainText>
@@ -25,5 +29,5 @@ export const ZeroBalanceModal = () => {
         </ModalBodyContainer>
       </Modal.Dialog>
     </ZeroBalanceModalContainer>
-  );
-};
+  )
+}

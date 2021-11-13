@@ -2,12 +2,11 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
-export const getBalanceApi = async () => {
-  const { data } = await axios.patch(`api/auth/setBalance`)
-
-  console.log(data)
-
-  return data.user.balance
+export const getBalanceApi = async (balance) => {
+  return axios.patch(`api/auth/setBalance`, balance)
+  // const { data } = await axios.patch(`api/auth/balance`)
+  // console.log(data)
+  // return data.user.balance
 }
 
 export const endpoints = {

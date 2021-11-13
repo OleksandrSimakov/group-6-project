@@ -1,9 +1,12 @@
 import styled from '@emotion/styled'
 
 export const BalanceForm = styled.form`
-  position: relative;
+  margin: 0 auto;
+  max-width: 1060px;
+  min-width: 420px;
   text-align: center;
   background-color: #f5f6fb;
+  margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
@@ -11,6 +14,11 @@ export const BalanceForm = styled.form`
     width: 369px;
     margin: 0 auto;
     padding-left: 35px;
+    margin-bottom: 58px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 9px;
   }
 `
 export const BalanceLabel = styled.label`
@@ -72,15 +80,11 @@ export const BalanceButton = styled.button`
   text-transform: uppercase;
   padding: 12px 20px;
   color: rgba(82, 85, 95, 0.7);
-  &:hover {
+  transition: all 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  &:hover,
+  &:focus {
     background-color: #ff751d;
     color: #f5f6fb;
-    transition: 0.5s linear;
-    &:focus {
-      background-color: #ff751d;
-      color: #f5f6fb;
-      transition: 0.5s linear;
-    }
   }
 
   @media screen and (min-width: 768px) {

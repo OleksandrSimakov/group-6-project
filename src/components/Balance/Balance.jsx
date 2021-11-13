@@ -10,20 +10,20 @@ import {
   BalanceButton,
   BalanceWrapper,
 } from './Balance.styled'
-
-// import getBalance from '../../redux/balance/balance-selectors'
 import balanceOperations from '../../redux/balance/balance-operations'
+import getBalance from '../../redux/balance/balance-selectors'
 
 const Balance = () => {
-  // const currentBalance = useSelector(getBalance)
-  const entryBalance = ''
-  const [balance, setBalance] = useState(entryBalance)
+  const currentBalance = useSelector(getBalance)
+  // const entryBalance = ''
+  const [balance, setBalance] = useState(currentBalance)
+  const [notifyShow, setNotifyShow] = useState(true)
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(balanceOperations.getBalance())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(balanceOperations.getBalance())
+  // }, [dispatch])
 
   const handleChange = (e) => {
     const balance = e.target.value
@@ -36,26 +36,30 @@ const Balance = () => {
     setBalance('')
   }
 
+  const handleClose = (condition) => setNotifyShow(condition)
+
   return (
     <>
       <BalanceForm onSubmit={handleSubmit}>
-        <BalanceLabel>Баланс:</BalanceLabel>
+        <BalanceLabel htmlFor="balance">Баланс:</BalanceLabel>
         <BalanceWrapper>
           <BalanceInput
             autoComplete="off"
             type="text"
             value={balance}
             onChange={handleChange}
-            name="balance"
+            id="balance"
             placeholder="00.00 UAH"
             pattern="\d+(\.\d{2})"
+            title="Баланс должен состоять из цифр, разделителя 'точка' и не более двух цифр после точки"
             required
           />
           <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
         </BalanceWrapper>
       </BalanceForm>
-
-      <ZeroBalanceModal></ZeroBalanceModal>
+      {notifyShow && balance !== 0 && (
+        <ZeroBalanceModal handleClose={handleClose}></ZeroBalanceModal>
+      )}
     </>
   )
 }
