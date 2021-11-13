@@ -10,6 +10,7 @@ const MainPage = lazy(() => import('../views/BalanceView/BalanceView'))
 const ReportPage = lazy(() =>
   import('../components/ChartsComponent/ChartComponent'),
 )
+const WaitPage = lazy(() => import('../views/WaitPage'))
 
 export default function useRoutes() {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
@@ -29,6 +30,7 @@ export default function useRoutes() {
           }}
         />
         <PublicRoute exact path="/login" component={LoginPage} />
+        <PublicRoute exact path="/google-redirect" component={WaitPage} />
         <PrivateRoute exact path="/balance" component={MainPage} />
         <PrivateRoute exact path="/report" component={ReportPage} />
         <Redirect to="/login" />

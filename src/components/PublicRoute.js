@@ -5,6 +5,7 @@ import {
   BottomCabbage,
   MobileBottomCabbage,
 } from '../components/Home/Home.styled'
+import Header from './Header/Header'
 
 import { Route, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -20,6 +21,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
           <Redirect to={{ pathname: '/balance' }} />
         ) : (
           <>
+            <Header />
             <Background>
               <Cabbages>
                 <Component {...props} />

@@ -36,8 +36,11 @@ export async function getCurrentUser() {
 }
 
 export async function getGoogleAuth() {
-  const { data } = await axios.get(`api/auth/google`)
-  console.log(`data`, data)
-  token.set(data.token)
-  return data
-}
+   axios.get(`api/auth/google`)
+  }
+
+// export async function getRedirectGoogleAuth() {
+//   const { data } = await axios.get(`api/auth/google-redirect`)
+//   console.log(`data`, data)
+//   return data
+// }

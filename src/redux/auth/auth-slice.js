@@ -16,7 +16,7 @@ const authSlice = createSlice({
     [authOperations.register.fulfilled]: (state, action) => {
       state.user = action.payload.user
       state.token = action.payload.token
-      state.isLoggedIn = true
+      state.isLoggedIn = false
       state.isAuthenticated = false
     },
 

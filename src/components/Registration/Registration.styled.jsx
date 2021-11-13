@@ -4,7 +4,7 @@ export const AccessContainer = styled.div`
   position: absolute;
   top: 255px;
   z-index: 10;
-  width: 300px;
+  width: 290px;
   min-height:183px;
   background-color: #ffffff;
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
@@ -23,7 +23,7 @@ export const AccessContainer = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-      top: 174px;
+      top: 164px;
       right: 110px;
   }
 `;
@@ -42,7 +42,7 @@ text-align: center;
 
 export const Google = styled.button`
 display: block;
-margin-top: 24px;
+margin-top: 20px;
 margin-bottom: 30px;
 margin-left:auto;
 margin-right: auto;
@@ -52,6 +52,12 @@ border: none;
 border-radius: 30px;
 background-color: #ffffff;
 cursor: pointer;
+`;
+
+export const WaitText = styled.p`
+text-align: center;
+font-size: 30px;
+font-weight: 700;
 `;
 
 
