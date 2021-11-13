@@ -11,12 +11,12 @@ import {
   BalanceWrapper,
 } from './Balance.styled'
 import balanceOperations from '../../redux/balance/balance-operations'
-// import getBalance from '../../redux/balance/balance-selectors'
+import getBalance from '../../redux/balance/balance-selectors'
 
 const Balance = () => {
-  // const currentBalance = useSelector(getBalance)
-  const entryBalance = ''
-  const [balance, setBalance] = useState(entryBalance)
+  const currentBalance = useSelector(getBalance)
+  // const entryBalance = ''
+  const [balance, setBalance] = useState(currentBalance)
   const [notifyShow, setNotifyShow] = useState(true)
 
   const dispatch = useDispatch()
@@ -26,11 +26,14 @@ const Balance = () => {
     setBalance(balance)
   }
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault()
-    dispatch(balanceOperations.addBalance(+balance))
-    setBalance('')
-  }
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault()
+      setBalance(balance)
+      dispatch(balanceOperations.addBalance(balance))
+    },
+    [dispatch, balance]
+  )
 
   useEffect(() => {
     setBalance(() => balance)
@@ -46,7 +49,7 @@ const Balance = () => {
           <BalanceInput
             autoComplete="off"
             type="text"
-            value={balance}
+            balance={balance}
             onChange={handleChange}
             id="balance"
             placeholder="00.00 UAH"
@@ -57,7 +60,7 @@ const Balance = () => {
           <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
         </BalanceWrapper>
       </BalanceForm>
-      {notifyShow && balance !== 0 && (
+      {notifyShow && balance === 0 && (
         <ZeroBalanceModal handleClose={handleClose}></ZeroBalanceModal>
       )}
     </>
