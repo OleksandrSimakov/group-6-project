@@ -10,6 +10,7 @@ export const AccessForm = styled.form`
 export const FormBottons = styled.div`
 display: flex;
 justify-content: space-between;
+width:265px;
 `;
 
 export const AccessFormBotton = styled.button`

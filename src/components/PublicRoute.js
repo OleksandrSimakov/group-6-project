@@ -5,7 +5,8 @@ import {
   BottomCabbage,
   MobileBottomCabbage,
 } from '../components/Home/Home.styled'
-import Header from '../components/Header/Header'
+
+import Header from './Header/Header'
 
 import { Route, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'

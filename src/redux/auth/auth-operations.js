@@ -34,27 +34,16 @@ const logOut = createAsyncThunk('api/auth/logout', async (credentials, { rejectW
     }
 });
 
-const googleLogIn = createAsyncThunk('api/auth/google',
-    async (_, { rejectWithValue }) => {
+const googleAuth = createAsyncThunk('api/auth/google-redirect',
+    async (email, { rejectWithValue }) => {
     try {
-        const data = await authAPI.getGoogleAuth();
+        const data = await authAPI.getGoogleUser(email);
          console.log(`data in auth-operation`, data)
         return data;
     } catch (error) {
          return rejectWithValue(error.message);        
     }
 });
-
-// const googleAuth = createAsyncThunk('api/auth/google-redirect',
-//     async (_, { rejectWithValue }) => {
-//     try {
-//         const data = await authAPI.getGoogleAuth();
-//          console.log(`data in auth-operation`, data)
-//         return data;
-//     } catch (error) {
-//          return rejectWithValue(error.message);        
-//     }
-// });
 
 
 const fetchCurrentUser = createAsyncThunk('api/auth/refresh', async (_, thunkAPI) => {
@@ -79,7 +68,7 @@ const authOperations = {
     logIn,
     logOut,
     fetchCurrentUser,
-    googleLogIn
+    googleAuth
 };
 
 export default authOperations;

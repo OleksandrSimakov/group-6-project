@@ -17,8 +17,10 @@ import { AcceptModalComponent } from '../Modal/AcceptModal/AcceptModalComponent'
 export default function UserMenu() {
   const dispatch = useDispatch()
   const userEmail = useSelector(authSelectors.getUserEmail)
-  const avatar = defaultAvatar
+  // const avatar = useSelector(authSelectors.getUserAvatar)
+  const avatar = defaultAvatar;
   const history = useHistory()
+  // console.log('avatar :>> ', avatar);
 
   const handleLogOut = () => {
     dispatch(authOperations.logOut())
@@ -27,7 +29,7 @@ export default function UserMenu() {
   const [show, setShow] = useState(false)
   return (
     <UserMenuContainer>
-      <UserImg src={avatar} alt="" width="32" />
+      <UserImg src={avatar} alt="" width="32" height="32" />
       <UserName>{userEmail}</UserName>
       <VerticalLine />
       <ExitButton type="button" onClick={() => setShow(!show)}>
