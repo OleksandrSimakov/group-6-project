@@ -38,6 +38,6 @@ export async function getCurrentUser() {
 export async function getGoogleAuth() {
   const { data } = await axios.get(`api/auth/google`)
   console.log(`data`, data)
-  token.set(data.token)
+  token.set(data.user.token)
   return data
 }
