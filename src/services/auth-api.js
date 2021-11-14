@@ -14,7 +14,6 @@ export const token = {
 export async function postSignUp(newUser) {
   const { data } = await axios.post(`api/auth/signup`, newUser)
   console.log(`data in auth-api`, data)
-  token.set(data.user.token)
   return data
 }
 
