@@ -40,7 +40,7 @@ margin-bottom: 20px;
 text-align: center;
 `;
 
-export const Google = styled.button`
+export const Google = styled.a`
 display: block;
 margin-top: 20px;
 margin-bottom: 30px;
@@ -56,8 +56,9 @@ cursor: pointer;
 
 export const WaitText = styled.p`
 text-align: center;
-font-size: 30px;
+font-size: 24px;
 font-weight: 700;
+padding-top: 80px;
 `;
 
 

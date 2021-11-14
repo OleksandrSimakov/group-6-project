@@ -35,12 +35,7 @@ export async function getCurrentUser() {
   return data
 }
 
-export async function getGoogleAuth() {
-   axios.get(`api/auth/google`)
-  }
-
-// export async function getRedirectGoogleAuth() {
-//   const { data } = await axios.get(`api/auth/google-redirect`)
-//   console.log(`data`, data)
-//   return data
-// }
+export async function getGoogleUser(email) {
+  const { data } = await axios.get(`api/auth/${email}`)
+  return data
+}
