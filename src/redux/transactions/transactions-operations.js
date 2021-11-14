@@ -85,7 +85,7 @@ const deleteTransaction = (id) => async (dispatch) => {
   try {
     const response = await axios.delete(`api/transactions/${id}`)
 
-    dispatch(transactionActions.deleteTransactionSuccess(id))
+    dispatch(transactionActions.deleteTransactionSuccess())
     console.log(response)
   } catch (error) {
     dispatch(transactionActions.deleteTransactionError(error))

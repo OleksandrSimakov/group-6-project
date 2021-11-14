@@ -25,14 +25,15 @@ const TransTable = ({ profit, transactions, onDelete }) => {
 
         <tbody className="transaction-tbody-desctop">
           {/* отрендерить данные транзакций с бекенда */}
-          {transactions.map((item) => (
-            <DataTableItem
-              key={item._id}
-              item={item}
-              profit={profit}
-              onDelete={onDelete}
-            />
-          ))}
+          {transactions.length > 0 &&
+            transactions.map((item) => (
+              <DataTableItem
+                key={item._id}
+                item={item}
+                profit={profit}
+                onDelete={onDelete}
+              />
+            ))}
         </tbody>
       </TransactionTable>
     </TableContainer>
