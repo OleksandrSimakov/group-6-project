@@ -4,7 +4,6 @@ export const HeaderSection = styled.header`
 display: flex;
 justify-content: space-between;
 height: 56px;
-// background-color: pink;
 `;
 
 export const Logo = styled.svg`
