@@ -1,20 +1,30 @@
 import { createAction } from '@reduxjs/toolkit'
 
-const getIncomeSummaryRequest = createAction('income/summary/request')
-const getIncomeSummarySuccess = createAction('income/summary/success')
-const getIncomeSummaryError = createAction('income/summary/error')
+const transactionActions = {
+  // addTransactionRequest: createAction('transactions/addTransactionRequest'),
+  // addTransactionSuccess: createAction('transactions/addTransactionSuccess'),
+  // addTransactionError: createAction('transactions/addTransactionError'),
 
-const getExpenseSummaryRequest = createAction('expense/summary/request')
-const getExpenseSummarySuccess = createAction('expense/summary/success')
-const getExpenseSummaryError = createAction('expense/summary/error')
+  addIncomeRequest: createAction('transactions/addIncomeRequest'),
+  addIncomeSuccess: createAction('transactions/addIncomeSuccess'),
+  addIncomeError: createAction('transactions/addIncomeError'),
 
-const summaryActions = {
-  getIncomeSummaryRequest,
-  getIncomeSummarySuccess,
-  getIncomeSummaryError,
-  getExpenseSummaryRequest,
-  getExpenseSummarySuccess,
-  getExpenseSummaryError,
+  addExpenseRequest: createAction('transactions/addExpenseRequest'),
+  addExpenseSuccess: createAction('transactions/addExpenseSuccess'),
+  addExpenseError: createAction('transactions/addExpenseError'),
+
+  deleteUserTransactionRequest: createAction(
+    'transactions/deleteUserTransactionRequest'
+  ),
+  deleteUserTransactionSuccess: createAction(
+    'transactions/deleteUserTransactionSuccess'
+  ),
+  deleteUserTransactionError: createAction(
+    'transactions/deleteUserTransactionError'
+  ),
+
+  setCurrentDateValue: createAction('transactions/setCurrentDateValue'),
+  resetInputValues: createAction('transactions/resetInputValues'),
 }
 
-export default summaryActions
+export default transactionActions

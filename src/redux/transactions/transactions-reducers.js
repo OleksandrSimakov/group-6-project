@@ -1,44 +1,32 @@
-import { createReducer, combineReducers } from '@reduxjs/toolkit'
-import summaryActions from './transactions-actions'
-import { nanoid } from 'nanoid'
+import { createReducer } from '@reduxjs/toolkit'
+import { combineReducers } from 'redux'
+import transactionActions from './transactions-actions'
+// const deleteUserTransaction = createReducer([], {
+//   [transactionsActions.deleteUserTransactionSuccess]: (state, { payload }) =>
+//     state.filter(({ id }) => id !== payload),
+// })
 
-const formatter = Intl.DateTimeFormat('ru', { month: 'long' })
-
-export const getFormattedMonth = (payload) => {
-  return payload.map(({ total, _id: { month, year } }) => {
-    const date = new Date(year, month - 1)
-
-    const obj = {
-      id: nanoid(),
-      month: formatter.format(date).toUpperCase(),
-      total,
-    }
-
-    return obj
-  })
-}
-
-const sixMonthsIncome = createReducer([], {
-  [summaryActions.getIncomeSummarySuccess]: (_, { payload }) =>
-    getFormattedMonth(payload.incomeByMonth),
+const addTransaction = createReducer([], {
+  [transactionActions.addTransactionSuccess]: (state, { payload }) => [...state, payload],
 })
 
-const sixMonthsExpense = createReducer([], {
-  [summaryActions.getExpenseSummarySuccess]: (_, { payload }) =>
-    getFormattedMonth(payload.expenseByMonth),
+const deleteTransaction = createReducer([], {
+  [transactionActions.deleteUserTransactionSuccess]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 })
 
-const summaryIsLoading = createReducer([], {
-  [summaryActions.getIncomeSummaryRequest]: () => true,
-  [summaryActions.getIncomeSummarySuccess]: () => false,
-  [summaryActions.getIncomeSummaryError]: () => false,
-  [summaryActions.getExpenseSummaryRequest]: () => true,
-  [summaryActions.getExpenseSummarySuccess]: () => false,
-  [summaryActions.getExpenseSummaryError]: () => false,
+const setDateValue = createReducer('', {
+  [transactionActions.setCurrentDateValue]: (_, { payload }) => payload,
+})
+
+const resetValuesOfInput = createReducer(0, {
+  [transactionActions.resetInputValues]: (state, { payload }) =>
+    state + payload,
 })
 
 export default combineReducers({
-  sixMonthsIncome,
-  sixMonthsExpense,
-  summaryIsLoading,
+  addTransaction,
+  deleteTransaction,
+  setDateValue,
+  resetValuesOfInput,
 })

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { authSelectors } from '../redux/auth'
 
 import Header from './Header/Header'
+import Background from './Background/Background'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
@@ -15,7 +16,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           return (
             <>
               <Header />
-              <Component {...props} />
+              <Background>
+                <Component {...props} />
+              </Background>
             </>
           )
         } else {
