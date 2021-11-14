@@ -9,6 +9,8 @@ import {
   BalanceInput,
   BalanceButton,
   BalanceWrapper,
+  InputWrapper,
+  CurrencyText,
 } from './Balance.styled'
 import balanceOperations from '../../redux/balance/balance-operations'
 import getBalance from '../../redux/balance/balance-selectors'
@@ -46,21 +48,24 @@ const Balance = () => {
       <BalanceForm onSubmit={handleSubmit}>
         <BalanceLabel htmlFor="balance">Баланс:</BalanceLabel>
         <BalanceWrapper>
-          <BalanceInput
-            autoComplete="off"
-            type="text"
-            balance={balance}
-            onChange={handleChange}
-            id="balance"
-            placeholder="00.00 UAH"
-            pattern="\d+(\.\d{2})"
-            title="Баланс должен состоять из цифр, разделителя 'точка' и не более двух цифр после точки"
-            required
-          />
+          <InputWrapper>
+            <BalanceInput
+              autoComplete="off"
+              type="text"
+              balance={balance}
+              onChange={handleChange}
+              id="balance"
+              placeholder={'00.00'}
+              pattern="\d+(\.\d{2})"
+              title="Баланс должен состоять из цифр, разделителя 'точка' и не более двух цифр после точки"
+              required
+            />
+            <CurrencyText>UAH</CurrencyText>
+          </InputWrapper>
           <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
         </BalanceWrapper>
       </BalanceForm>
-      {notifyShow && currentBalance !== 0 && (
+      {notifyShow && balance === 0 && (
         <ZeroBalanceModal handleClose={handleClose}></ZeroBalanceModal>
       )}
     </>

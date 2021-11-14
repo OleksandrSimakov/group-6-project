@@ -1,17 +1,13 @@
-export const getClearedInputValues = (state) =>
-  state.transactions.resetValuesOfInput
-export const datepickerValue = (state) => state.transactions.setDateValue
+const currentDate = (state) => state.transactions.selectedDate
+const getTransactions = (state) => state.transactions.transactions
+const getIsLoading = (state) => state.transactions.isLoading
+const getLast = (state) => state.transactions.getLast
 
-const getTransactions = (state) => state.transactions
-const getIncomes = (state) => state.transactions.incomes
-const getExpenses = (state) => state.transactions.expenses
-
-const transactionSelectors = {
+const transactionsSelectors = {
+  currentDate,
   getTransactions,
-  getIncomes,
-  getExpenses,
-  datepickerValue,
-  getClearedInputValues,
+  getIsLoading,
+  getLast,
 }
 
-export default transactionSelectors
+export default transactionsSelectors

@@ -15,6 +15,9 @@ export const TableContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     margin: 0 auto;
+    margin-bottom: 60px;
+    overflow-y: scroll;
+    overflow-x: none;
   }
   @media screen and (min-width: 1280px) {
     width: 760px;
@@ -61,7 +64,7 @@ export const TableRow = styled.tr`
     border-bottom: 2px solid #f5f6fb;
   }
 `
-export const DeleteIconWrapper = styled.div`
+export const DeleteIconBtn = styled.button`
   width: 32px;
   height: 32px;
   display: flex;

@@ -17,70 +17,87 @@ export const expenseOptions = {
 
 axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
-const addTransactionIncome = (data, onSuccess, onError) => async (dispatch) => {
+const addIncome = (data) => async (dispatch) => {
   dispatch(transactionActions.addIncomeRequest())
 
   try {
-    await axios.post('api/transactions/addIncome', data)
-    dispatch(transactionActions.addIncomeSuccess)
-    onSuccess()
+    const response = await axios.post('api/transactions/addIncome', data)
+    dispatch(transactionActions.addIncomeSuccess())
+    console.log(response)
+    // onSuccess()
   } catch (error) {
+    // onError(error)
     dispatch(transactionActions.addIncomeError(error.message))
-    // toast.error(error.response.message)
   }
 }
 
-const addTransactionExpense =
-  (data, onSuccess, onError) => async (dispatch) => {
-    dispatch(transactionActions.addExpenseRequest())
+const addExpense = (data) => async (dispatch) => {
+  dispatch(transactionActions.addExpenseRequest())
 
-    try {
-      await axios.post('api/transactions/addExpense', data)
-      dispatch(transactionActions.addExpenseSuccess)
-      onSuccess()
-    } catch (error) {
-      dispatch(transactionActions.addExpenseError(error.message))
-      // toast.error(error.response.message)
-    }
+  try {
+    const response = await axios.post('api/transactions/addExpense', data)
+    dispatch(transactionActions.addExpenseSuccess())
+    console.log(response)
+  } catch (error) {
+    // onError(error)
+    dispatch(transactionActions.addExpenseError(error.message))
   }
-// const deleteTransaction = (transactionId) => async (dispatch) => {
-//   dispatch(transactionActions.deleteUserTransactionRequest())
-//   try {
-//     const response = await axios.delete(`/api/transactions/${transactionId}`)
+}
 
-//     await dispatch(
-//       transactionActions.deleteUserTransactionSuccess(transactionId)
-//     )
-//     // await dispatch(userActions.setCurrentBalanceSuccess(response.data.balance))
-//     await dispatch(
-//       transactionActions.getUserTransactionsByYearSuccess(response.data.ledger)
-//     )
-//   } catch (error) {
-//     dispatch(transactionActions.deleteUserTransactionError(error.message))
-//     toast.error(error.response.message)
-//   }
-// }
+const getExpenseByDate = (date) => async (dispatch) => {
+  dispatch(transactionActions.getExpenseByDateRequest())
 
-// const addUserTransaction = createAsyncThunk(
-//   'transactions/addUserExpense',
-//   async (newTransaction) => {
-//     const transactions = await transactionsAPI.addUserTransaction(
-//       newTransaction
-//     )
-//     return transactions
-//   }
-// )
+  try {
+    const { data } = await axios.get(
+      `api/transactions/getExpenseByDate/${date}`
+    )
+    dispatch(transactionActions.getExpenseByDateSuccess(data))
+  } catch (error) {
+    dispatch(transactionActions.getExpenseByDateError())
+  }
+}
 
-// const deleteTransaction = createAsyncThunk(
-//   'contacts/deleteTransaction',
-//   async (transactionId) => {
-//     await transactionsAPI.deleteTransaction(transactionId)
-//     return transactionId
-//   }
-// )
+const getIncomeByDate = (date, onSuccess, onError) => async (dispatch) => {
+  dispatch(transactionActions.getIncomeByDateRequest())
+
+  try {
+    const { data } = await axios.get(`api/transactions/getIncomeByDate/${date}`)
+    dispatch(transactionActions.getIncomeByDateSuccess(data))
+  } catch (error) {
+    dispatch(transactionActions.getIncomeByDateError(error))
+  }
+}
+
+const getLast = (onSuccess, onError) => async (dispatch) => {
+  dispatch(transactionActions.getLastRequest())
+
+  try {
+    const { data } = await axios.get(`api/transactions/getLast`)
+    dispatch(transactionActions.getLastSuccess(data))
+  } catch (error) {
+    dispatch(transactionActions.getLastError(error))
+  }
+}
+
+const deleteTransaction = (id) => async (dispatch) => {
+  dispatch(transactionActions.deleteTransactionRequest())
+
+  try {
+    const response = await axios.delete(`api/transactions/${id}`)
+
+    dispatch(transactionActions.deleteTransactionSuccess(id))
+    console.log(response)
+  } catch (error) {
+    dispatch(transactionActions.deleteTransactionError(error))
+  }
+}
 
 const transactionOperations = {
-  addTransactionIncome,
-  addTransactionExpense,
+  addIncome,
+  addExpense,
+  getExpenseByDate,
+  getIncomeByDate,
+  getLast,
+  deleteTransaction,
 }
 export default transactionOperations
