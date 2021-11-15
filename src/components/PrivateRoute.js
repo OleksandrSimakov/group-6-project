@@ -16,9 +16,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           return (
             <>
               <Header />
-              <Background>
-                <Component {...props} />
-              </Background>
+              {/* <Background> */}
+              <Component {...props} />
+              {/* </Background> */}
             </>
           )
         } else {

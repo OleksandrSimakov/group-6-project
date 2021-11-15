@@ -1,41 +1,41 @@
-import balanceServices from '../../services/transactions-api'
+// import balanceServices from '../../services/transactions-api'
 import balanceActions from './balance-actions'
+import axios from 'axios'
 
-const currentDate = new Date()
-const currentYear = currentDate.getFullYear()
-const currentMonth = currentDate.getMonth() + 1
+// const updateBalance = (newBalance) => async (dispatch) => {
+//   try {
+//     const updatedBalance = await balanceServices.updateUserBalance(newBalance)
+//     dispatch(balanceActions.updateBalance(updatedBalance))
+//   } catch (error) {
+//     throw new Error(error)
+//   }
+// }
+const getBalance = () => async (dispatch) => {
+  dispatch(balanceActions.getBalanceRequest())
 
-const updateBalance = (newBalance) => async (dispatch) => {
   try {
-    const updatedBalance = await balanceServices.updateUserBalance(newBalance)
-    dispatch(balanceActions.updateBalance(updatedBalance))
+    const response = await axios.get('/api/auth/current')
+    console.log(response)
+    dispatch(balanceActions.getBalanceSuccess(response.data.user.data.balance))
   } catch (error) {
-    throw new Error(error)
+    dispatch(balanceActions.getBalanceError(error.message))
+    console.log(error.message)
   }
 }
 
-const updateCurrentExpenses =
-  (year = currentYear, month = currentMonth) =>
-  async (dispatch) => {
-    try {
-      const updatedExpenses = await balanceServices.updatedExpenses(year, month)
-      dispatch(balanceActions.updateCurrentExpenses(updatedExpenses))
-    } catch (error) {
-      throw new Error(error)
-    }
-  }
+const updateBalance = (balance) => async (dispatch) => {
+  dispatch(balanceActions.addBalanceRequest())
 
-const updateCurrentIncomes =
-  (year = currentYear, month = currentMonth) =>
-  async (dispatch) => {
-    try {
-      const updatedIncomes = await balanceServices.updatedIncomes(year, month)
-      dispatch(balanceActions.updateCurrentIncomes(updatedIncomes))
-    } catch (error) {
-      throw new Error(error)
-    }
+  try {
+    const response = await axios.patch('/api/auth/balance', {
+      balance,
+    })
+    console.log(response.data)
+    dispatch(balanceActions.addBalanceSuccess(response.data.balance))
+  } catch (error) {
+    dispatch(balanceActions.addBalanceError(error.message))
   }
-
+}
 // const getBalance = () => async (dispatch) => {
 //   try {
 //     const balance = await balanceServices.fetchBalance()
@@ -48,9 +48,7 @@ const updateCurrentIncomes =
 
 const balanceOperations = {
   updateBalance,
-  // getBalance,
-  updateCurrentExpenses,
-  updateCurrentIncomes,
+  getBalance,
 }
 
 export default balanceOperations

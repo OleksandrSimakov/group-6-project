@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState, useCallback } from 'react'
-import { useWindowWidth } from '@react-hook/window-size'
-import { useLocation } from 'react-router-dom'
+// import { useWindowWidth } from '@react-hook/window-size'
+// import { useLocation } from 'react-router-dom'
 import { ZeroBalanceModal } from '../Modal/ZeroBanalceModal/ZeroBalanceModal'
 import {
   BalanceForm,
@@ -25,20 +25,25 @@ const Balance = () => {
 
   const dispatch = useDispatch()
 
-  const handleChange = (e) => setBalance(e.target.value)
-
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault()
-      setBalance(balance)
-      dispatch(balanceOperations.updateBalance(balance))
-    },
-    [dispatch, balance]
-  )
+  useEffect(() => {
+    dispatch(balanceOperations.getBalance())
+  }, [dispatch])
 
   useEffect(() => {
     setBalance(() => currentBalance)
+    console.log(currentBalance)
   }, [currentBalance])
+
+  const handleChange = (e) => {
+    setBalance(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    dispatch(balanceOperations.updateBalance(+balance))
+    setBalance('')
+  }
 
   const handleClose = (condition) => setNotifyShow(condition)
 
@@ -54,12 +59,12 @@ const Balance = () => {
               balance={balance}
               onChange={handleChange}
               id="balance"
-              placeholder={'00.00'}
+              placeholder={`${currentBalance} UAH`}
               pattern="\d+(\.\d{2})"
               title="Баланс должен состоять из цифр, разделителя 'точка' и не более двух цифр после точки"
               required
             />
-            <CurrencyText>UAH</CurrencyText>
+            {/* <CurrencyText>UAH</CurrencyText> */}
           </InputWrapper>
           <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
         </BalanceWrapper>
