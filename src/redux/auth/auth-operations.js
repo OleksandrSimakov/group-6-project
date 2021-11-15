@@ -54,17 +54,6 @@ const googleAuth = createAsyncThunk('api/auth/google-redirect',
   },
 )
 
-// const googleAuth = createAsyncThunk('api/auth/google-redirect',
-//     async (_, { rejectWithValue }) => {
-//     try {
-//         const data = await authAPI.getGoogleAuth();
-//          console.log(`data in auth-operation`, data)
-//         return data;
-//     } catch (error) {
-//          return rejectWithValue(error.message);
-//     }
-// });
-
 const fetchCurrentUser = createAsyncThunk(
   'api/auth/refresh',
   async (_, thunkAPI) => {

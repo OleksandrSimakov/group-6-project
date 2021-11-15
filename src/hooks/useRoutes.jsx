@@ -12,7 +12,6 @@ const WaitPage = lazy(() => import('../views/WaitPage'))
 
 const ReportPage = lazy(() => import('../views/ReportView/ReportView'))
 
-
 export default function useRoutes() {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
   console.log(authSelectors)

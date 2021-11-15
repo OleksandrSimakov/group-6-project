@@ -87,9 +87,8 @@ const BalanceView = () => {
 
   return (
     <>
-      <Balance />
       <ReportsButton />
-
+      <Balance />
       <TransactionsWrapper>
         <div>
           <button
