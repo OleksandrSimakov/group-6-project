@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState, useCallback } from 'react'
 // import { useWindowWidth } from '@react-hook/window-size'
-// import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { ZeroBalanceModal } from '../Modal/ZeroBanalceModal/ZeroBalanceModal'
 import {
   BalanceForm,
@@ -30,7 +30,6 @@ const Balance = () => {
   useEffect(() => {
     dispatch(balanceOperations.getBalance())
   }, [dispatch])
-
 
   useEffect(() => {
     setBalance(() => currentBalance)
