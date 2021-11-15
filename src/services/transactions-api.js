@@ -43,6 +43,12 @@ export default balanceServices;
 
 axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
+export const addTransactionApi = async (transaction) => {
+  const { data } = await axios.post('api/transactions/addIncome', transaction)
+
+
+axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
+
 export const getBalanceApi = async (balance) => {
   // return axios.patch(`api/auth/balance`, balance)
   const { data } = await axios.patch(`api/auth/balance`)

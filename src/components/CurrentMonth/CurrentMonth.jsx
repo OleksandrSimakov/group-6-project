@@ -1,44 +1,41 @@
-import React from 'react';
-import { useState } from "react";
-import { Container, Button, Div, H4, Span, Svg } from './CurrentMonth.styled';
+import React from 'react'
+import { Container, Button, Div, H4, Span, Svg } from './CurrentMonth.styled'
 import sprite from '../../images/sprite.svg';
 
-const CurrentMonth = () => {
-  const [date, setDate] = useState(new Date());
-
-  const changeMonth = (action) => {
-    const value = action === "prev" ? -1 : 1;
-    setDate((prevDate) => {
-      const newDate = new Date(prevDate.getTime());
-      const month = newDate.getMonth();
-      newDate.setMonth(month + value);
-      if (newDate > new Date()) {
-        return prevDate;
-      }
-      return newDate;
-    });
-  };
-  const year = date.getFullYear();
-  const month = date.toLocaleDateString("ru", { month: "long" });
-
+const CurrentMonth = ({ month, year, onHandleClickRight, onHandleClickLeft }) => {
+  const mounthArr = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
+  ];
+  const currentMonth = mounthArr[month-1]
   return (
     <Container>
       <H4>Текущий период :</H4>
       <Div>
-        <Button type="button" onClick={() => changeMonth("prev")}>
+        <Button type="button" onClick={onHandleClickLeft}>
           <Svg>
-             <use href={sprite + '#arrowLeft-icon'} />
+            <use href={sprite + '#arrowLeft-icon'} />
           </Svg>
         </Button>
-        <Span>{month} {year}  </Span>
-        <Button type="button" onClick={() => changeMonth("next")}>
+        <Span>{currentMonth} {year}  </Span>
+        <Button type="button" onClick={onHandleClickRight}>
           <Svg>
-             <use href={sprite + '#arrowRight-icon'} />
+            <use href={sprite + '#arrowRight-icon'} />
           </Svg>
         </Button>
       </Div>
     </Container>
   );
-}
+};
 
 export default CurrentMonth;

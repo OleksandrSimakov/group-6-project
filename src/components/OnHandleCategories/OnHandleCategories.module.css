@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  max-width: 1064px;
+  margin: 0 auto;
+
+  background-color: #ffffff;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 30px;
+}
+
+.img {
+  width: 14px;
+  height: 14px;
+  fill: #ff751d;
+}
+
+.button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.button:hover svg {
+  fill: #cc5105;
+}
+
+.textCategories {
+  margin: 0 15px;
+
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #000000;
+}
