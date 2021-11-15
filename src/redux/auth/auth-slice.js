@@ -14,15 +14,14 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [authOperations.register.fulfilled]: (state, action) => {
-      state.user = action.payload.user
-      state.token = action.payload.token
-      state.isLoggedIn = true
+      state.user.email = action.payload.user.data.email
+      state.isLoggedIn = false
       state.isAuthenticated = false
     },
 
     [authOperations.logIn.fulfilled]: (state, action) => {
-      state.user = action.payload.user
-      state.token = action.payload.token
+      state.user.email = action.payload.user.email
+      state.token = action.payload.user.token
       state.isLoggedIn = true
       state.isAuthenticated = true
     },
@@ -39,7 +38,7 @@ const authSlice = createSlice({
     },
 
     [authOperations.fetchCurrentUser.fulfilled]: (state, action) => {
-      state.user = action.payload
+      state.user.email = action.payload.user.data.email
       state.isLoggedIn = true
       state.isFeatchingCurrentUser = false
       state.isAuthenticated = true
@@ -48,6 +47,13 @@ const authSlice = createSlice({
     [authOperations.fetchCurrentUser.rejected]: (state) => {
       state.isFeatchingCurrentUser = false
       state.isAuthenticated = false
+    },
+
+    [authOperations.googleAuth.fulfilled]: (state, action) => {
+      state.user = action.payload.user
+      state.token = action.payload.token
+      state.isLoggedIn = true
+      state.isAuthenticated = true
     },
   },
 })

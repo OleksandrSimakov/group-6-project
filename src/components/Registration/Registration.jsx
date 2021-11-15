@@ -1,4 +1,5 @@
 import React from 'react'
+// import axios from 'axios'
 import { useState } from 'react'
 import { authOperations } from '../../redux/auth'
 import { useDispatch } from 'react-redux'
@@ -10,9 +11,14 @@ import {
   FormBottons,
 } from '../AccessForm/AccessForm.styled.jsx'
 import { ReactComponent as GoogleIcon } from '../../images/google.svg'
+// import * as authAPI from '../../services/auth-api';
+// import { useHistory } from 'react-router-dom'
+
+// axios.defaults.baseURL = 'http://localhost:3001/'
 
 export default function Registration() {
   const dispatch = useDispatch()
+  // const history = useHistory()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -44,10 +50,14 @@ export default function Registration() {
     reset()
   }
 
-  const handleGoogleAuth = (e) => {
-    dispatch(authOperations.googleLogIn())
-    reset()
-  }
+  // const handleGoogleAuth = async (e) => {
+  //   // dispatch(authAPI.getGoogleAuth)
+  //   // reset()
+    
+  //   const { data } = await axios.get(`/api/auth/google`)
+  //  console.log( "<data>", data)
+  //  history.push(data)
+  // }
 
   const reset = () => {
     setEmail('')
@@ -59,7 +69,10 @@ export default function Registration() {
       <Description>
         Вы можете авторизоваться с помощью Google Account:
       </Description>
-      <Google type="submit" onClick={handleGoogleAuth}>
+      {/* <Google type="submit" onClick={handleGoogleAuth}>
+        <GoogleIcon />
+      </Google> */}
+      <Google href='https://kapusta-pro.herokuapp.com/api/auth/google'>
         <GoogleIcon />
       </Google>
       <Description>

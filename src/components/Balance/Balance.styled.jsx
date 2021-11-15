@@ -1,9 +1,12 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
 export const BalanceForm = styled.form`
-  position: relative;
+  margin: 0 auto;
+  max-width: 1060px;
+  min-width: 420px;
   text-align: center;
   background-color: #f5f6fb;
+  margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
@@ -11,8 +14,13 @@ export const BalanceForm = styled.form`
     width: 369px;
     margin: 0 auto;
     padding-left: 35px;
+    margin-bottom: 58px;
   }
-`;
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 9px;
+  }
+`
 export const BalanceLabel = styled.label`
   font-family: Roboto;
   font-style: normal;
@@ -26,7 +34,7 @@ export const BalanceLabel = styled.label`
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;
   }
-`;
+`
 
 export const BalanceInput = styled.input`
   display: flex;
@@ -42,8 +50,9 @@ export const BalanceInput = styled.input`
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.02em;
-  padding: 12px 20px;
+  padding: 12px 28px;
   color: #000000;
+  outline: none;
 
   @media screen and (max-width: 767px) {
     border-right: none;
@@ -53,7 +62,7 @@ export const BalanceInput = styled.input`
     border-radius: 16px;
     margin-right: 15px;
   }
-`;
+`
 
 export const BalanceButton = styled.button`
   display: flex;
@@ -71,21 +80,17 @@ export const BalanceButton = styled.button`
   text-transform: uppercase;
   padding: 12px 20px;
   color: rgba(82, 85, 95, 0.7);
-  &:hover {
+  transition: all 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  &:hover,
+  &:focus {
     background-color: #ff751d;
     color: #f5f6fb;
-    transition: 0.5s linear;
-    &:focus {
-      background-color: #ff751d;
-      color: #f5f6fb;
-      transition: 0.5s linear;
-    }
   }
 
   @media screen and (min-width: 768px) {
     border-radius: 16px;
   }
-`;
+`
 
 export const BalanceWrapper = styled.div`
   margin: 0 auto;
@@ -98,4 +103,4 @@ export const BalanceWrapper = styled.div`
     margin-left: 21px;
     justify-content: space-between;
   }
-`;
+`

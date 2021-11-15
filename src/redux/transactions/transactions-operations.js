@@ -1,13 +1,5 @@
 import axios from 'axios'
 import transactionActions from './transactions-actions'
-// import toast from 'react-hot-toast'
-// import {
-//   addTransactionApi,
-//   deleteTransactionApi,
-// } from '../../services/transactions-api'
-
-// import { createAsyncThunk } from '@reduxjs/toolkit'
-// import * as transactionsAPI from '../../services/transactions-api'
 
 export const expenseOptions = {
   products: 'Продукты',

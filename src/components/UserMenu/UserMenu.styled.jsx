@@ -17,7 +17,7 @@ margin-left: 10px;
 export const UserMenuContainer = styled.div`
 display: flex;
 align-items: center;
-padding: 5px;
+padding: 5px 20px;
 `;
 
 export const VerticalLine = styled.div`

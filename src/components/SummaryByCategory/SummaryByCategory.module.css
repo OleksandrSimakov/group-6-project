@@ -1,0 +1,139 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+
+  margin-top: 25px;
+
+  background-color: #ffffff;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 30px;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding-left: 0;
+  list-style: none;
+}
+
+.title_message {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 17px;
+
+  color: #52555f;
+  padding-bottom: 30px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  height: 140px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .item {
+    border-bottom: 1px solid #e0e5eb;
+  }
+}
+
+.item:hover .svg_box {
+  background-color: #ffdac0;
+}
+.item:hover .icon {
+  fill: #ff751d;
+}
+
+.text {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: #52555f;
+
+  margin-bottom: 15px;
+}
+
+.svg_box {
+  width: 59px;
+  height: 46px;
+  position: relative;
+  background-color: #f5f6fb;
+  border-radius: 20px;
+  margin-bottom: 7px;
+}
+
+.icon {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 10;
+  fill: #071f41;
+}
+
+.iconActive {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+  fill: #ff751d;
+  z-index: 10;
+}
+.svg_boxActive {
+  width: 59px;
+  height: 46px;
+  position: relative;
+  background-color: rgb(255, 218, 192);
+  border-radius: 20px;
+  margin-bottom: 7px;
+}
+
+.title {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #52555f;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    width: 670px;
+  }
+
+  .item {
+    margin: 0 10px 0 0;
+  }
+}
+
+.noData {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 17px;
+
+  color: #52555f;
+  padding-bottom: 30px;
+}

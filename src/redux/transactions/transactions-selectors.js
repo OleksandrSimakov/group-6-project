@@ -3,13 +3,13 @@ export const getClearedInputValues = (state) =>
 export const datepickerValue = (state) => state.transactions.setDateValue
 
 const getTransactions = (state) => state.transactions
-const getExpenseOfDay = (state) => state.transactions.expenseOfDay
-const getIncomeOfDay = (state) => state.transactions.incomeOfDay
+const getIncomes = (state) => state.transactions.incomes
+const getExpenses = (state) => state.transactions.expenses
 
 const transactionSelectors = {
   getTransactions,
-  getExpenseOfDay,
-  getIncomeOfDay,
+  getIncomes,
+  getExpenses,
   datepickerValue,
   getClearedInputValues,
 }
