@@ -13,7 +13,7 @@ border-radius: 0 0 0 50px;
 }
 
 @media screen and (min-width: 768px) {
-  height: 526px;
+  height: 500px;
   padding-top:28px;
 }
 `;
@@ -21,7 +21,7 @@ border-radius: 0 0 0 50px;
 export const Cabbages = styled.div`
 @media screen and (min-width: 768px) {
   background-image: url(${cabbages});
-  height: 232px;
+  height: 222px;
 }
 `;
 
@@ -83,7 +83,7 @@ export const BottomCabbage = styled.div`
  }
 `;
 
-export const Header = styled.div`
+export const SiteTitle = styled.div`
   position: relative;
   top: 86px;
   left: 49px;
@@ -100,14 +100,14 @@ export const Header = styled.div`
     z-index: 10;
   }
   @media screen and (min-width: 1280px) {
-    top: 300px;
+    top: 260px;
     left: 230px;
     height: 120px;
     width: 377px;
   }
 `;
 
-export const HeaderDescr = styled.p`
+export const SiteTitleDescr = styled.p`
  position: relative;
  text-transform: uppercase;
  top: 49px;

@@ -1,49 +1,58 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as authAPI from '../../services/auth-api';
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import * as authAPI from '../../services/auth-api'
 
-const register = createAsyncThunk('api/auth/signup',
-    async (newUser, { rejectWithValue }) => {
-        console.log(`newUser in auth-operation`, newUser);
+const register = createAsyncThunk(
+  'api/auth/signup',
+  async (newUser, { rejectWithValue }) => {
+    console.log(`newUser in auth-operation`, newUser)
     try {
-        const data = await authAPI.postSignUp(newUser);
-        console.log(`data in auth-operation`, data);
-        return data;
+      const data = await authAPI.postSignUp(newUser)
+      console.log(`data in auth-operation`, data)
+      return data
     } catch (error) {
-        return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
-});
+  },
+)
 
-const logIn = createAsyncThunk('api/auth/login',
-    async (user, { rejectWithValue }) => {
+const logIn = createAsyncThunk(
+  'api/auth/login',
+  async (user, { rejectWithValue }) => {
     try {
-        const data = await authAPI.postLogIn(user);
-        console.log(`data in auth-operation`, data);
-        return data;
+      const data = await authAPI.postLogIn(user)
+      console.log(`data in auth-operation`, data)
+      return data
     } catch (error) {
-         return rejectWithValue(error.message);        
+      return rejectWithValue(error.message)
     }
-});
+  },
+)
 
-const logOut = createAsyncThunk('api/auth/logout', async (credentials, { rejectWithValue }) => {
+const logOut = createAsyncThunk(
+  'api/auth/logout',
+  async (credentials, { rejectWithValue }) => {
     try {
-        const data = await authAPI.postLogOut(credentials);
-        console.log(`data in auth-operation`, data);
-        return data;
+      const data = await authAPI.postLogOut(credentials)
+      console.log(`data in auth-operation`, data)
+      return data
     } catch (error) {
-         return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
-});
+  },
+)
 
-const googleLogIn = createAsyncThunk('api/auth/google',
-    async (_, { rejectWithValue }) => {
+
+const googleAuth = createAsyncThunk('api/auth/google-redirect',
+    async (email, { rejectWithValue }) => {
     try {
-        const data = await authAPI.getGoogleAuth();
+        const data = await authAPI.getGoogleUser(email);
          console.log(`data in auth-operation`, data)
         return data;
     } catch (error) {
-         return rejectWithValue(error.message);        
+      return rejectWithValue(error.message)
     }
-});
+  },
+)
 
 // const googleAuth = createAsyncThunk('api/auth/google-redirect',
 //     async (_, { rejectWithValue }) => {
@@ -52,34 +61,36 @@ const googleLogIn = createAsyncThunk('api/auth/google',
 //          console.log(`data in auth-operation`, data)
 //         return data;
 //     } catch (error) {
-//          return rejectWithValue(error.message);        
+//          return rejectWithValue(error.message);
 //     }
 // });
 
+const fetchCurrentUser = createAsyncThunk(
+  'api/auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState()
+    const persistedToken = state.auth.token
 
-const fetchCurrentUser = createAsyncThunk('api/auth/refresh', async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-       
     try {
-         if (persistedToken === null){
-          return thunkAPI.rejectWithValue();
-        }
-        authAPI.token.set(persistedToken);
-        const currentUser = await authAPI.getCurrentUser();
-        return currentUser;
+      if (persistedToken === null) {
+        return thunkAPI.rejectWithValue()
+      }
+      authAPI.token.set(persistedToken)
+      const currentUser = await authAPI.getCurrentUser()
+      return currentUser
     } catch (error) {
-       return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message)
     }
-    
-});
+  },
+)
 
 const authOperations = {
     register,
     logIn,
     logOut,
     fetchCurrentUser,
-    googleLogIn
+    googleAuth
 };
 
-export default authOperations;
+
+export default authOperations

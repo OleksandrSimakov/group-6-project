@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 
 export const CurrentInput = styled.input`
   display: block;
-  //width: 52px;
+  width: 265px;
   border-radius: 30px;
   border: none;
   outline: none;
-  padding: 17px 20px 17px 20px;
+  padding: 15px 17px;
   background-color:  #F6F7FB;
   margin-top: 12px;
   margin-bottom: 30px;

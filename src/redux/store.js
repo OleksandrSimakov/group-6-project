@@ -4,6 +4,7 @@ import { authReducer } from './auth'
 import { summaryReducer } from './transactions'
 import balanceReducers from './balance/balance-reducers'
 import transactionsReducer from './transactions/transactions-reducers'
+import reportReducer from './report/report-reducers'
 
 import {
   persistStore,
@@ -36,6 +37,7 @@ const store = configureStore({
     balance: balanceReducers,
     transactions: transactionsReducer,
     summary: summaryReducer,
+    report: reportReducer
   },
   middleware,
   devTools: true,

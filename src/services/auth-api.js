@@ -14,7 +14,6 @@ export const token = {
 export async function postSignUp(newUser) {
   const { data } = await axios.post(`api/auth/signup`, newUser)
   console.log(`data in auth-api`, data)
-  token.set(data.user.token)
   return data
 }
 
@@ -35,9 +34,7 @@ export async function getCurrentUser() {
   return data
 }
 
-export async function getGoogleAuth() {
-  const { data } = await axios.get(`api/auth/google`)
-  console.log(`data`, data)
-  token.set(data.token)
+export async function getGoogleUser(email) {
+  const { data } = await axios.get(`api/auth/${email}`)
   return data
 }
