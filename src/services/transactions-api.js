@@ -40,7 +40,7 @@ const balanceServices = {
 };
 
 export default balanceServices;
-=======
+
 axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
 export const addTransactionApi = async (transaction) => {
