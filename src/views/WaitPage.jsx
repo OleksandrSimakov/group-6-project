@@ -1,23 +1,19 @@
-import { useParams } from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch } from 'react-redux'
 import { WaitText } from '../components/Registration/Registration.styled'
-import { authOperations, authSelectors } from '../redux/auth'
+import { authOperations } from '../redux/auth'
+import queryString from 'query-string'
+import { useLocation } from 'react-router-dom'
 
 const WaitPage = () => {
-  const { email } = useParams();
-  console.log('email :>> ', email);
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn)
+    const location = useLocation()
+    const { email} = queryString.parse(location.search)
+    console.log('queryParams :>> ', email);
 
-  const dispatch = useDispatch();
+   const dispatch = useDispatch();
    dispatch(authOperations.googleAuth(email))
   
-  
-  
-
-    return (
-        <>
-        {!isLoggedIn && <WaitText>Подождите, пожалуйста, выполняется вход...</WaitText>}
-        </>
+   return (
+        <WaitText>Подождите, пожалуйста, выполняется вход...</WaitText>
     )
 }
 export default WaitPage
