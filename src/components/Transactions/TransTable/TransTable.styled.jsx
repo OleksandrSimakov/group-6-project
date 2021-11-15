@@ -8,6 +8,19 @@ export const TableContainer = styled.div`
   width: 605px;
   height: 344px;
   margin-top: 60px;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-color: #ff751d;
+    border: 4px solid #f5f6fb;
+    -webkit-border-radius: 10px;
+  }
+
+  overflow-x: hidden;
 
   box-shadow: none;
   border-radius: 20px 20px 0 0;
@@ -16,8 +29,6 @@ export const TableContainer = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0 auto;
     margin-bottom: 60px;
-    overflow-y: scroll;
-    overflow-x: none;
   }
   @media screen and (min-width: 1280px) {
     width: 760px;
@@ -32,7 +43,6 @@ export const TransactionTable = styled.table`
   text-align: center;
   outline: 2px solid #f5f6fb;
   border-radius: 20px 20px 0 0;
-  overflow: hidden;
 
   @media screen and (min-width: 1280px) {
     width: 760px;
@@ -83,4 +93,10 @@ export const DeleteIconBtn = styled.button`
 export const AmountValue = styled.span`
   color: #e7192e;
   font-weight: bold;
+`
+export const ScrollBar = styled.div`
+  :-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #f0f2f5;
+  }
 `

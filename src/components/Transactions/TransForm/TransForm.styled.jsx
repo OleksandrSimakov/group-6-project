@@ -113,6 +113,8 @@ export const DescriptionEntry = styled.input`
   background-color: transparent;
 
   ::placeholder {
+    font-size: 12px;
+    letter-spacing: 0.02em;
     font-weight: 400;
     color: #808080;
   }
@@ -120,7 +122,7 @@ export const DescriptionEntry = styled.input`
   @media screen and (min-width: 768px) {
     width: 185px;
     height: 45px;
-    padding: 15px;
+    padding: 2px 16px 2px 16px;
     border: 2px solid #f6f7fc;
     border-radius: 16px 0 0 16px;
   }
@@ -179,7 +181,7 @@ export const Input = styled.input`
 export const Currency = styled.span`
   width: 26px;
   position: absolute;
-  top: 133px;
+  top: 133.5px;
   right: 130px;
   font-size: 12px;
   font-weight: 700;
@@ -237,7 +239,7 @@ export const SelectContainer = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    width: 183px;
+    width: 185px;
     position: absolute;
     left: 368px;
   }

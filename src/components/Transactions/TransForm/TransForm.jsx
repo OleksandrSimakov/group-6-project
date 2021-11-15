@@ -87,10 +87,11 @@ export default function TransactionForm({ options, profit, onSubmit }) {
     }),
     control: () => ({
       display: 'flex',
-      width: 180,
+      width: 179,
       height: 45,
       paddingTop: 1,
       paddingBottom: 2,
+
       border: '2px solid #f5f6fb',
     }),
     indicatorSeparator: (provided, state) => ({
@@ -115,7 +116,13 @@ export default function TransactionForm({ options, profit, onSubmit }) {
       boxShadow: '0px 3px 4px rgba(170, 178, 197, 0.4)',
       border: '2px solid #f5f6fb',
     }),
-    valueContainer: (provided, state) => ({ ...provided, paddingLeft: 16 }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      paddingLeft: 16,
+      fontSize: 12,
+      fontWeight: 400,
+      color: '#c7ccdc',
+    }),
   }
 
   return (
@@ -131,7 +138,6 @@ export default function TransactionForm({ options, profit, onSubmit }) {
               selected={date}
               onChange={(date) => selectDate(date)}
               dateFormat="dd.MM.yyyy"
-              // todayButton="Сегодня"
               fixedHeight
               customInput={<ExampleCustomInput />}
             />

@@ -7,6 +7,7 @@ import {
   TransactionTable,
   Header,
   ColumnHeader,
+  ScrollBar,
 } from './TransTable.styled'
 
 const TransTable = ({ profit, transactions, onDelete }) => {
@@ -36,6 +37,7 @@ const TransTable = ({ profit, transactions, onDelete }) => {
             ))}
         </tbody>
       </TransactionTable>
+      <ScrollBar />
     </TableContainer>
   )
 }

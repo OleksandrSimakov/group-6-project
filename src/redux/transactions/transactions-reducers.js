@@ -42,9 +42,6 @@ const isLoading = createReducer(false, {
   [transactionsActions.deleteTransactionRequest]: () => true,
   [transactionsActions.deleteTransactionSuccess]: () => false,
   [transactionsActions.deleteTransactionError]: () => false,
-  // [transactionsActions.editContact.pending]: () => true,
-  // [transactionsActions.editContact.fulfilled]: () => false,
-  // [transactionsActions.editContact.rejected]: () => false,
 })
 
 export default combineReducers({
