@@ -1,14 +1,49 @@
 import Balance from '../../components/Balance/Balance'
-import { useState } from 'react'
-import ExpenseView from '../BalanceView/ExpencesView/ExpencesView'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Summary from '../../components/Summary'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import s from './BalanceView.module.css'
 import { TransactionsWrapper } from '../../components/TransactionsWrapper/TransactionsWrapper.styled'
+import TransTable from '../../components/Transactions/TransTable/TransTable'
+import MobTransTable from '../../components/Transactions/MobileTransTable/MobTransTable'
+import transactionOperations from '../../redux/transactions/transactions-operations'
+import balanceOperations from '../../redux/balance/balance-operations'
+import transactionsSelectors from '../../redux/transactions/transactions-selectors'
+import TransactionForm from '../../components/Transactions/TransForm/TransForm'
+import { format } from 'date-fns'
+import ArrowGoBack from '../../components/ArrowGoBack/ArrowGoBack'
+
+const optionsExpense = [
+  { value: 'transport', label: 'Транспорт' },
+  { value: 'products', label: 'Продукты' },
+  { value: 'health', label: 'Здоровье' },
+  { value: 'alcohol', label: 'Алкоголь' },
+  { value: 'entertainment', label: 'Развлечения' },
+  { value: 'home', label: 'Всё для дома' },
+  { value: 'technics', label: 'Техника' },
+  { value: 'bill', label: 'Комуналка, связь' },
+  { value: 'sport', label: 'Спорт, хобби' },
+  { value: 'education', label: 'Образование' },
+  { value: 'other', label: 'Прочее' },
+]
+
+const optionsProfit = [
+  { value: 'salary', label: 'ЗП' },
+  { value: 'additional', label: 'Доп. доход' },
+]
 
 const BalanceView = () => {
+  const dispatch = useDispatch()
   const [expense, setExpense] = useState(true)
   const [profits, setProfits] = useState(false)
+  const selectedDate = useSelector(transactionsSelectors.currentDate)
+  const transactions = useSelector(transactionsSelectors.getTransactions)
+
+  useEffect(() => {
+    const date = format(new Date(), 'yyyy-MM-dd')
+    dispatch(transactionOperations.getExpenseByDate(date))
+  }, [dispatch])
 
   const clickExpense = () => {
     if (expense) return
@@ -20,6 +55,32 @@ const BalanceView = () => {
     if (profits) return
     setProfits(true)
     setExpense(false)
+    const date = format(new Date(), 'yyyy-MM-dd')
+    dispatch(transactionOperations.getIncomeByDate(date))
+  }
+
+  const onTransactionSuccess = () => {
+    // toast.success('Transaction successfully added.')
+    dispatch(balanceOperations.getBalance())
+    if (profits) {
+      dispatch(transactionOperations.getIncomeByDate(selectedDate))
+    }
+    if (expense) {
+      dispatch(transactionOperations.getExpenseByDate(selectedDate))
+    }
+  }
+
+  const handleSubmit = (data) => {
+    if (profits) {
+      dispatch(transactionOperations.addIncome(data, onTransactionSuccess))
+    }
+    if (expense) {
+      dispatch(transactionOperations.addExpense(data, onTransactionSuccess))
+    }
+  }
+
+  const onDeleteTransaction = (id) => {
+    dispatch(transactionOperations.deleteTransaction(id))
   }
 
   const viewPort = useWindowDimensions()
@@ -27,6 +88,7 @@ const BalanceView = () => {
   return (
     <>
       <Balance />
+      <ArrowGoBack />
 
       <TransactionsWrapper>
         <div>
@@ -53,9 +115,50 @@ const BalanceView = () => {
             Доход
           </button>
         </div>
-        {expense && viewPort.width > 771 && <Summary />}
-        {!expense && viewPort.width > 771 && <Summary profits={profits} />}
-        <ExpenseView />
+
+        {expense ? (
+          <>
+            <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
+            {viewPort.width > 768 && (
+              <TransTable
+                transactions={transactions}
+                onDelete={onDeleteTransaction}
+              />
+            )}
+            {viewPort.width < 768 && (
+              <MobTransTable
+                transactions={transactions}
+                onDelete={onDeleteTransaction}
+              />
+            )}
+            {viewPort.width > 768 && <Summary />}
+          </>
+        ) : (
+          <>
+            <TransactionForm
+              profit={profits}
+              options={optionsProfit}
+              onSubmit={handleSubmit}
+            />
+            {viewPort.width > 768 && (
+              <TransTable
+                profit={profits}
+                transactions={transactions}
+                onDelete={onDeleteTransaction}
+              />
+            )}
+            {viewPort.width < 768 && (
+              <MobTransTable
+                profit={profits}
+                transactions={transactions}
+                onDelete={onDeleteTransaction}
+              />
+            )}
+            {viewPort.width > 768 && <Summary profits={profits} />}
+          </>
+        )}
+        {/* {expense && viewPort.width > 771 && <Summary />}
+        {!expense && viewPort.width > 771 && <Summary profits={profits} />} */}
       </TransactionsWrapper>
     </>
   )

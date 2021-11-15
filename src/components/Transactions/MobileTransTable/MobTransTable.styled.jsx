@@ -63,7 +63,7 @@ export const AmountWrap = styled.div`
   align-items: center;
 `
 
-export const Amount = styled.span`
+export const AmountLow = styled.span`
   font-weight: bold;
   font-size: 12px;
   line-height: 14px;
@@ -74,7 +74,18 @@ export const Amount = styled.span`
   color: #e7192e;
 `
 
-export const DeleteIconWrapper = styled.div`
+export const AmountHigh = styled.span`
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+
+  // text-align: right;
+  letter-spacing: 0.04em;
+
+  color: #407946;
+`
+
+export const DeleteIconBtnWrapper = styled.button`
   width: 32px;
   height: 32px;
   margin-left: 20px;

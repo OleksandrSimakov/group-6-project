@@ -1,10 +1,6 @@
 import { createAction } from '@reduxjs/toolkit'
 
 const transactionActions = {
-  // addTransactionRequest: createAction('transactions/addTransactionRequest'),
-  // addTransactionSuccess: createAction('transactions/addTransactionSuccess'),
-  // addTransactionError: createAction('transactions/addTransactionError'),
-
   addIncomeRequest: createAction('transactions/addIncomeRequest'),
   addIncomeSuccess: createAction('transactions/addIncomeSuccess'),
   addIncomeError: createAction('transactions/addIncomeError'),
@@ -13,18 +9,22 @@ const transactionActions = {
   addExpenseSuccess: createAction('transactions/addExpenseSuccess'),
   addExpenseError: createAction('transactions/addExpenseError'),
 
-  deleteUserTransactionRequest: createAction(
-    'transactions/deleteUserTransactionRequest'
-  ),
-  deleteUserTransactionSuccess: createAction(
-    'transactions/deleteUserTransactionSuccess'
-  ),
-  deleteUserTransactionError: createAction(
-    'transactions/deleteUserTransactionError'
-  ),
+  getExpenseByDateRequest: createAction('transactions/getExpenseByDateRequest'),
+  getExpenseByDateSuccess: createAction('transactions/getExpenseByDateSuccess'),
+  getExpenseByDateError: createAction('transactions/getExpenseByDateError'),
 
-  setCurrentDateValue: createAction('transactions/setCurrentDateValue'),
-  resetInputValues: createAction('transactions/resetInputValues'),
+  getIncomeByDateRequest: createAction('transactions/getIncomeByDateRequest'),
+  getIncomeByDateSuccess: createAction('transactions/getIncomeByDateSuccess'),
+  getIncomeByDateError: createAction('transactions/getIncomeByDateError'),
+
+  getLastRequest: createAction('transactions/getLastRequest'),
+  getLastSuccess: createAction('transactions/getLastSuccess'),
+  getLastError: createAction('transactions/getLastError'),
+
+  deleteTransactionRequest: createAction('transactions/deleteRequest'),
+  deleteTransactionSuccess: createAction('transactions/deleteSuccess'),
+  deleteTransactionError: createAction('transactions/deleteError'),
+  setDate: createAction('set-date'),
 }
 
 export default transactionActions

@@ -6,8 +6,6 @@ export const TransactionsWrapper = styled.div`
   min-width: 420px;
 
   @media screen and (min-width: 768px) {
-    display: block;
-    position: relative;
     margin: 0 auto;
     margin-top: 58px;
     margin-bottom: 61px;

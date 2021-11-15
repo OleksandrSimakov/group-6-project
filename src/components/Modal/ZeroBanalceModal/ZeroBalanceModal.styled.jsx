@@ -1,5 +1,5 @@
-import styled from "@emotion/styled/macro";
-import { Modal } from "react-bootstrap";
+import styled from '@emotion/styled/macro'
+import { Modal } from 'react-bootstrap'
 
 export const ZeroBalanceModalContainer = styled.div`
   max-width: 292px;
@@ -19,12 +19,12 @@ export const ZeroBalanceModalContainer = styled.div`
       left: 25%;
       top: -10px;
       border-top: none;
-      border-right: 15px solid transparent;
+      border-right: 15px solid transparent;z
       border-left: 15px solid transparent;
       border-bottom: 15px solid #1d346a;
     }
   }
-`;
+`
 export const ModalBodyContainer = styled(Modal.Body)`
   background: linear-gradient(117.84deg, #1d346a 2.84%, #031634 67.28%);
   border-radius: 30px;
@@ -36,7 +36,7 @@ export const ModalBodyContainer = styled(Modal.Body)`
       box-shadow: 10px 10px 30px #1d346a;
     }
   }
-`;
+`
 export const ModalBodyMainText = styled.p`
   font-family: Roboto;
   font-style: normal;
@@ -45,7 +45,7 @@ export const ModalBodyMainText = styled.p`
   line-height: 20px;
   margin-bottom: 20px;
   text-align: center;
-`;
+`
 export const ModalBodySecondaryText = styled.p`
   font-family: Roboto;
   font-style: normal;
@@ -54,4 +54,4 @@ export const ModalBodySecondaryText = styled.p`
   line-height: 16px;
   margin: 0;
   text-align: center;
-`;
+`

@@ -50,9 +50,17 @@ export const BalanceInput = styled.input`
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.02em;
-  padding: 12px 28px;
+  padding: 12px 20px;
   color: #000000;
   outline: none;
+
+  ::placeholder {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #000000;
+  }
 
   @media screen and (max-width: 767px) {
     border-right: none;
@@ -102,5 +110,23 @@ export const BalanceWrapper = styled.div`
     margin: 0;
     margin-left: 21px;
     justify-content: space-between;
+  }
+`
+export const InputWrapper = styled.div`
+  position: relative;
+`
+
+export const CurrencyText = styled.span`
+  position: absolute;
+  top: 30%;
+  right: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #000000;
+
+  @media screen and (min-width: 768px) {
+    border-radius: 16px;
+    margin-right: 15px;
   }
 `

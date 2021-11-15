@@ -9,35 +9,36 @@ import {
   BalanceInput,
   BalanceButton,
   BalanceWrapper,
+  InputWrapper,
+  CurrencyText,
 } from './Balance.styled'
 import balanceOperations from '../../redux/balance/balance-operations'
-import getBalance from '../../redux/balance/balance-selectors'
+import balanceSelectors from '../../redux/balance/balance-selectors'
 
 const Balance = () => {
-  const currentBalance = useSelector(getBalance)
+  // // const currentBalance = useSelector(getBalance)
   // const entryBalance = ''
+
+  const currentBalance = useSelector(balanceSelectors.balanceCurrent)
   const [balance, setBalance] = useState(currentBalance)
   const [notifyShow, setNotifyShow] = useState(true)
 
   const dispatch = useDispatch()
 
-  const handleChange = (e) => {
-    const balance = e.target.value
-    setBalance(balance)
-  }
+  const handleChange = (e) => setBalance(e.target.value)
 
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault()
       setBalance(balance)
-      dispatch(balanceOperations.addBalance(balance))
+      dispatch(balanceOperations.updateBalance(balance))
     },
     [dispatch, balance]
   )
 
   useEffect(() => {
-    setBalance(() => balance)
-  }, [balance])
+    setBalance(() => currentBalance)
+  }, [currentBalance])
 
   const handleClose = (condition) => setNotifyShow(condition)
 
@@ -46,21 +47,24 @@ const Balance = () => {
       <BalanceForm onSubmit={handleSubmit}>
         <BalanceLabel htmlFor="balance">Баланс:</BalanceLabel>
         <BalanceWrapper>
-          <BalanceInput
-            autoComplete="off"
-            type="text"
-            balance={balance}
-            onChange={handleChange}
-            id="balance"
-            placeholder="00.00 UAH"
-            pattern="\d+(\.\d{2})"
-            title="Баланс должен состоять из цифр, разделителя 'точка' и не более двух цифр после точки"
-            required
-          />
+          <InputWrapper>
+            <BalanceInput
+              autoComplete="off"
+              type="text"
+              balance={balance}
+              onChange={handleChange}
+              id="balance"
+              placeholder={'00.00'}
+              pattern="\d+(\.\d{2})"
+              title="Баланс должен состоять из цифр, разделителя 'точка' и не более двух цифр после точки"
+              required
+            />
+            <CurrencyText>UAH</CurrencyText>
+          </InputWrapper>
           <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
         </BalanceWrapper>
       </BalanceForm>
-      {notifyShow && currentBalance !== 0 && (
+      {notifyShow && !balance && (
         <ZeroBalanceModal handleClose={handleClose}></ZeroBalanceModal>
       )}
     </>

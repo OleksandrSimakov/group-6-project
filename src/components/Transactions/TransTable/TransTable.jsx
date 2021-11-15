@@ -1,35 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
-import items from './data-mock.json'
-
+// import { useState } from 'react'
+// import items from './data-mock.json'
+import DataTableItem from './TransTableItem'
 import {
   TableContainer,
   TransactionTable,
   Header,
   ColumnHeader,
-  TableItem,
-  TableRow,
-  DeleteIconWrapper,
-  AmountValue,
+  ScrollBar,
 } from './TransTable.styled'
-import { ReactComponent as DeleteIcon } from '../../../images/delete.svg'
 
-const TransTable = () => {
-  //   const addOperations = (id, amount, category, description) => {
-  //     const operation = {
-  //       id,
-  //       amount,
-  //       category,
-  //       description,
-  //     }
-  //   }
-
-  //   const deleteOperations = (operationId) => {
-  //     setOperations(
-  //       operations.filter((operation) => operation.id !== operationId)
-  //     )
-  //   }
-
+const TransTable = ({ profit, transactions, onDelete }) => {
   return (
     <TableContainer>
       <TransactionTable>
@@ -44,27 +25,19 @@ const TransTable = () => {
         </Header>
 
         <tbody className="transaction-tbody-desctop">
-          {/* отрендерить данные транзакций с бекенда */}
-          {items.map((item) => (
-            <TableRow key={item.id}>
-              <TableItem>
-                {new Date(item.date).toLocaleString().slice(0, 10)}
-              </TableItem>
-              <TableItem>{item.description}</TableItem>
-              <TableItem>{item.category}</TableItem>
-              <TableItem>
-                <AmountValue>{item.amount}</AmountValue>
-              </TableItem>
-              <TableItem>
-                {item.action}
-                <DeleteIconWrapper>
-                  <DeleteIcon />
-                </DeleteIconWrapper>
-              </TableItem>
-            </TableRow>
-          ))}
+          {/* рендер данных транзакций с бекенда */}
+          {transactions.length > 0 &&
+            transactions.map((item) => (
+              <DataTableItem
+                key={item._id}
+                item={item}
+                profit={profit}
+                onDelete={onDelete}
+              />
+            ))}
         </tbody>
       </TransactionTable>
+      <ScrollBar />
     </TableContainer>
   )
 }

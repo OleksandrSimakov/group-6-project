@@ -1,79 +1,196 @@
-import React, { useState, useCallback } from 'react'
-import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
-import TransButtons from '../TransButtons/TransButtons'
-import TransEntry from '../TransEntry/TransEntry'
-import TransCategory from '../TransCategory/TransCategory'
-import TransDescription from '../TransDesciption/TransDescription'
-import DateSelector from '../DateSelector/DateSelector'
-
-import { Form, FormContainer } from './TransForm.styled'
+import React, { useState, useEffect } from 'react'
+import Select from 'react-select'
+import ActionButton from '../ActionButton/ActionButton'
+import ReactDateSelector from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import { format } from 'date-fns'
+import ru from 'date-fns/locale/ru'
+import { useDispatch } from 'react-redux'
 import transactionsActions from '../../../redux/transactions/transactions-actions'
 import transactionsOperations from '../../../redux/transactions/transactions-operations'
+import { ReactComponent as CalendarIcon } from '../../../images/calendar.svg'
+import { ReactComponent as Calculator } from '../../../images/calculator.svg'
+import {
+  FormContainer,
+  Form,
+  CalendarWrapper,
+  CalendarIconWrapper,
+  ExampleCustomInput,
+  DescriptionEntry,
+  Input,
+  Currency,
+  CalculatorIcon,
+  InputWrapper,
+  ActionBtnWrapper,
+  SelectContainer,
+} from './TransForm.styled'
 
-const TransactionsForm = ({
-  endpoint,
-  data,
-  categoryTitle,
-  income,
-  expense,
-}) => {
+export default function TransactionForm({ options, profit, onSubmit }) {
   const dispatch = useDispatch()
-  const [trans, setTrans] = useState([])
+  const initialDate = new Date()
+  const [productName, setProductName] = useState('')
+  const [payValue, setPayValue] = useState('')
+  const [category, setCategory] = useState([])
+  const [date, setDate] = useState(initialDate)
 
-  const [category, setCategory] = useState('')
-  const [description, setDescription] = useState('')
-  const [sum, setSum] = useState(0)
-
-  const changeCategory = (value) => {
-    setCategory(value)
-  }
-  const handleTransDescription = (value) => {
-    setDescription(value)
-  }
-
-  const handleSum = (value) => {
-    setSum(value)
-  }
-
-  const inputReset = () => dispatch(transactionsActions.resetInputValues(1))
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const transaction = {
-      date: e.target[0].defaultValue,
-      description: description,
-      category: category,
-      amount: +sum,
+  useEffect(() => {
+    if (!profit) {
+      const formatDate = format(new Date(date), 'yyyy-MM-dd')
+      dispatch(transactionsOperations.getExpenseByDate(formatDate))
     }
+    if (profit) {
+      const formatDate = format(new Date(date), 'yyyy-MM-dd')
+      dispatch(transactionsOperations.getIncomeByDate(formatDate))
+    }
+  }, [dispatch, date, profit])
 
-    setTrans([...trans, transaction])
+  useEffect(() => {
+    resetData()
+  }, [profit])
 
-    await dispatch(transactionsOperations.addTransaction(endpoint, transaction))
-    inputReset()
+  const resetData = () => {
+    setProductName('')
+    setPayValue('')
+    setCategory([])
+  }
+
+  const resetInput = () => {
+    setProductName('')
+    setPayValue('')
+    setCategory([])
+  }
+
+  const selectDate = (date) => {
+    setDate(date)
+    const formatDate = format(new Date(date), 'yyyy-MM-dd')
+    dispatch(transactionsActions.setDate(formatDate))
+  }
+
+  const data = {
+    date: format(new Date(date), 'yyyy-MM-dd'),
+    category: category.label,
+    description: productName,
+    amount: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
+  }
+
+  const customStyles = {
+    option: (provided, { isSelected }) => ({
+      ...provided,
+
+      color: isSelected ? '#52555f' : '#c7ccdc',
+      backgroundColor: isSelected ? '#f5f6fb' : 'none',
+      ':hover': {
+        color: '#52555f',
+        backgroundColor: '#f5f6fb',
+      },
+      cursor: 'pointer',
+    }),
+    control: () => ({
+      display: 'flex',
+      width: 179,
+      height: 45,
+      paddingTop: 1,
+      paddingBottom: 2,
+
+      border: '2px solid #f5f6fb',
+    }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      display: 'none',
+    }),
+    menuList: (provided, state) => ({
+      ...provided,
+      overflow: 'inherit',
+    }),
+    container: (provided, state) => ({
+      ...provided,
+
+      border: '2px solid #ffffff',
+      cursor: 'pointer',
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      top: 34,
+      height: profit ? 80 : 380,
+      borderRadius: 'none',
+      boxShadow: '0px 3px 4px rgba(170, 178, 197, 0.4)',
+      border: '2px solid #f5f6fb',
+    }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      paddingLeft: 16,
+      fontSize: 12,
+      fontWeight: 400,
+      color: '#c7ccdc',
+    }),
   }
 
   return (
-    <Form type="submit" onSubmit={handleSubmit}>
+    <Form>
       <FormContainer>
-        <DateSelector />
-        <TransDescription handleTransDescription={handleTransDescription} />
-        <TransCategory
-          category={data}
-          categoryType={categoryTitle}
-          changeCategory={changeCategory}
+        <CalendarWrapper>
+          <CalendarIconWrapper>
+            <CalendarIcon />
+          </CalendarIconWrapper>
+          <div>
+            <ReactDateSelector
+              locale={ru}
+              selected={date}
+              onChange={(date) => selectDate(date)}
+              dateFormat="dd.MM.yyyy"
+              fixedHeight
+              customInput={<ExampleCustomInput />}
+            />
+          </div>
+        </CalendarWrapper>
+
+        <DescriptionEntry
+          className="input-productName"
+          placeholder="Описание товара"
+          name="name"
+          type="text"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+          required
         />
+        <SelectContainer>
+          <Select
+            name="category"
+            styles={customStyles}
+            placeholder="Категория товара"
+            options={options}
+            value={category}
+            onChange={setCategory}
+            isSearchable={false}
+          />
+        </SelectContainer>
+        <InputWrapper>
+          <Input
+            placeholder="0,00"
+            name="value"
+            type="number"
+            value={payValue}
+            onChange={(e) => setPayValue(e.target.value)}
+            autoComplete="off"
+          />
+          <Currency>UAH</Currency>
+          <CalculatorIcon>
+            <Calculator />
+          </CalculatorIcon>
+        </InputWrapper>
       </FormContainer>
 
-      <TransEntry handleSum={handleSum} />
-      <TransButtons inputReset={inputReset} />
+      <ActionBtnWrapper>
+        <ActionButton
+          type="submit"
+          text="Ввод"
+          onClick={() => {
+            onSubmit(data)
+            resetData()
+          }}
+        />
+        <ActionButton type="button" text="Очистить" onClick={resetInput} />
+      </ActionBtnWrapper>
     </Form>
   )
 }
-
-// TransactionsForm.propTypes = {
-//   endpoint: PropTypes.string.isRequired,
-// }
-
-export default TransactionsForm

@@ -47,19 +47,28 @@ export const addTransactionApi = async (transaction) => {
   const { data } = await axios.post('api/transactions/addIncome', transaction)
 
 
-axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
+const updateUserBalance = async (newBalance) => {
+  const response = await axios.patch('/api/auth/balance', {
+    balance: newBalance,
+  })
 
-export const getBalanceApi = async (balance) => {
-  // return axios.patch(`api/auth/balance`, balance)
-  const { data } = await axios.patch(`api/auth/balance`)
-  console.log(data)
-  return data.user.balance
+  console.log(response)
+
+  return response.data.balance
 }
 
-export const endpoints = {
-  income: 'api/transactions/addIncome',
-  expense: 'api/transactions/addExpense',
+// const fetchBalance = async () => {
+//   const { data } = await axios.get('/api/auth/balance')
+//   console.log(data)
+//   return data.user.balance
+// }
+
+const balanceApi = {
+  updateUserBalance,
+  // fetchBalance,
 }
+
+export default balanceApi
 
 // function addUserTransaction(endpoint, transaction) {
 //   return axios.post(endpoint, transaction)
@@ -70,3 +79,4 @@ export const endpoints = {
 // }
 
 // export const transactionsApi = { addTransaction, deleteTransaction }
+
