@@ -90,7 +90,11 @@ export const DeleteIconBtn = styled.button`
     transform: scale(1.1);
   }
 `
-export const AmountValue = styled.span`
+export const AmountValueHigh = styled.span`
+  color: #407946;
+  font-weight: bold;
+`
+export const AmountValueLow = styled.span`
   color: #e7192e;
   font-weight: bold;
 `

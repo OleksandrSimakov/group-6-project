@@ -6,11 +6,13 @@ import useWindowDimensions from '../../hooks/useWindowDimensions'
 import s from './BalanceView.module.css'
 import { TransactionsWrapper } from '../../components/TransactionsWrapper/TransactionsWrapper.styled'
 import TransTable from '../../components/Transactions/TransTable/TransTable'
-// import MobTransTable from '../../components/Transactions/MobileTransTable/MobTransTable'
+import MobTransTable from '../../components/Transactions/MobileTransTable/MobTransTable'
 import transactionOperations from '../../redux/transactions/transactions-operations'
+import balanceOperations from '../../redux/balance/balance-operations'
 import transactionsSelectors from '../../redux/transactions/transactions-selectors'
 import TransactionForm from '../../components/Transactions/TransForm/TransForm'
 import { format } from 'date-fns'
+import ArrowGoBack from '../../components/ArrowGoBack/ArrowGoBack'
 
 const optionsExpense = [
   { value: 'transport', label: 'Транспорт' },
@@ -35,6 +37,7 @@ const BalanceView = () => {
   const dispatch = useDispatch()
   const [expense, setExpense] = useState(true)
   const [profits, setProfits] = useState(false)
+  const selectedDate = useSelector(transactionsSelectors.currentDate)
   const transactions = useSelector(transactionsSelectors.getTransactions)
 
   useEffect(() => {
@@ -56,12 +59,23 @@ const BalanceView = () => {
     dispatch(transactionOperations.getIncomeByDate(date))
   }
 
-  const handleSubmit = (data) => {
+  const onTransactionSuccess = () => {
+    // toast.success('Transaction successfully added.')
+    dispatch(balanceOperations.getBalance())
     if (profits) {
-      dispatch(transactionOperations.addIncome(data))
+      dispatch(transactionOperations.getIncomeByDate(selectedDate))
     }
     if (expense) {
-      dispatch(transactionOperations.addExpense(data))
+      dispatch(transactionOperations.getExpenseByDate(selectedDate))
+    }
+  }
+
+  const handleSubmit = (data) => {
+    if (profits) {
+      dispatch(transactionOperations.addIncome(data, onTransactionSuccess))
+    }
+    if (expense) {
+      dispatch(transactionOperations.addExpense(data, onTransactionSuccess))
     }
   }
 
@@ -74,6 +88,7 @@ const BalanceView = () => {
   return (
     <>
       <Balance />
+      <ArrowGoBack />
 
       <TransactionsWrapper>
         <div>
@@ -110,7 +125,12 @@ const BalanceView = () => {
                 onDelete={onDeleteTransaction}
               />
             )}
-            {/* {viewPort.width < 768 && <MobTransTable />} */}
+            {viewPort.width < 768 && (
+              <MobTransTable
+                transactions={transactions}
+                onDelete={onDeleteTransaction}
+              />
+            )}
             {viewPort.width > 768 && <Summary />}
           </>
         ) : (
@@ -127,7 +147,13 @@ const BalanceView = () => {
                 onDelete={onDeleteTransaction}
               />
             )}
-            {/* {viewPort.width < 768 && <MobTransTable />} */}
+            {viewPort.width < 768 && (
+              <MobTransTable
+                profit={profits}
+                transactions={transactions}
+                onDelete={onDeleteTransaction}
+              />
+            )}
             {viewPort.width > 768 && <Summary profits={profits} />}
           </>
         )}

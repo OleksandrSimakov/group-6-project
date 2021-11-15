@@ -25,7 +25,7 @@ const TransTable = ({ profit, transactions, onDelete }) => {
         </Header>
 
         <tbody className="transaction-tbody-desctop">
-          {/* отрендерить данные транзакций с бекенда */}
+          {/* рендер данных транзакций с бекенда */}
           {transactions.length > 0 &&
             transactions.map((item) => (
               <DataTableItem
