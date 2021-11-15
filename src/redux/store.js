@@ -37,7 +37,7 @@ const store = configureStore({
     balance: balanceReducers,
     transactions: transactionsReducer,
     summary: summaryReducer,
-    report: reportReducer
+    report: reportReducer,
   },
   middleware,
   devTools: true,
