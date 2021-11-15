@@ -1,51 +1,39 @@
-import axios from "axios";
+import axios from 'axios'
+axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
 
 const updatedExpenses = async (year, month) => {
-  const { data } = await axios.get("/api/transactions/getExpenseByMonth");
+  const { data } = await axios.get('/api/transactions/getExpenseByMonth')
 
   const newData = data?.expenseByMonth?.find(
-    (report) => report._id.month === month && report._id.year === year
-  );
+    (report) => report._id.month === month && report._id.year === year,
+  )
 
-  return newData === undefined ? 0 : newData.total;
-};
+  return newData === undefined ? 0 : newData.total
+}
 
 const updatedIncomes = async (year, month) => {
-  const { data } = await axios.get("/api/transactions/getIncomeByMonth");
+  const { data } = await axios.get('/api/transactions/getIncomeByMonth')
 
   const newData = data?.incomeByMonth?.find(
-    (report) => report._id.month === month && report._id.year === year
-  );
+    (report) => report._id.month === month && report._id.year === year,
+  )
 
-  return newData === undefined ? 0 : newData.total;
-};
+  return newData === undefined ? 0 : newData.total
+}
 export async function fetchCurrentExpenses(year, month) {
   const { data } = await axios.get(
-    `api/transactions/getExpenseDetail/${year}-${month}`
-  );
+    `api/transactions/getExpenseDetail/${year}-${month}`,
+  )
   // token.set(data.user.token);
-  return data.expenseDetail;
+  return data.expenseDetail
 }
 export async function fetchCurrentIncome(year, month) {
   const { data } = await axios.get(
-    `api/transactions/getIncomeDetail/${year}-${month}`
-  );
+    `api/transactions/getIncomeDetail/${year}-${month}`,
+  )
   // token.set(data.user.token);
-  return data.incomeDetail;
+  return data.incomeDetail
 }
-
-const balanceServices = {
-  updatedExpenses,
-  updatedIncomes,
-};
-
-export default balanceServices;
-
-axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
-
-export const addTransactionApi = async (transaction) => {
-  const { data } = await axios.post('api/transactions/addIncome', transaction)
-
 
 const updateUserBalance = async (newBalance) => {
   const response = await axios.patch('/api/auth/balance', {
@@ -57,18 +45,31 @@ const updateUserBalance = async (newBalance) => {
   return response.data.balance
 }
 
+// const addTransactionApi = async (transaction) => {
+//   const { data } = await axios.post('api/transactions/addIncome', transaction)
+// }
+
+const balanceServices = {
+  updatedExpenses,
+  updatedIncomes,
+  updateUserBalance,
+  // addTransactionApi,
+}
+
+export default balanceServices
+
 // const fetchBalance = async () => {
 //   const { data } = await axios.get('/api/auth/balance')
 //   console.log(data)
 //   return data.user.balance
 // }
 
-const balanceApi = {
-  updateUserBalance,
-  // fetchBalance,
-}
+// const balanceApi = {
+//   updateUserBalance,
+//   // fetchBalance,
+// }
 
-export default balanceApi
+// export default balanceApi
 
 // function addUserTransaction(endpoint, transaction) {
 //   return axios.post(endpoint, transaction)
@@ -79,4 +80,3 @@ export default balanceApi
 // }
 
 // export const transactionsApi = { addTransaction, deleteTransaction }
-
