@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import authOperations from './auth-operations'
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, avatarURL: null},
   token: null,
   isLoggedIn: false,
   isFeatchingCurrentUser: false,
@@ -21,6 +21,7 @@ const authSlice = createSlice({
 
     [authOperations.logIn.fulfilled]: (state, action) => {
       state.user.email = action.payload.user.email
+      state.user.avatarURL = action.payload.user.avatarURL
       state.token = action.payload.user.token
       state.isLoggedIn = true
       state.isAuthenticated = true
@@ -28,6 +29,7 @@ const authSlice = createSlice({
 
     [authOperations.logOut.fulfilled]: (state) => {
       state.user.email = null
+      state.user.avatarURL = null
       state.token = null
       state.isLoggedIn = false
       state.isAuthenticated = false
@@ -39,6 +41,7 @@ const authSlice = createSlice({
 
     [authOperations.fetchCurrentUser.fulfilled]: (state, action) => {
       state.user.email = action.payload.user.data.email
+      state.user.avatarURL = action.payload.user.data.avatarURL
       state.isLoggedIn = true
       state.isFeatchingCurrentUser = false
       state.isAuthenticated = true
@@ -51,6 +54,7 @@ const authSlice = createSlice({
 
     [authOperations.googleAuth.fulfilled]: (state, action) => {
       state.user.email = action.payload.user.email
+      state.user.avatarURL = action.payload.user.avatarURL
       state.token = action.payload.user.token
       state.isLoggedIn = true
       state.isAuthenticated = true
