@@ -12,7 +12,7 @@ import balanceOperations from '../../redux/balance/balance-operations'
 import transactionsSelectors from '../../redux/transactions/transactions-selectors'
 import TransactionForm from '../../components/Transactions/TransForm/TransForm'
 import { format } from 'date-fns'
-import ArrowGoBack from '../../components/ArrowGoBack/ArrowGoBack'
+import ReportsButton from '../../components/ReportsButton/ReportsButton'
 
 const optionsExpense = [
   { value: 'transport', label: 'Транспорт' },
@@ -87,9 +87,8 @@ const BalanceView = () => {
 
   return (
     <>
+      <ReportsButton />
       <Balance />
-      <ArrowGoBack />
-
       <TransactionsWrapper>
         <div>
           <button

@@ -1,30 +1,18 @@
 import React from 'react';
 import s from './CurrentAmount.module.css'
 
-const CurrentAmount = () => {
-  const findTotalSum = (key) => {
-    switch (key) {
-      case 'expense':
-        return 500;
-      case 'income':
-        return 300;
-    
-      default:
-        break;
-    }
-  }
-
+const CurrentAmount = ({totalIncome, totalExpense}) => {
 
   return (
     <div className={s.amount}>
       <div className={s.wrapper}>
         <p className={s.title}>Расходы:</p>
-        <span className={s.expense}>{`- ${findTotalSum('expense')} грн.`}</span>
+        <span className={s.expense}>{`- ${totalExpense} грн.`}</span>
       </div>
       <div className={s.separate} />
       <div className={s.wrapper}>
         <p className={s.title}>Доходы:</p>
-        <span className={s.income}>{`+ ${findTotalSum('income')} грн.`}</span>
+        <span className={s.income}>{`+ ${totalIncome} грн.`}</span>
       </div>
     </div>
   );

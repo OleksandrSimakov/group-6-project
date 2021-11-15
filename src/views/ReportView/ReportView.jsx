@@ -1,51 +1,60 @@
-import React, { lazy, useEffect, useState } from "react"
-import WindowDimensions from '../../hooks/useWindowDimensions'
-import s from './ReportView.module.css'
-import { useRouteMatch, useLocation,} from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import React, { lazy, useEffect, useState } from "react";
+import WindowDimensions from '../../hooks/useWindowDimensions';
+import s from './ReportView.module.css';
+import { useRouteMatch, useLocation, } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import reportOperations from '../../redux/report/report-operations'
+import reportOperations from '../../redux/report/report-operations';
+import reportSelectors from '../../redux/report/report-selectors';
 
 
-const Balance = lazy(() => import('../../components/Balance/Balance'))
-const ChartComponent = lazy(() => import('../../components/ChartsComponent/ChartComponent'))
-const CurrentMonth = lazy(() => import('../../components/CurrentMonth/CurrentMonth'))
-const CurrentAmount = lazy(() => import('../../components/CurrentAmount/CurrentAmount'))
-const ArrowGoBack = lazy(() => import('../../components/ArrowGoBack/ArrowGoBack'))
-const OnHandleCategories = lazy(() => import('../../components/OnHandleCategories/OnHandleCategories'))
+const Balance = lazy(() => import('../../components/Balance/Balance'));
+const ChartComponent = lazy(() => import('../../components/ChartsComponent/ChartComponent'));
+const CurrentMonth = lazy(() => import('../../components/CurrentMonth/CurrentMonth'));
+const CurrentAmount = lazy(() => import('../../components/CurrentAmount/CurrentAmount'));
+const ArrowGoBack = lazy(() => import('../../components/ArrowGoBack/ArrowGoBack'));
+const OnHandleCategories = lazy(() => import('../../components/OnHandleCategories/OnHandleCategories'));
 //const CategoriesList = lazy(() => import('../../components/CategoriesList/CategoriesList'));
 
 
 
 const ReportView = () => {
-  const window = WindowDimensions()
-  const dispatch = useDispatch()
+  const window = WindowDimensions();
+  const dispatch = useDispatch();
 
   let date = new Date();
-  const [month, setMonth] = useState(date.getMonth() + 1)
-  const [year, setYear] = useState(date.getFullYear())
+  const [month, setMonth] = useState(date.getMonth() + 1);
+  const [year, setYear] = useState(date.getFullYear());
   const [category, setCategory] = useState('');
-  const [type, setType] = useState('expense')
+  const [type, setType] = useState('expense');
 
-  const transactionsIncomeDetail = reportOperations.getIncomeDetail(`${year}-${month}`)
-  const transactionsExpenseDetail = reportOperations.getExpenseDetail(`${year}-${month}`)
+  const getIncomeDetail = useSelector(reportSelectors.getIncomeDetail);
+  const getExpenseDetail = useSelector(reportSelectors.getExpenseDetail);
+  const getTotalIncome = useSelector(reportSelectors.getTotalIncome);
+  const getTotalExpense = useSelector(reportSelectors.getTotalExpense);
+  const [totalIncome, setTotalIncome] = useState(getTotalIncome);
+  const [totalExpense, setTotalExpense] = useState(getTotalExpense);
 
 
   useEffect(() => {
+      setTotalIncome(getTotalIncome)
+  }, [getTotalIncome]);
+
+  useEffect(() => {
+      setTotalExpense(getTotalExpense)
+  }, [getTotalExpense]);
+
+  useEffect(() => {
     if ((month, year)) {
-      switch (type) {
-        case 'expense':
-          dispatch(reportOperations.getExpenseDetail(`${year}-${month}`))
-          break;
-        case 'income':
-          dispatch(reportOperations.getIncomeDetail(`${year}-${month}`))
-          break;
-        default:
-          dispatch(reportOperations.getExpenseDetail(`${year}-${month}`))
-          break;
+      if (type === 'expense') {
+        dispatch(reportOperations.getExpenseDetail(`${year}-${month}`))
+      }
+      if (type === 'income') {
+        dispatch(reportOperations.getIncomeDetail(`${year}-${month}`))
       }    
     }
   }, [dispatch, month, year]);
+
 
   const onHandleClickRight = () => {
     if (month < 12) {
@@ -100,7 +109,7 @@ const ReportView = () => {
           <Balance />
         </div>}
       <div className={s.amoumt}>
-        <CurrentAmount />
+        <CurrentAmount totalIncome={totalIncome} totalExpense={ totalExpense }/>
       </div>
       <div className={s.amoumt}>
         <OnHandleCategories type={type} onHandleChangeType={onHandleChangeType} />
