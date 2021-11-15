@@ -14,6 +14,7 @@ import {
 } from './Balance.styled'
 import balanceOperations from '../../redux/balance/balance-operations'
 import balanceSelectors from '../../redux/balance/balance-selectors'
+import ReportsButton from '../../components/ReportsButton/ReportsButton'
 
 const Balance = () => {
   // // const currentBalance = useSelector(getBalance)
@@ -24,6 +25,7 @@ const Balance = () => {
   const [notifyShow, setNotifyShow] = useState(true)
 
   const dispatch = useDispatch()
+  const location = useLocation()
 
   const handleChange = (e) => setBalance(e.target.value)
 
@@ -33,7 +35,7 @@ const Balance = () => {
       setBalance(balance)
       dispatch(balanceOperations.updateBalance(balance))
     },
-    [dispatch, balance]
+    [dispatch, balance],
   )
 
   useEffect(() => {
@@ -62,6 +64,7 @@ const Balance = () => {
             <CurrencyText>UAH</CurrencyText>
           </InputWrapper>
           <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
+          {location.pathname === './report' && <ReportsButton />}
         </BalanceWrapper>
       </BalanceForm>
       {notifyShow && !balance && (
