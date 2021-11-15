@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 import sprite from '../../images/sprite-categories.svg'
-=======
-import sprite from '../../images/sprite.svg'
->>>>>>> Stashed changes
 import styles from './SummaryByCategory.module.css'
 import { useSelector } from 'react-redux'
 import { summaryByCategorySelectors } from '../../redux/reports'
@@ -26,11 +22,7 @@ const SummaryByCategory = ({ transactions, onClick }) => {
       ) : (
         <ul className={styles.list}>
           {transactions?.length === 0 ? (
-<<<<<<< Updated upstream
             <li className={styles.noData}>Записи отсутствуют</li>
-=======
-            <li className={styles.noData}>В этом месяце небыло транзакций</li>
->>>>>>> Stashed changes
           ) : (
             transactions?.map((obj) => (
               <li
