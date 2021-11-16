@@ -20,10 +20,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           return (
             <Background>
               <Header />
-              <Background>
               <Component {...props} />
-              </Background>
-            </>
+            </Background>
           )
         } else {
           return <Redirect to={{ pathname: '/login' }} />
