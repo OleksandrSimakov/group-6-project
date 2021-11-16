@@ -4,6 +4,7 @@ import { authSelectors } from '../redux/auth'
 
 import Header from './Header/Header'
 import Background from './Background/Background'
+import LoginPage from '../views/HomeView'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
@@ -12,9 +13,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
+        if (!isAuthenticated) {
+          return <Redirect to={{ pathname: '/login' }} />
+        }
         if (isAuthenticated) {
           return (
-            <>
+            <Background>
               <Header />
               <Background>
               <Component {...props} />

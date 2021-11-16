@@ -1,14 +1,16 @@
 import Balance from '../../components/Balance/Balance'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Summary from '../../components/Summary'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import s from './BalanceView.module.css'
+import toast, { Toaster } from 'react-hot-toast'
 import { TransactionsWrapper } from '../../components/TransactionsWrapper/TransactionsWrapper.styled'
 import TransTable from '../../components/Transactions/TransTable/TransTable'
 import MobTransTable from '../../components/Transactions/MobileTransTable/MobTransTable'
 import transactionOperations from '../../redux/transactions/transactions-operations'
 import balanceOperations from '../../redux/balance/balance-operations'
+import { summaryOperations } from '../../redux/transactions'
 import transactionsSelectors from '../../redux/transactions/transactions-selectors'
 import TransactionForm from '../../components/Transactions/TransForm/TransForm'
 import { format } from 'date-fns'
@@ -59,28 +61,87 @@ const BalanceView = () => {
     dispatch(transactionOperations.getIncomeByDate(date))
   }
 
-  const onTransactionSuccess = () => {
-    // toast.success('Transaction successfully added.')
+  const getTransactionIncome = useCallback(() => {
+    dispatch(summaryOperations.getIncomeByMonth())
+  }, [dispatch])
+
+  const getTransactionExpense = useCallback(() => {
+    dispatch(summaryOperations.getExpenseByMonth())
+  }, [dispatch])
+
+  const onTransactionAddSuccess = () => {
+    toast.success('Транзакция успешно добавлена!')
     dispatch(balanceOperations.getBalance())
     if (profits) {
       dispatch(transactionOperations.getIncomeByDate(selectedDate))
+      getTransactionIncome()
     }
     if (expense) {
       dispatch(transactionOperations.getExpenseByDate(selectedDate))
+      getTransactionExpense()
     }
+  }
+
+  const onTransactionAddError = (error) => {
+    toast.error('Не удалось добавить транзакцию, попробуйте позже!')
   }
 
   const handleSubmit = (data) => {
     if (profits) {
-      dispatch(transactionOperations.addIncome(data, onTransactionSuccess))
+      dispatch(
+        transactionOperations.addIncome(
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
+        )
+      )
     }
     if (expense) {
-      dispatch(transactionOperations.addExpense(data, onTransactionSuccess))
+      dispatch(
+        transactionOperations.addExpense(
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
+        )
+      )
     }
   }
 
   const onDeleteTransaction = (id) => {
-    dispatch(transactionOperations.deleteTransaction(id))
+    dispatch(
+      transactionOperations.deleteTransaction(
+        id
+        // onTransactionRemoveSuccess,
+        // onTransactionRemoveError
+      )
+    )
+
+    dispatch(balanceOperations.getBalance())
+    if (profits) {
+      dispatch(transactionOperations.getIncomeByDate(selectedDate))
+      getTransactionIncome()
+    }
+    if (expense) {
+      dispatch(transactionOperations.getExpenseByDate(selectedDate))
+      getTransactionExpense()
+    }
+  }
+
+  const onTransactionRemoveSuccess = () => {
+    toast.success('Транзакция успешно удалена!')
+    dispatch(balanceOperations.getBalance())
+    if (profits) {
+      dispatch(transactionOperations.getIncomeByDate(selectedDate))
+      getTransactionIncome()
+    }
+    if (expense) {
+      dispatch(transactionOperations.getExpenseByDate(selectedDate))
+      getTransactionExpense()
+    }
+  }
+
+  const onTransactionRemoveError = (error) => {
+    toast.error('Не удалось удалить транзакцию, попробуйте позже!')
   }
 
   const viewPort = useWindowDimensions()
@@ -116,7 +177,7 @@ const BalanceView = () => {
         </div>
 
         {expense ? (
-          <>
+          <div>
             <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
             {viewPort.width > 768 && (
               <TransTable
@@ -131,9 +192,9 @@ const BalanceView = () => {
               />
             )}
             {viewPort.width > 768 && <Summary />}
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <TransactionForm
               profit={profits}
               options={optionsProfit}
@@ -154,11 +215,12 @@ const BalanceView = () => {
               />
             )}
             {viewPort.width > 768 && <Summary profits={profits} />}
-          </>
+          </div>
         )}
         {/* {expense && viewPort.width > 771 && <Summary />}
         {!expense && viewPort.width > 771 && <Summary profits={profits} />} */}
       </TransactionsWrapper>
+      <Toaster />
     </>
   )
 }

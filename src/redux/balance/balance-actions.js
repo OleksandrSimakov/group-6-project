@@ -7,12 +7,22 @@ const addBalanceError = createAction('balance/addBalanceError')
 const getBalanceRequest = createAction('balance/getBalanceRequest')
 const getBalanceSuccess = createAction('balance/getBalanceSuccess')
 const getBalanceError = createAction('balance/getBalanceError')
-// const updateBalance = createAction('balance/updateBalance')
-// const getBalance = createAction('balance/getBalance')
 
-// const updateCurrentIncomes = createAction('balance/updateCurrentIncomes')
-// const updateCurrentExpenses = createAction('balance/updateCurrentExpenses')
-// const setLoading = createAction('balance/setLoading')
+const updateCurrentIncomesRequest = createAction('balance/updateCurrentIncomes')
+const updateCurrentIncomesSuccess = createAction('balance/updateCurrentIncomes')
+const updateCurrentIncomesError = createAction('balance/updateCurrentIncomes')
+
+const updateCurrentExpensesRequest = createAction(
+  'balance/updateCurrentExpenses'
+)
+const updateCurrentExpensesSuccess = createAction(
+  'balance/updateCurrentExpenses'
+)
+const updateCurrentExpensesRequestError = createAction(
+  'balance/updateCurrentExpenses'
+)
+
+const setLoading = createAction('balance/setLoading')
 
 const balanceActions = {
   addBalanceRequest,
@@ -21,11 +31,13 @@ const balanceActions = {
   getBalanceRequest,
   getBalanceSuccess,
   getBalanceError,
-  // updateBalance,
-  // getBalance,
-  // // setLoading,
-  // updateCurrentIncomes,
-  // updateCurrentExpenses,
+  updateCurrentIncomesRequest,
+  updateCurrentIncomesSuccess,
+  updateCurrentIncomesError,
+  updateCurrentExpensesRequest,
+  updateCurrentExpensesSuccess,
+  updateCurrentExpensesRequestError,
+  setLoading,
 }
 
 export default balanceActions
