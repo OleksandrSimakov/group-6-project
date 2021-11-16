@@ -1,7 +1,6 @@
 import React, { lazy, useEffect, useState } from "react";
 import WindowDimensions from '../../hooks/useWindowDimensions';
 import s from './ReportView.module.css';
-import { useRouteMatch, useLocation, } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import reportOperations from '../../redux/report/report-operations';
