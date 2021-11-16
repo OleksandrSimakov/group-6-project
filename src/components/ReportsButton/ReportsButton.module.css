@@ -6,6 +6,7 @@
 
 .ReportsButton {
   display: flex;
+  justify-content: center;
 }
 
 .title {
