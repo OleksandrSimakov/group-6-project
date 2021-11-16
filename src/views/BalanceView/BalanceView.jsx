@@ -15,6 +15,8 @@ import transactionsSelectors from '../../redux/transactions/transactions-selecto
 import TransactionForm from '../../components/Transactions/TransForm/TransForm'
 import { format } from 'date-fns'
 import ReportsButton from '../../components/ReportsButton/ReportsButton'
+import { Link } from 'react-router-dom'
+
 
 const optionsExpense = [
   { value: 'transport', label: 'Транспорт' },
@@ -152,7 +154,7 @@ const BalanceView = () => {
       <Balance />
       <TransactionsWrapper>
         <div>
-          <button
+          {viewPort.width > 768 ? <div><button
             type="button"
             onClick={clickExpense}
             className={
@@ -173,7 +175,30 @@ const BalanceView = () => {
             }
           >
             Доход
-          </button>
+            </button></div> : <div><Link to="/expense">
+              <button
+                type="button"
+                onClick={clickExpense}
+                className={
+                  expense
+                    ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+                    : `${s.counter_tab_header_buttons_in}`
+                } >
+                Расход
+              </button>
+            </Link>
+            <Link to="/profit">
+          <button
+            type="button"
+            onClick={clickProfits}
+            className={
+              profits
+                ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+                : `${s.counter_tab_header_buttons_out}`
+            }
+          >
+            Доход
+          </button></Link></div>}
         </div>
 
         {expense ? (

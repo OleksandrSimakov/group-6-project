@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import { useLocation} from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast'
 import Select from 'react-select'
 import ActionButton from '../../components/Transactions/ActionButton/ActionButton'
+import ArrowGoBack from '../../components/ArrowGoBack/ArrowGoBack'
 import 'react-datepicker/dist/react-datepicker.css'
 import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import transactionsActions from '../../redux/transactions/transactions-actions'
-import transactionsOperations from '../../redux/transactions/transactions-operations'
+import transactionOperations from '../../redux/transactions/transactions-operations'
+import balanceOperations from '../../redux/balance/balance-operations'
+import summaryOperations from '../../redux/transactions/summary-operations'
 import { ReactComponent as Calculator } from '../../images/calculator.svg'
 import {
   FormContainer,
@@ -19,23 +24,49 @@ import {
   SelectContainer,
 } from '../../components/Transactions/TransForm/TransForm.styled'
 
-export default function TransactionForm({ options, profit, onSubmit }) {
+const optionsExpense = [
+  { value: 'transport', label: 'Транспорт' },
+  { value: 'products', label: 'Продукты' },
+  { value: 'health', label: 'Здоровье' },
+  { value: 'alcohol', label: 'Алкоголь' },
+  { value: 'entertainment', label: 'Развлечения' },
+  { value: 'home', label: 'Всё для дома' },
+  { value: 'technics', label: 'Техника' },
+  { value: 'bill', label: 'Комуналка, связь' },
+  { value: 'sport', label: 'Спорт, хобби' },
+  { value: 'education', label: 'Образование' },
+  { value: 'other', label: 'Прочее' },
+]
+
+const optionsProfit = [
+  { value: 'salary', label: 'ЗП' },
+  { value: 'additional', label: 'Доп. доход' },
+]
+
+export default function TransactionView() {
+  const location = useLocation()
   const date = new Date()
   const dispatch = useDispatch()
+  const [expense, setExpense] = useState(true)
+  const [profit, setProfit] = useState(false)
   const [productName, setProductName] = useState('')
   const [payValue, setPayValue] = useState('')
   const [category, setCategory] = useState([])
+  
+  useEffect(() => {
+    if (location.pathname === '/expense') {
+      setExpense(true)
+      setProfit(false)
+    }
+    if (location.pathname === '/profit') {
+      setExpense(false)
+      setProfit(true)
+    }
+  }, [location])
 
   useEffect(() => {
     const formatDate = format(new Date(), 'yyyy-MM-dd')
     dispatch(transactionsActions.setDate(formatDate))
-    if (!profit) {
-      dispatch(transactionsOperations.getExpenseByDate(formatDate))
-    }
-    if (profit) {
-      dispatch(transactionsOperations.getIncomeByDate(formatDate))
-    }
-
   }, [dispatch, profit])
 
   useEffect(() => {
@@ -59,6 +90,51 @@ export default function TransactionForm({ options, profit, onSubmit }) {
     category: category.label,
     description: productName,
     amount: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
+  }
+
+  const getTransactionIncome = useCallback(() => {
+    dispatch(summaryOperations.getIncomeByMonth())
+  }, [dispatch])
+
+  const getTransactionExpense = useCallback(() => {
+    dispatch(summaryOperations.getExpenseByMonth())
+  }, [dispatch])
+
+  const onTransactionAddSuccess = () => {
+    toast.success('Транзакция успешно добавлена!')
+    dispatch(balanceOperations.getBalance())
+    if (profit) {
+      dispatch(transactionOperations.getIncomeByDate(date))
+      getTransactionIncome()
+    }
+    if (expense) {
+      dispatch(transactionOperations.getExpenseByDate(date))
+      getTransactionExpense()
+    }
+  }
+
+  const onTransactionAddError = () => {
+    toast.error('Не удалось добавить транзакцию, попробуйте позже!')
+  }
+  const handleSubmit = (data) => {
+    if (profit) {
+      dispatch(
+        transactionOperations.addIncome(
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
+        )
+      )
+    }
+    if (expense) {
+      dispatch(
+        transactionOperations.addExpense(
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
+        )
+      )
+    }
   }
 
   const customStyles = {
@@ -114,57 +190,58 @@ export default function TransactionForm({ options, profit, onSubmit }) {
   }
 
   return (
-    <Form>
-      <FormContainer>
-        <DescriptionEntry
-          className="input-productName"
-          placeholder="Описание товара"
-          name="name"
-          type="text"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          required
-        />
-        <SelectContainer>
-          <Select
-            name="category"
-            styles={customStyles}
-            placeholder="Категория товара"
-            options={options}
-            value={category}
-            onChange={setCategory}
-            isSearchable={false}
+    <>
+      <ArrowGoBack />
+      <Form>
+        <FormContainer>
+          <DescriptionEntry
+            className="input-productName"
+            placeholder="Описание товара"
+            name="name"
+            type="text"
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
+            required
           />
-        </SelectContainer>
-        <InputWrapper>
-          <Input
-            placeholder="0,00"
-            name="value"
-            type="number"
-            value={payValue}
-            onChange={(e) => setPayValue(e.target.value)}
-            autoComplete="off"
-          />
-          <Currency>UAH</Currency>
-          <CalculatorIcon>
-            <Calculator />
-          </CalculatorIcon>
-        </InputWrapper>
-      </FormContainer>
+          <SelectContainer>
+            <Select
+              name="category"
+              styles={customStyles}
+              placeholder="Категория товара"
+              options={ profit ? optionsProfit : optionsExpense }
+              value={category}
+              onChange={setCategory}
+              isSearchable={false}
+            />
+          </SelectContainer>
+          <InputWrapper>
+            <Input
+              placeholder="0,00"
+              name="value"
+              type="number"
+              value={payValue}
+              onChange={(e) => setPayValue(e.target.value)}
+              autoComplete="off"
+            />
+            <Currency>UAH</Currency>
+            <CalculatorIcon>
+              <Calculator />
+            </CalculatorIcon>
+          </InputWrapper>
+        </FormContainer>
 
-      <ActionBtnWrapper>
-        <ActionButton
-          type="submit"
-          text="Ввод"
-          onClick={() => {
-            onSubmit(data)
-            resetData()
-          }}
-        />
-        <ActionButton type="button" text="Очистить" onClick={resetInput} />
-      </ActionBtnWrapper>
-    </Form>
+        <ActionBtnWrapper>
+          <ActionButton
+            type="submit"
+            text="Ввод"
+            onClick={() => {
+              handleSubmit(data)
+              resetData()
+            }}
+          />
+          <ActionButton type="button" text="Очистить" onClick={resetInput} />
+        </ActionBtnWrapper>
+        </Form>
+      </>
   )
 }
-
-

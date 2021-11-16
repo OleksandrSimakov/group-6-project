@@ -33,8 +33,8 @@ export default function useRoutes() {
         <PublicRoute exact path="/login" component={LoginPage} />
         <PublicRoute exact path="/google-redirect" component={WaitPage} />
         <PrivateRoute exact path="/balance" component={MainPage} />
-        <PrivateRoute exact path="/balance/profits" component={TransactionView} />
-        <PrivateRoute exact path="/balance/expense" component={TransactionView} />
+        <PrivateRoute exact path="/profit" component={TransactionView} />
+        <PrivateRoute exact path="/expense" component={TransactionView} />
         <PrivateRoute exact path="/report" component={ReportPage} />
         <Redirect to="/login" />
       </Switch>
