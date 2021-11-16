@@ -34,27 +34,11 @@ const ReportView = () => {
   const getTotalExpense = useSelector(reportSelectors.getTotalExpense);
   const [totalIncome, setTotalIncome] = useState(getTotalIncome);
   const [totalExpense, setTotalExpense] = useState(getTotalExpense);
-
-
+  
   useEffect(() => {
-      setTotalIncome(getTotalIncome)
-  }, [getTotalIncome]);
-
-  useEffect(() => {
-      setTotalExpense(getTotalExpense)
-  }, [getTotalExpense]);
-
-  useEffect(() => {
-    if ((month, year)) {
-      if (type === 'expense') {
-        dispatch(reportOperations.getExpenseDetail(`${year}-${month}`))
-      }
-      if (type === 'income') {
-        dispatch(reportOperations.getIncomeDetail(`${year}-${month}`))
-      }    
-    }
-  }, [dispatch, month, year]);
-
+    setTotalIncome(getTotalIncome)
+    setTotalExpense(getTotalExpense)
+  }, [getTotalIncome, getTotalExpense]);
 
   const onHandleClickRight = () => {
     if (month < 12) {
@@ -86,6 +70,11 @@ const ReportView = () => {
     setCategory(e.target.attributes.title.nodeValue);
   };
 
+  useEffect(() => {
+    dispatch(reportOperations.getExpenseDetail(`${year}-${month}`));
+    dispatch(reportOperations.getIncomeDetail(`${year}-${month}`))  
+  }, [dispatch, month, year, type]);
+  
   return (
     <div className={s.container}>
       {window.width > 767 ?
