@@ -157,8 +157,8 @@ const BalanceView = () => {
             onClick={clickExpense}
             className={
               expense
-                ? `${s.counter_tab_header_buttons} ${s.counter_tab_active}`
-                : `${s.counter_tab_header_buttons}`
+                ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+                : `${s.counter_tab_header_buttons_in}`
             }
           >
             Расход
@@ -168,8 +168,8 @@ const BalanceView = () => {
             onClick={clickProfits}
             className={
               profits
-                ? `${s.counter_tab_header_buttons} ${s.counter_tab_active}`
-                : `${s.counter_tab_header_buttons}`
+                ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+                : `${s.counter_tab_header_buttons_out}`
             }
           >
             Доход
