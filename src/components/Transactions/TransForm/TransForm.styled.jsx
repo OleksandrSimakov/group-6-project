@@ -181,7 +181,7 @@ export const Input = styled.input`
 export const Currency = styled.span`
   width: 26px;
   position: absolute;
-  top: 133.5px;
+  top: 134.5px;
   right: 130px;
   font-size: 12px;
   font-weight: 700;
