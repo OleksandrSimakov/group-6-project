@@ -15,8 +15,8 @@ export const expenseOptions = {
   other: 'Прочее',
 }
 
-axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
-
+// axios.defaults.baseURL = 'https://kapusta-pro.herokuapp.com/'
+axios.defaults.baseURL = 'http://localhost:3001'
 const addIncome = (data) => async (dispatch) => {
   dispatch(transactionActions.addIncomeRequest())
 

@@ -10,6 +10,7 @@ const register = createAsyncThunk(
       console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
+      console.log(`error.messageRegister`, error.message)
       return rejectWithValue(error.message)
     }
   },
@@ -23,6 +24,7 @@ const logIn = createAsyncThunk(
       console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
+      console.log(`error.messageLogIn`, error)
       return rejectWithValue(error.message)
     }
   },
@@ -36,6 +38,7 @@ const logOut = createAsyncThunk(
       console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
+      console.log(`error.messageInLogOut`, error.message)
       return rejectWithValue(error.message)
     }
   },
