@@ -7,6 +7,7 @@ import { Suspense, lazy } from 'react'
 
 const LoginPage = lazy(() => import('../views/HomeView'))
 const MainPage = lazy(() => import('../views/BalanceView/BalanceView'))
+const TransactionView = lazy(() => import('../views/TransactionView/TransactionView'))
 
 const WaitPage = lazy(() => import('../views/WaitPage'))
 
@@ -32,6 +33,8 @@ export default function useRoutes() {
         <PublicRoute exact path="/login" component={LoginPage} />
         <PublicRoute exact path="/google-redirect" component={WaitPage} />
         <PrivateRoute exact path="/balance" component={MainPage} />
+        <PrivateRoute exact path="/balance/profits" component={TransactionView} />
+        <PrivateRoute exact path="/balance/expense" component={TransactionView} />
         <PrivateRoute exact path="/report" component={ReportPage} />
         <Redirect to="/login" />
       </Switch>

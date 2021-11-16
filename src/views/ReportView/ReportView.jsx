@@ -1,6 +1,7 @@
-import React, { lazy, useEffect, useState } from 'react'
-import WindowDimensions from '../../hooks/useWindowDimensions'
-import s from './ReportView.module.css'
+import React, { lazy, useEffect, useState } from "react";
+import WindowDimensions from '../../hooks/useWindowDimensions';
+import s from './ReportView.module.css';
+import { useDispatch, useSelector } from "react-redux";
 
 import { useDispatch, useSelector } from 'react-redux'
 import SummaryByCategory from '../../components/SummaryByCategory/SummaryByCategory'
