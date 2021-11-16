@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 export const BalanceForm = styled.form`
   margin: 0 auto;
   max-width: 1060px;
-  min-width: 320px;
+  // min-width: 420px;
   text-align: center;
   background-color: #f5f6fb;
   margin-bottom: 40px;
@@ -50,12 +50,12 @@ export const BalanceInput = styled.input`
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.02em;
-  padding: 12px 20px;
+  padding: 12px;
   color: #000000;
   outline: none;
 
   ::placeholder {
-    text-align: center;
+    text-align: left;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -119,7 +119,7 @@ export const InputWrapper = styled.div`
 export const CurrencyText = styled.span`
   position: absolute;
   top: 30%;
-  right: 12px;
+  right: 17px;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.02em;
