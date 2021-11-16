@@ -3,7 +3,7 @@ import styled from '@emotion/styled/macro'
 export const TransactionsWrapper = styled.div`
   margin: 0 auto;
   max-width: 1060px;
-  min-width: 420px;
+  min-width: 320px;
 
   @media screen and (min-width: 768px) {
     margin: 0 auto;

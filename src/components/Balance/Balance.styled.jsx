@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 export const BalanceForm = styled.form`
   margin: 0 auto;
   max-width: 1060px;
-  min-width: 420px;
+  min-width: 320px;
   text-align: center;
   background-color: #f5f6fb;
   margin-bottom: 40px;
