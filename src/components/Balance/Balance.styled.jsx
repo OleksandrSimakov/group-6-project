@@ -5,8 +5,9 @@ export const BalanceForm = styled.form`
   max-width: 1060px;
   min-width: 320px;
   text-align: center;
-  background-color: #f5f6fb;
-  margin-bottom: 40px;
+  margin-bottom: 294px;
+  // background-color: #f5f6fb;
+  // margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
@@ -14,7 +15,7 @@ export const BalanceForm = styled.form`
     width: 369px;
     margin: 0 auto;
     padding-left: 35px;
-    margin-bottom: 58px;
+    // margin-bottom: 58px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -30,6 +31,7 @@ export const BalanceLabel = styled.label`
   line-height: 1.17;
   margin-bottom: 6px;
   color: rgba(82, 85, 95, 0.7);
+  margin-top: 42px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;

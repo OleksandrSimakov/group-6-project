@@ -1,26 +1,39 @@
-.counter_tab_header_buttons {
+.counter_tab_header_buttons_in,
+.counter_tab_header_buttons_out{
   margin: 0;
   padding: 14px 48px;
-
+  width:159px;
+  height: 53px;
   font-weight: bold;
   font-size: 12px;
   line-height: 14px;
-
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  background-color: #f1f1f1;
-  border-radius: 20px 20px 0 0;
+  background-color: #f5f6fb;
+  /* border-radius: 20px 20px 0 0; */
   border: none;
   color: inherit;
+  background-color: #F5F6FB;
 
   cursor: pointer;
   transition: color 100ms linear;
 }
-.counter_tab_header_buttons:hover {
-  color: #ff751d;
+.counter_tab_header_buttons_in{
+  margin-right: 2px;
 }
+.counter_tab_header_buttons_in:hover,
+.counter_tab_header_buttons_out:hover {
+  color:#F5F6FB;
+  background-color: #ff751d;;
 
-.counter_tab_active {
-  color: #ff751d;
-  background-color: #fefefe;
 }
+@media screen and (min-width: 768px) {
+.counter_tab_header_buttons_in,
+.counter_tab_header_buttons_out{
+  border-radius: 20px 20px 0 0;
+  }
+}
+/* .counter_tab_active {
+  color:#F5F6FB;
+  background-color: #ff751d;
+} */
