@@ -1,8 +1,6 @@
-import WindowDimensions from '../../hooks/useWindowDimensions'
 import s from './Background.module.css'
 
 const Background = ({children}) => {
-  const window = WindowDimensions()
 
   return (
     <div className={s.container}>

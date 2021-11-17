@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const MainContainer = styled.div`
   margin: 0 auto;
@@ -9,7 +9,7 @@ export const MainContainer = styled.div`
   @media screen and (min-width: 320px) {
     max-width: 480px;
   }
-  
+
   @media screen and (min-width: 768px) {
     max-width: 768px;
     // padding-left: 20px;
@@ -20,6 +20,6 @@ export const MainContainer = styled.div`
     // padding-left: 26px;
     // padding-right: 26px;
   }
-`;
+`
 
-export const FormContainer = styled.div``;
+export const FormContainer = styled.div``

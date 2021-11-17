@@ -17,6 +17,7 @@ import transactionsSelectors from '../../redux/transactions/transactions-selecto
 import TransactionForm from '../../components/Transactions/TransForm/TransForm'
 import { format } from 'date-fns'
 import ReportsButton from '../../components/ReportsButton/ReportsButton'
+import { Link } from 'react-router-dom'
 
 const optionsExpense = [
   { value: 'transport', label: 'Транспорт' },
@@ -94,8 +95,8 @@ const BalanceView = () => {
         transactionOperations.addIncome(
           data,
           onTransactionAddSuccess,
-          onTransactionAddError
-        )
+          onTransactionAddError,
+        ),
       )
     }
     if (expense) {
@@ -103,8 +104,8 @@ const BalanceView = () => {
         transactionOperations.addExpense(
           data,
           onTransactionAddSuccess,
-          onTransactionAddError
-        )
+          onTransactionAddError,
+        ),
       )
     }
   }
@@ -112,10 +113,10 @@ const BalanceView = () => {
   const onDeleteTransaction = (id) => {
     dispatch(
       transactionOperations.deleteTransaction(
-        id
+        id,
         // onTransactionRemoveSuccess,
         // onTransactionRemoveError
-      )
+      ),
     )
 
     dispatch(balanceOperations.getBalance())
@@ -156,28 +157,61 @@ const BalanceView = () => {
       </NavigationWrapper>
       <ButtonsWrapper>
         <div>
-          <button
-            type="button"
-            onClick={clickExpense}
-            className={
-              expense
-                ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
-                : `${s.counter_tab_header_buttons_in}`
-            }
-          >
-            Расход
-          </button>
-          <button
-            type="button"
-            onClick={clickProfits}
-            className={
-              profits
-                ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
-                : `${s.counter_tab_header_buttons_out}`
-            }
-          >
-            Доход
-          </button>
+          {viewPort.width > 768 ? (
+            <div>
+              <button
+                type="button"
+                onClick={clickExpense}
+                className={
+                  expense
+                    ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+                    : `${s.counter_tab_header_buttons_in}`
+                }
+              >
+                Расход
+              </button>
+              <button
+                type="button"
+                onClick={clickProfits}
+                className={
+                  profits
+                    ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+                    : `${s.counter_tab_header_buttons_out}`
+                }
+              >
+                Доход
+              </button>
+            </div>
+          ) : (
+            <div>
+              <Link to="/expense">
+                <button
+                  type="button"
+                  onClick={clickExpense}
+                  className={
+                    expense
+                      ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+                      : `${s.counter_tab_header_buttons_in}`
+                  }
+                >
+                  Расход
+                </button>
+              </Link>
+              <Link to="/profit">
+                <button
+                  type="button"
+                  onClick={clickProfits}
+                  className={
+                    profits
+                      ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+                      : `${s.counter_tab_header_buttons_out}`
+                  }
+                >
+                  Доход
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
         </ButtonsWrapper>
         <TransactionsWrapper>
@@ -196,7 +230,7 @@ const BalanceView = () => {
                 onDelete={onDeleteTransaction}
               />
             )}
-            {viewPort.width > 768 && <Summary />}
+            {/* {viewPort.width > 768 && <Summary />} */}
           </div>
         ) : (
           <div>
@@ -219,7 +253,7 @@ const BalanceView = () => {
                 onDelete={onDeleteTransaction}
               />
             )}
-            {viewPort.width > 768 && <Summary profits={profits} />}
+            {/* {viewPort.width > 768 && <Summary profits={profits} />} */}
           </div>
         )}
         {/* {expense && viewPort.width > 771 && <Summary />}
