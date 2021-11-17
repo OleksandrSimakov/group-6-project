@@ -7,11 +7,11 @@ const getBalance = () => async (dispatch) => {
 
   try {
     const response = await axios.get('/api/auth/current')
-    console.log(response)
+    // console.log(response)
     dispatch(balanceActions.getBalanceSuccess(response.data.user.data.balance))
   } catch (error) {
     dispatch(balanceActions.getBalanceError(error.message))
-    console.log(error.message)
+    // console.log(error.message)
   }
 }
 

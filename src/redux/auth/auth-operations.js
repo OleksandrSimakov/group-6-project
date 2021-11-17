@@ -4,10 +4,10 @@ import * as authAPI from '../../services/auth-api'
 const register = createAsyncThunk(
   'api/auth/signup',
   async (newUser, { rejectWithValue }) => {
-    console.log(`newUser in auth-operation`, newUser)
+    // console.log(`newUser in auth-operation`, newUser)
     try {
       const data = await authAPI.postSignUp(newUser)
-      console.log(`data in auth-operation`, data)
+      // console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
       console.log(`error.messageRegister`, error)
@@ -21,7 +21,7 @@ const logIn = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authAPI.postLogIn(user)
-      console.log(`data in auth-operation`, data)
+      // console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
       console.log(`error.messageLogIn`, error)
@@ -35,7 +35,7 @@ const logOut = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const data = await authAPI.postLogOut(credentials)
-      console.log(`data in auth-operation`, data)
+      // console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
       console.log(`error.messageInLogOut`, error)
@@ -44,13 +44,12 @@ const logOut = createAsyncThunk(
   },
 )
 
-
 const userFromGoogleAuth = createAsyncThunk('api/auth/google-redirect',
     async (email, { rejectWithValue }) => {
     try {
-        const data = await authAPI.getGoogleUser(email);
-         console.log(`data in auth-operation`, data)
-        return data;
+      const data = await authAPI.getGoogleUser(email)
+      //  console.log(`data in auth-operation`, data)
+      return data
     } catch (error) {
       console.log(`error in auth-operation`, error)
       return rejectWithValue(error.message)
@@ -85,6 +84,5 @@ const authOperations = {
     fetchCurrentUser,
     userFromGoogleAuth
 };
-
 
 export default authOperations
