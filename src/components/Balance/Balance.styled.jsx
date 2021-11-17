@@ -13,11 +13,10 @@ export const BalanceForm = styled.form`
     justify-content: center;
     align-items: center;
     width: 369px;
-    margin: 0 auto;
+    margin: 0 ;
     padding-left: 35px;
     // margin-bottom: 58px;
   }
-
   @media screen and (min-width: 1280px) {
     margin-bottom: 9px;
   }
@@ -32,9 +31,9 @@ export const BalanceLabel = styled.label`
   margin-bottom: 6px;
   color: rgba(82, 85, 95, 0.7);
   margin-top: 42px;
-
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;
+    margin-top: 0;
   }
 `
 
@@ -55,7 +54,6 @@ export const BalanceInput = styled.input`
   padding: 12px;
   color: #000000;
   outline: none;
-
   ::placeholder {
     text-align: left;
     font-size: 12px;
@@ -63,11 +61,9 @@ export const BalanceInput = styled.input`
     letter-spacing: 0.02em;
     color: #000000;
   }
-
   @media screen and (max-width: 767px) {
     border-right: none;
   }
-
   @media screen and (min-width: 768px) {
     border-radius: 16px;
     margin-right: 15px;
@@ -96,7 +92,6 @@ export const BalanceButton = styled.button`
     background-color: #ff751d;
     color: #f5f6fb;
   }
-
   @media screen and (min-width: 768px) {
     border-radius: 16px;
   }
@@ -107,7 +102,6 @@ export const BalanceWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   @media screen and (min-width: 768px) {
     margin: 0;
     margin-left: 21px;
@@ -126,7 +120,6 @@ export const CurrencyText = styled.span`
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #000000;
-
   @media screen and (min-width: 768px) {
     border-radius: 16px;
     margin-right: 15px;
