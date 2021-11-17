@@ -8,9 +8,11 @@ import {
 
 import Header from './Header/Header'
 
-import { Route, Redirect } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { authSelectors } from '../redux/auth'
+
+import Balance from '../views/BalanceView/BalanceView'
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)
@@ -19,7 +21,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         isAuthenticated ? (
-          <Redirect to={{ pathname: '/balance' }} />
+          <Balance />
         ) : (
           <>
             <Header />
