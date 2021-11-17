@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:3001'
+// axios.defaults.baseURL = 'http://localhost:3001'
 const updatedExpenses = async (year, month) => {
   const { data } = await axios.get('/api/transactions/getExpenseByMonth')
 
