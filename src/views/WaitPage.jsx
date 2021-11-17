@@ -10,7 +10,7 @@ const WaitPage = () => {
     console.log('queryParams :>> ', email);
 
    const dispatch = useDispatch();
-   dispatch(authOperations.googleAuth(email))
+   dispatch(authOperations.userFromGoogleAuth(email))
   
    return (
         <WaitText>Подождите, пожалуйста, выполняется вход...</WaitText>

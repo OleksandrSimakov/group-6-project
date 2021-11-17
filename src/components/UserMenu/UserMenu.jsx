@@ -28,7 +28,7 @@ export default function UserMenu() {
   const [show, setShow] = useState(false)
   return (
     <UserMenuContainer>
-      <UserImg src={avatar} alt="" width="32" height="32" />
+      <UserImg src={avatar} alt="" />
       <UserName>{userEmail}</UserName>
       <VerticalLine />
       <ExitButton type="button" onClick={() => setShow(!show)}>

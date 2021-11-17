@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 
 export const UserImg = styled.img`
-// margin-right: 4px;
+  border-radius: 30px;
+  width: 32px;
+  height: 32px;
 `;
 
 export const UserName = styled.span`

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import authOperations from './auth-operations'
 
 const initialState = {
-  user: { name: null, email: null, avatarURL: null},
+  user: { email: null, avatarURL: null},
   token: null,
   isLoggedIn: false,
   isFeatchingCurrentUser: false,
@@ -52,7 +52,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false
     },
 
-    [authOperations.googleAuth.fulfilled]: (state, action) => {
+    [authOperations.userFromGoogleAuth.fulfilled]: (state, action) => {
       state.user.email = action.payload.user.email
       state.user.avatarURL = action.payload.user.avatarURL
       state.token = action.payload.user.token
