@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import authOperations from './auth-operations'
 
 const initialState = {
-  user: { name: null, email: null, avatarURL: null},
+  user: { name: null, email: null, avatarURL: null },
   token: null,
   isLoggedIn: false,
   isFeatchingCurrentUser: false,
@@ -37,6 +37,7 @@ const authSlice = createSlice({
 
     [authOperations.fetchCurrentUser.pending]: (state) => {
       state.isFeatchingCurrentUser = true
+      state.isAuthenticated = true
     },
 
     [authOperations.fetchCurrentUser.fulfilled]: (state, action) => {
