@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import useRoutes from './hooks/useRoutes'
 import { MainContainer } from './components/Container/Container.styled'
 import { authOperations } from './redux/auth'
+import { Toaster } from 'react-hot-toast'
 
 export default function App() {
   const dispatch = useDispatch()
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <>
       <MainContainer>{routes}</MainContainer>
+      <Toaster position="top-right"/>
     </>
   )
 }
