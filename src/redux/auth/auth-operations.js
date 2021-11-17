@@ -45,7 +45,7 @@ const logOut = createAsyncThunk(
 )
 
 const userFromGoogleAuth = createAsyncThunk('/google-redirect',
-    async (email, { rejectWithValue }) => {
+  async (email, { rejectWithValue }) => {
     try {
       const data = await authAPI.getGoogleUser(email)
       console.log(`data in auth-operation`, data)
@@ -61,7 +61,7 @@ const fetchCurrentUser = createAsyncThunk(
   'api/auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState()
-    console.log(`state`, state)
+    // console.log(`state`, state)
     const persistedToken = state.auth.token
 
     try {
@@ -78,11 +78,11 @@ const fetchCurrentUser = createAsyncThunk(
 )
 
 const authOperations = {
-    register,
-    logIn,
-    logOut,
-    fetchCurrentUser,
-    userFromGoogleAuth
-};
+  register,
+  logIn,
+  logOut,
+  fetchCurrentUser,
+  userFromGoogleAuth,
+}
 
 export default authOperations

@@ -22,7 +22,7 @@ const updateBalance = (balance) => async (dispatch) => {
     const response = await axios.patch('/api/auth/balance', {
       balance,
     })
-    console.log(response.data)
+    // console.log(response.data)
     dispatch(balanceActions.addBalanceSuccess(response.data.balance))
   } catch (error) {
     dispatch(balanceActions.addBalanceError(error.message))
