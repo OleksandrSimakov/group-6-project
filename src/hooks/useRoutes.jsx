@@ -7,7 +7,9 @@ import { Suspense, lazy } from 'react'
 
 const LoginPage = lazy(() => import('../views/HomeView'))
 const MainPage = lazy(() => import('../views/BalanceView/BalanceView'))
-const TransactionView = lazy(() => import('../views/TransactionView/TransactionView'))
+const TransactionView = lazy(() =>
+  import('../views/TransactionView/TransactionView'),
+)
 
 const WaitPage = lazy(() => import('../views/WaitPage'))
 
