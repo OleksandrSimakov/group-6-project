@@ -59,8 +59,8 @@ export default function Registration() {
       <Description>
         Вы можете авторизоваться с помощью Google Account:
       </Description>
-      {/* <Google href='http://localhost:3001/api/auth/google'> */}
-      <Google href='https://kapusta-pro.herokuapp.com/api/auth/google'>
+      <Google href='http://localhost:3001/api/auth/google'>
+      {/* <Google href='https://kapusta-pro.herokuapp.com/api/auth/google'> */}
         <GoogleIcon />
       </Google>
       <Description>

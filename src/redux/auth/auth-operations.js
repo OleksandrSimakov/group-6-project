@@ -44,11 +44,11 @@ const logOut = createAsyncThunk(
   },
 )
 
-const userFromGoogleAuth = createAsyncThunk('api/auth/google-redirect',
+const userFromGoogleAuth = createAsyncThunk('/google-redirect',
     async (email, { rejectWithValue }) => {
     try {
       const data = await authAPI.getGoogleUser(email)
-      //  console.log(`data in auth-operation`, data)
+      console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
       console.log(`error in auth-operation`, error)
