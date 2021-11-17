@@ -21,10 +21,12 @@ const PublicRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         isAuthenticated ? (
-          <Background>
+          <>
             <Header />
-            <Balance />
-          </Background>
+            <Background>
+              <Balance />
+            </Background>
+          </>
         ) : (
           <>
             <Header />
