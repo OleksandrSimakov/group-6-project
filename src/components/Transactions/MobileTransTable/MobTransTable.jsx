@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
-import transactionOperations from '../../../redux/transactions/transactions-operations'
+// import { useState } from 'react'
+// import transactionOperations from '../../../redux/transactions/transactions-operations'
 // import items from '../TransTable/data-mock.json'
 import { TransactionsList } from './MobTransTable.styled'
 import MobTransTableItem from './MobTransTableItem'

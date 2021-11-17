@@ -4,10 +4,10 @@ import * as authAPI from '../../services/auth-api'
 const register = createAsyncThunk(
   'api/auth/signup',
   async (newUser, { rejectWithValue }) => {
-    console.log(`newUser in auth-operation`, newUser)
+    // console.log(`newUser in auth-operation`, newUser)
     try {
       const data = await authAPI.postSignUp(newUser)
-      console.log(`data in auth-operation`, data)
+      // console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -20,7 +20,7 @@ const logIn = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authAPI.postLogIn(user)
-      console.log(`data in auth-operation`, data)
+      // console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -33,7 +33,7 @@ const logOut = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const data = await authAPI.postLogOut(credentials)
-      console.log(`data in auth-operation`, data)
+      // console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -41,13 +41,13 @@ const logOut = createAsyncThunk(
   },
 )
 
-
-const googleAuth = createAsyncThunk('api/auth/google-redirect',
-    async (email, { rejectWithValue }) => {
+const googleAuth = createAsyncThunk(
+  'api/auth/google-redirect',
+  async (email, { rejectWithValue }) => {
     try {
-        const data = await authAPI.getGoogleUser(email);
-         console.log(`data in auth-operation`, data)
-        return data;
+      const data = await authAPI.getGoogleUser(email)
+      //  console.log(`data in auth-operation`, data)
+      return data
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -74,12 +74,11 @@ const fetchCurrentUser = createAsyncThunk(
 )
 
 const authOperations = {
-    register,
-    logIn,
-    logOut,
-    fetchCurrentUser,
-    googleAuth
-};
-
+  register,
+  logIn,
+  logOut,
+  fetchCurrentUser,
+  googleAuth,
+}
 
 export default authOperations

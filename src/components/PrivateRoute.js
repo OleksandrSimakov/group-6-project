@@ -41,7 +41,6 @@ import Header from './Header/Header'
 import Background from './Background/Background'
 import { useSelector } from 'react-redux'
 import { authSelectors } from '../redux/auth'
-import Loader from 'react-js-loader'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated)

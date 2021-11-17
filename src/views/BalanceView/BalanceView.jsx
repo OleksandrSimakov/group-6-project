@@ -1,7 +1,6 @@
 import Balance from '../../components/Balance/Balance'
 import { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Summary from '../../components/Summary'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import s from './BalanceView.module.css'
 import toast, { Toaster } from 'react-hot-toast'
@@ -128,22 +127,22 @@ const BalanceView = () => {
     }
   }
 
-  const onTransactionRemoveSuccess = () => {
-    toast.success('Транзакция успешно удалена!')
-    dispatch(balanceOperations.getBalance())
-    if (profits) {
-      dispatch(transactionOperations.getIncomeByDate(selectedDate))
-      getTransactionIncome()
-    }
-    if (expense) {
-      dispatch(transactionOperations.getExpenseByDate(selectedDate))
-      getTransactionExpense()
-    }
-  }
+  // const onTransactionRemoveSuccess = () => {
+  //   toast.success('Транзакция успешно удалена!')
+  //   dispatch(balanceOperations.getBalance())
+  //   if (profits) {
+  //     dispatch(transactionOperations.getIncomeByDate(selectedDate))
+  //     getTransactionIncome()
+  //   }
+  //   if (expense) {
+  //     dispatch(transactionOperations.getExpenseByDate(selectedDate))
+  //     getTransactionExpense()
+  //   }
+  // }
 
-  const onTransactionRemoveError = (error) => {
-    toast.error('Не удалось удалить транзакцию, попробуйте позже!')
-  }
+  // const onTransactionRemoveError = (error) => {
+  //   toast.error('Не удалось удалить транзакцию, попробуйте позже!')
+  // }
 
   const viewPort = useWindowDimensions()
 
