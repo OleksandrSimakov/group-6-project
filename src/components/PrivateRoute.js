@@ -18,11 +18,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         }
         if (isAuthenticated) {
           return (
-            <Background>
+            <>
               <Header />
               <Background>
               <Component {...props} />
-              </Background>
+            </Background>
             </>
           )
         } else {

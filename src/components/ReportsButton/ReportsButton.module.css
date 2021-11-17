@@ -7,6 +7,7 @@
 .ReportsButton {
   display: flex;
   justify-content: center;
+  
 }
 
 .title {
@@ -36,11 +37,11 @@
   color: #ff751d;
 }
 
-/* @media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .ReportsButton {
-    margin-left: 80px;
+    margin-top: 0;
   }
-} */
+}
 
 /* @media screen and (min-width: 768px) {
   .ReportsButton {
