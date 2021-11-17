@@ -1,11 +1,11 @@
 import sprite from '../../images/sprite-categories.svg'
 import styles from './SummaryByCategory.module.css'
 import { useSelector } from 'react-redux'
-import { summaryByCategorySelectors } from '../../redux/reports'
+import reportSelectors from '../../redux/report/report-selectors'
 import Loader from 'react-js-loader'
 
 const SummaryByCategory = ({ transactions, onClick }) => {
-  const IsLoading = useSelector(summaryByCategorySelectors.getIsLoading)
+  const IsLoading = useSelector(reportSelectors.getIsLoading)
 
   function formatNumber(number) {
     return parseFloat(number).toFixed(2)

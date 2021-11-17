@@ -102,7 +102,9 @@ const StatsChartMobile = ({ transactions, activeCategory }) => {
 
   return (
     <StatsChartMobileContainer>
-      <Bar data={data} options={options} redraw />
+      {transactions && activeCategory && (
+        <Bar data={data} options={options} redraw />
+      )}
     </StatsChartMobileContainer>
   );
 };

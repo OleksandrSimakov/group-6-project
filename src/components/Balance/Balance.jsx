@@ -17,23 +17,20 @@ import balanceSelectors from '../../redux/balance/balance-selectors'
 import ReportsButton from '../../components/ReportsButton/ReportsButton'
 
 const Balance = () => {
-  // // const currentBalance = useSelector(getBalance)
-  // const entryBalance = ''
-
   const currentBalance = useSelector(balanceSelectors.balanceCurrent)
-  const [balance, setBalance] = useState(currentBalance)
+  const [balance, setBalance] = useState('')
   const [notifyShow, setNotifyShow] = useState(true)
 
   const dispatch = useDispatch()
-  const location = useLocation()
+  // const location = useLocation()
 
   useEffect(() => {
     dispatch(balanceOperations.getBalance())
   }, [dispatch])
 
   useEffect(() => {
-    setBalance(() => currentBalance)
-    console.log(currentBalance)
+    setBalance(`${parseFloat(currentBalance).toFixed(2)}` || '')
+    // console.log(currentBalance)
   }, [currentBalance])
 
   const handleChange = (e) => {
@@ -43,8 +40,8 @@ const Balance = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    dispatch(balanceOperations.updateBalance(+balance))
-    setBalance('')
+    dispatch(balanceOperations.updateBalance(parseFloat(balance)))
+    // setBalance('')
   }
 
   const handleClose = (condition) => setNotifyShow(condition)
@@ -58,21 +55,22 @@ const Balance = () => {
             <BalanceInput
               autoComplete="off"
               type="text"
-              balance={balance}
+              value={balance}
               onChange={handleChange}
               id="balance"
-              placeholder={`${currentBalance} UAH`}
               pattern="\d+(\.\d{2})"
               title="Баланс должен состоять из цифр, разделителя 'точка' и не более двух цифр после точки"
               required
             />
-            {/* <CurrencyText>UAH</CurrencyText> */}
+            <CurrencyText>UAH</CurrencyText>
           </InputWrapper>
-          <BalanceButton type="submit">ПОДТВЕРДИТЬ</BalanceButton>
-          {location.pathname === './report' && <ReportsButton />}
+          <BalanceButton type="submit" onClick={handleSubmit}>
+            ПОДТВЕРДИТЬ
+          </BalanceButton>
+          {/* {location.pathname === './report' && <ReportsButton />} */}
         </BalanceWrapper>
       </BalanceForm>
-      {notifyShow && !balance && (
+      {balance === '0.00' && notifyShow && (
         <ZeroBalanceModal handleClose={handleClose}></ZeroBalanceModal>
       )}
     </>

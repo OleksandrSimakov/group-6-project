@@ -92,7 +92,9 @@ const StatsChart = ({ transactions, activeCategory }) => {
 
   return (
     <StatsChartDesk>
-      <Bar data={data} options={options} redraw />
+      {transactions && activeCategory && (
+        <Bar data={data} options={options} redraw />
+      )}
     </StatsChartDesk>
   );
 };

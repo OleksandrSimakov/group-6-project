@@ -17,8 +17,8 @@ export const Form = styled.div`
     align-items: center;
     width: 604px;
     margin: 0 auto;
-    margin-top: 28px;
-    margin-bottom: 122px;
+    // margin-top: 28px;
+    // margin-bottom: 122px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -26,8 +26,8 @@ export const Form = styled.div`
     align-items: center;
     justify-content: center;
     width: 1020px;
-    margin-top: 33px;
-    margin-bottom: 59px;
+    // margin-top: 33px;
+     margin-bottom: 59px;
   }
 `
 
@@ -181,7 +181,7 @@ export const Input = styled.input`
 export const Currency = styled.span`
   width: 26px;
   position: absolute;
-  top: 133.5px;
+  top: 134.5px;
   right: 130px;
   font-size: 12px;
   font-weight: 700;

@@ -3,20 +3,20 @@ import styled from '@emotion/styled'
 export const BalanceForm = styled.form`
   margin: 0 auto;
   max-width: 1060px;
-  min-width: 320px;
+  // min-width: 420px;
   text-align: center;
-  background-color: #f5f6fb;
-  margin-bottom: 40px;
+  margin-bottom: 294px;
+  // background-color: #f5f6fb;
+  // margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 369px;
-    margin: 0 auto;
+    margin: 0 ;
     padding-left: 35px;
-    margin-bottom: 58px;
+    // margin-bottom: 58px;
   }
-
   @media screen and (min-width: 1280px) {
     margin-bottom: 9px;
   }
@@ -30,9 +30,10 @@ export const BalanceLabel = styled.label`
   line-height: 1.17;
   margin-bottom: 6px;
   color: rgba(82, 85, 95, 0.7);
-
+  margin-top: 42px;
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;
+    margin-top: 0;
   }
 `
 
@@ -50,22 +51,19 @@ export const BalanceInput = styled.input`
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.02em;
-  padding: 12px 20px;
+  padding: 12px;
   color: #000000;
   outline: none;
-
   ::placeholder {
-    text-align: center;
+    text-align: left;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.02em;
     color: #000000;
   }
-
   @media screen and (max-width: 767px) {
     border-right: none;
   }
-
   @media screen and (min-width: 768px) {
     border-radius: 16px;
     margin-right: 15px;
@@ -94,7 +92,6 @@ export const BalanceButton = styled.button`
     background-color: #ff751d;
     color: #f5f6fb;
   }
-
   @media screen and (min-width: 768px) {
     border-radius: 16px;
   }
@@ -105,7 +102,6 @@ export const BalanceWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   @media screen and (min-width: 768px) {
     margin: 0;
     margin-left: 21px;
@@ -119,12 +115,11 @@ export const InputWrapper = styled.div`
 export const CurrencyText = styled.span`
   position: absolute;
   top: 30%;
-  right: 12px;
+  right: 17px;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #000000;
-
   @media screen and (min-width: 768px) {
     border-radius: 16px;
     margin-right: 15px;
