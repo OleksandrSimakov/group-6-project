@@ -151,8 +151,8 @@ const BalanceView = () => {
   return (
     <>
       <NavigationWrapper>
-      <ReportsButton />
-      <Balance />
+        <ReportsButton />
+        <Balance />
       </NavigationWrapper>
       <ButtonsWrapper>
         <div>
@@ -212,8 +212,8 @@ const BalanceView = () => {
             </div>
           )}
         </div>
-        </ButtonsWrapper>
-        <TransactionsWrapper>
+      </ButtonsWrapper>
+      <TransactionsWrapper>
         {expense ? (
           <div>
             <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
