@@ -5,6 +5,8 @@ import useWindowDimensions from '../../hooks/useWindowDimensions'
 import s from './BalanceView.module.css'
 import toast, { Toaster } from 'react-hot-toast'
 import { TransactionsWrapper } from '../../components/TransactionsWrapper/TransactionsWrapper.styled'
+import { NavigationWrapper } from '../../components/TransactionsWrapper/NavigationWrapper.styled'
+import { ButtonsWrapper } from '../../components/TransactionsWrapper/ButtonsWrapper.styled'
 import TransTable from '../../components/Transactions/TransTable/TransTable'
 import MobTransTable from '../../components/Transactions/MobileTransTable/MobTransTable'
 import transactionOperations from '../../redux/transactions/transactions-operations'
@@ -148,9 +150,11 @@ const BalanceView = () => {
 
   return (
     <>
+      <NavigationWrapper>
       <ReportsButton />
       <Balance />
-      <TransactionsWrapper>
+      </NavigationWrapper>
+      <ButtonsWrapper>
         <div>
           {viewPort.width > 768 ? (
             <div>
@@ -208,7 +212,8 @@ const BalanceView = () => {
             </div>
           )}
         </div>
-
+        </ButtonsWrapper>
+        <TransactionsWrapper>
         {expense ? (
           <div>
             <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />

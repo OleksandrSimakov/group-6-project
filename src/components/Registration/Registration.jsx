@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { authOperations } from '../../redux/auth'
 import { useDispatch } from 'react-redux'
+import {toast} from 'react-hot-toast'
 import { AccessContainer, Description, Google } from './Registration.styled.jsx'
 import Input from '../Input/Input.jsx'
 import {
@@ -16,6 +17,8 @@ export default function Registration() {
   const dispatch = useDispatch()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  // const users = useSelector(getUsers)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -36,7 +39,8 @@ export default function Registration() {
   const handleSubmitRegistration = (e) => {
     e.preventDefault()
     dispatch(authOperations.register({ email, password }))
-    reset()
+    // reset()
+    toast.success(`На Ваш email ${email} отправлено письмо. Пройдите, пожалуйста, верификацию`, { duration: 4000,})
   }
 
   const handleSubmitLogin = (e) => {
