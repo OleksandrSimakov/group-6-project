@@ -2,14 +2,6 @@
 import balanceActions from './balance-actions'
 import axios from 'axios'
 
-// const updateBalance = (newBalance) => async (dispatch) => {
-//   try {
-//     const updatedBalance = await balanceServices.updateUserBalance(newBalance)
-//     dispatch(balanceActions.updateBalance(updatedBalance))
-//   } catch (error) {
-//     throw new Error(error)
-//   }
-// }
 const getBalance = () => async (dispatch) => {
   dispatch(balanceActions.getBalanceRequest())
 
@@ -36,15 +28,6 @@ const updateBalance = (balance) => async (dispatch) => {
     dispatch(balanceActions.addBalanceError(error.message))
   }
 }
-// const getBalance = () => async (dispatch) => {
-//   try {
-//     const balance = await balanceServices.fetchBalance()
-//     console.log(balance)
-//     dispatch(balanceActions.getBalance(balance))
-//   } catch (error) {
-//     throw new Error(error)
-//   }
-// }
 
 const balanceOperations = {
   updateBalance,

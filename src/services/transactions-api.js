@@ -17,13 +17,13 @@ export async function fetchCurrentIncome(year, month) {
 }
 
 const updateUserBalance = async (newBalance) => {
-  const { data } = await axios.patch('/api/auth/balance', {
+  const response = await axios.patch('/api/auth/balance', {
     balance: newBalance,
   })
 
-  console.log(data)
+  console.log(response)
 
-  return data.user.balance
+  return response.data.user.data.balance
 }
 
 const fetchBalance = async () => {
