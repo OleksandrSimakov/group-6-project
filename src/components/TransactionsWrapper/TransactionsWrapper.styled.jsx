@@ -14,6 +14,7 @@ export const TransactionsWrapper = styled.div`
     //margin-top: 58px;
     //margin-bottom: 61px;
     width: 665px;
+    min-height: 579px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
     border-radius: 0 30px 30px 30px;
 
@@ -21,9 +22,10 @@ export const TransactionsWrapper = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    margin-top: 8px;
-    // width: 1060px;
+    //margin-top: 8px;
+    width: 1060px;
     min-height: 579px;
-    padding-bottom: 61px;
+    // padding-bottom: 61px;
+    padding: 33px 20px 61px 20px;
   }
 `

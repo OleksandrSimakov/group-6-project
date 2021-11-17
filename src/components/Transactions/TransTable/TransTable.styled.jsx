@@ -29,12 +29,15 @@ export const TableContainer = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0 auto;
     margin-bottom: 60px;
+    margin-top: 122px;
     background: #FFFFFF;
   }
   @media screen and (min-width: 1280px) {
     width: 760px;
     margin-left: 20px;
     margin-right: 30px;
+    margin-top: 0;
+
   }
 `
 

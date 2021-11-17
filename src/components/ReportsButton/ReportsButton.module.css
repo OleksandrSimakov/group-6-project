@@ -37,19 +37,20 @@
   color: #ff751d;
 }
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   .ReportsButton {
     margin-top: 0;
   }
-}
-
-/* @media screen and (min-width: 768px) {
-  .ReportsButton {
-    margin-left: 110px;
-  }
+  
 } */
-@media screen and (min-width: 1280px) {
+
+@media screen and (min-width: 768px) {
+  .link {
+    margin-top: 0;
+  }
+}
+/* @media screen and (min-width: 1280px) {
   .ReportsButton {
     margin-left: 205px;
   }
-}
+} */

@@ -8,6 +8,10 @@ export const NavigationWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (min-width: 1280px) {
+  margin: 0 110px 21px 110px;
+  justify-content: space-evenly;
+}
 
 
 `
