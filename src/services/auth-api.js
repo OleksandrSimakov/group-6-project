@@ -25,7 +25,7 @@ export async function postLogIn(user) {
 }
 
 export async function postLogOut() {
-  const { data } = await axios.post(`api/auth/logout`)
+  const { data } = await axios.get(`api/auth/logout`)
   token.unset()
   return data
 }
