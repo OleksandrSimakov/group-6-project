@@ -1,18 +1,14 @@
 import styled from '@emotion/styled'
 
 export const BalanceForm = styled.form`
+  position: relative;
   margin: 0 auto;
   max-width: 1060px;
-  // min-width: 420px;
   text-align: center;
-  //margin-bottom: 294px;
-  // background-color: #f5f6fb;
-  // margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
     align-items: baseline;
-    width: 369px;
     margin: 0 ;
     margin-bottom: 9px;
     padding-left: 35px;

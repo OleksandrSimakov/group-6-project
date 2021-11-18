@@ -5,8 +5,9 @@ export const ZeroBalanceModalContainer = styled.div`
   max-width: 292px;
   display: flex;
   position: absolute;
-
+  top: 125px;
   left: 50%;
+  right: -130px;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   float: left;
@@ -23,6 +24,11 @@ export const ZeroBalanceModalContainer = styled.div`
       border-left: 15px solid transparent;
       border-bottom: 15px solid #1d346a;
     }
+  }
+  @media screen and (min-width: 768px) {
+    top: 60px;
+    left: 250px;
+    right:-100px;
   }
 `
 export const ModalBodyContainer = styled(Modal.Body)`
