@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const Div = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  //align-items: baseline;
   width: 175px;
 
 `;

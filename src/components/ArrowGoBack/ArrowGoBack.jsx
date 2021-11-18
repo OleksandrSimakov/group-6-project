@@ -1,5 +1,5 @@
 import { React, useRef, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useHistory, useLocation } from 'react-router'
 
 import windowDimensions from '../../hooks/useWindowDimensions'
@@ -26,16 +26,16 @@ const ArrowGoBack = () => {
   }
 
   return (
-    <div type="button" className={s.ArrowGoBack} onClick={handleGoBack}>
-      <NavLink className={s.link} to="/balance">
+    <button type="button" className={s.ArrowGoBack} onClick={handleGoBack}>
+      <Link className={s.link} to="/balance">
         <svg className={s.img}>
           <use href={sprite + '#arrowBackspace-icon'} />
         </svg>
         <p className={s.title}>
-          {window.width > 767 && 'Вернуться на главную'}
+          {window.width > 768 && 'Вернуться на главную'}
         </p>
-      </NavLink>
-    </div>
+      </Link>
+    </button>
   )
 }
 
