@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux'
 import { createReducer } from '@reduxjs/toolkit'
 import balanceActions from './balance-actions'
-
-// const initialBalance = '0,00'
-// const initialCurrentExpenses = 0
-// const initialCurrentIncomes = 0
+// import transactionActions from '../transactions/transactions-actions'
 
 const current = createReducer(0, {
   [balanceActions.getBalanceSuccess]: (_, { payload }) => payload,

@@ -127,74 +127,76 @@ export default function TransactionForm({ options, profit, onSubmit }) {
     }),
   }
 
-  return (<div>
-    { window.width > 767 ?
-      <Form>
-      <FormContainer>
-        <CalendarWrapper>
-          <CalendarIconWrapper>
-            <CalendarIcon />
-          </CalendarIconWrapper>
-          <div>
-            <ReactDateSelector
-              locale={ru}
-              selected={date}
-              onChange={(date) => selectDate(date)}
-              dateFormat="dd.MM.yyyy"
-              fixedHeight
-              customInput={<ExampleCustomInput />}
+  return (
+    <div>
+      {window.width > 767 ? (
+        <Form>
+          <FormContainer>
+            <CalendarWrapper>
+              <CalendarIconWrapper>
+                <CalendarIcon />
+              </CalendarIconWrapper>
+              <div>
+                <ReactDateSelector
+                  locale={ru}
+                  selected={date}
+                  onChange={(date) => selectDate(date)}
+                  dateFormat="dd.MM.yyyy"
+                  fixedHeight
+                  customInput={<ExampleCustomInput />}
+                />
+              </div>
+            </CalendarWrapper>
+
+            <DescriptionEntry
+              className="input-productName"
+              placeholder="Описание товара"
+              name="name"
+              type="text"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+              required
             />
-          </div>
-        </CalendarWrapper>
+            <SelectContainer>
+              <Select
+                name="category"
+                styles={customStyles}
+                placeholder="Категория товара"
+                options={options}
+                value={category}
+                onChange={setCategory}
+                isSearchable={false}
+              />
+            </SelectContainer>
+            <InputWrapper>
+              <Input
+                placeholder="0,00"
+                name="value"
+                type="number"
+                value={payValue}
+                onChange={(e) => setPayValue(e.target.value)}
+                autoComplete="off"
+              />
+              <Currency>UAH</Currency>
+              <CalculatorIcon>
+                <Calculator />
+              </CalculatorIcon>
+            </InputWrapper>
+          </FormContainer>
 
-        <DescriptionEntry
-          className="input-productName"
-          placeholder="Описание товара"
-          name="name"
-          type="text"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          required
-        />
-        <SelectContainer>
-          <Select
-            name="category"
-            styles={customStyles}
-            placeholder="Категория товара"
-            options={options}
-            value={category}
-            onChange={setCategory}
-            isSearchable={false}
-          />
-        </SelectContainer>
-        <InputWrapper>
-          <Input
-            placeholder="0,00"
-            name="value"
-            type="number"
-            value={payValue}
-            onChange={(e) => setPayValue(e.target.value)}
-            autoComplete="off"
-          />
-          <Currency>UAH</Currency>
-          <CalculatorIcon>
-            <Calculator />
-          </CalculatorIcon>
-        </InputWrapper>
-      </FormContainer>
-
-      <ActionBtnWrapper>
-        <ActionButton
-          type="submit"
-          text="Ввод"
-          onClick={() => {
-            onSubmit(data)
-            resetData()
-          }}
-        />
-        <ActionButton type="button" text="Очистить" onClick={resetInput} />
-      </ActionBtnWrapper>
-    </Form> : null}
-  </div>)
-    
+          <ActionBtnWrapper>
+            <ActionButton
+              type="submit"
+              text="Ввод"
+              onClick={() => {
+                onSubmit(data)
+                resetData()
+              }}
+            />
+            <ActionButton type="button" text="Очистить" onClick={resetInput} />
+          </ActionBtnWrapper>
+        </Form>
+      ) : null}
+    </div>
+  )
 }

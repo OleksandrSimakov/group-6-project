@@ -1,5 +1,8 @@
 import axios from 'axios'
 import transactionActions from './transactions-actions'
+// import balanceOperations from '../balance/balance-actions'
+// import balanceActions from '../balance/balance-actions'
+// import toast from 'react-hot-toast'
 
 export const expenseOptions = {
   products: 'Продукты',
@@ -24,15 +27,15 @@ const addIncome =
     dispatch(transactionActions.addIncomeRequest())
 
     try {
-      await axios.post('api/transactions/addIncome', data)
+      const response = await axios.post('api/transactions/addIncome', data)
+      console.log(response)
       dispatch(transactionActions.addIncomeSuccess())
       onTransactionAddSuccess()
-      // console.log(response)
     } catch (error) {
       onTransactionAddError()
       dispatch(transactionActions.addIncomeError(error.message))
+      console.log(error.message)
     }
-
   }
 
 const addExpense =
@@ -81,13 +84,14 @@ const deleteTransaction =
     dispatch(transactionActions.deleteTransactionRequest())
 
     try {
-      const { data } = await axios.delete(`api/transactions/${id}`)
-
+      const response = await axios.delete(`api/transactions/${id}`)
+      console.log(response)
       dispatch(transactionActions.deleteTransactionSuccess(id))
       onTransactionRemoveSuccess()
-      console.log(data)
+
+      console.log(response.data)
     } catch (error) {
-      onTransactionRemoveError(error)
+      onTransactionRemoveSuccess()
 
       dispatch(transactionActions.deleteTransactionError(error))
     }

@@ -27,7 +27,6 @@ import {
   ExampleCustomInput,
 } from '../../components/Transactions/TransForm/TransForm.styled'
 
-
 const optionsExpense = [
   { value: 'transport', label: 'Транспорт' },
   { value: 'products', label: 'Продукты' },
@@ -54,12 +53,13 @@ const BalanceView = () => {
   const [date, setDate] = useState(new Date())
   const selectedDate = useSelector(transactionsSelectors.currentDate)
   const transactions = useSelector(transactionsSelectors.getTransactions)
+  // const getLastTransactions = useSelector(transactionsSelectors.getLast)
 
   const selectDate = (date) => {
-  setDate(date)
-  const formatDate = format(new Date(date), 'yyyy-MM-dd')
-  dispatch(transactionsActions.setDate(formatDate))
-}
+    setDate(date)
+    const formatDate = format(new Date(date), 'yyyy-MM-dd')
+    dispatch(transactionsActions.setDate(formatDate))
+  }
 
   useEffect(() => {
     const date = format(new Date(), 'yyyy-MM-dd')
@@ -111,8 +111,8 @@ const BalanceView = () => {
         transactionOperations.addIncome(
           data,
           onTransactionAddSuccess,
-          onTransactionAddError,
-        ),
+          onTransactionAddError
+        )
       )
     }
     if (expense) {
@@ -120,8 +120,8 @@ const BalanceView = () => {
         transactionOperations.addExpense(
           data,
           onTransactionAddSuccess,
-          onTransactionAddError,
-        ),
+          onTransactionAddError
+        )
       )
     }
   }
@@ -130,11 +130,14 @@ const BalanceView = () => {
     dispatch(
       transactionOperations.deleteTransaction(
         id,
-        // onTransactionRemoveSuccess,
-        // onTransactionRemoveError
-      ),
+        onTransactionRemoveSuccess,
+        onTransactionRemoveError
+      )
     )
+  }
 
+  const onTransactionRemoveSuccess = () => {
+    toast.success('Транзакция успешно удалена!')
     dispatch(balanceOperations.getBalance())
     if (profits) {
       dispatch(transactionOperations.getIncomeByDate(selectedDate))
@@ -146,216 +149,86 @@ const BalanceView = () => {
     }
   }
 
-  // const onTransactionRemoveSuccess = () => {
-  //   toast.success('Транзакция успешно удалена!')
-  //   dispatch(balanceOperations.getBalance())
-  //   if (profits) {
-  //     dispatch(transactionOperations.getIncomeByDate(selectedDate))
-  //     getTransactionIncome()
-  //   }
-  //   if (expense) {
-  //     dispatch(transactionOperations.getExpenseByDate(selectedDate))
-  //     getTransactionExpense()
-  //   }
-  // }
-
-  // const onTransactionRemoveError = (error) => {
-  //   toast.error('Не удалось удалить транзакцию, попробуйте позже!')
-  // }
+  const onTransactionRemoveError = (error) => {
+    toast.error('Не удалось удалить транзакцию, попробуйте позже!')
+  }
 
   const viewPort = useWindowDimensions()
 
-  // return (
-  //   <>
-  //     <NavigationWrapper>
-  //       {viewPort.width > 768 ?
-  //         <div className={s.navigation}>
-  //           <Balance />
-  //           <ReportsButton />
-  //         </div>
-  //         : <div className={s.navigation}>
-  //           <ReportsButton />
-  //           <Balance />
-  //         </div>
-  //       }      
-  //     </NavigationWrapper>
-  //     <ButtonsWrapper>
-  //       <div>
-  //         {viewPort.width > 768 ? (
-  //           <div>
-  //             <button
-  //               type="button"
-  //               onClick={clickExpense}
-  //               className={
-  //                 expense
-  //                   ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
-  //                   : `${s.counter_tab_header_buttons_in}`
-  //               }
-  //             >
-  //               Расход
-  //             </button>
-  //             <button
-  //               type="button"
-  //               onClick={clickProfits}
-  //               className={
-  //                 profits
-  //                   ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
-  //                   : `${s.counter_tab_header_buttons_out}`
-  //               }
-  //             >
-  //               Доход
-  //             </button>
-  //           </div>
-  //         ) : (
-  //           <div>
-  //             <Link to="/expense">
-  //               <button
-  //                 type="button"
-  //                 onClick={clickExpense}
-  //                 className={
-  //                   expense
-  //                     ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
-  //                     : `${s.counter_tab_header_buttons_in}`
-  //                 }
-  //               >
-  //                 Расход
-  //               </button>
-  //             </Link>
-  //             <Link to="/profit">
-  //               <button
-  //                 type="button"
-  //                 onClick={clickProfits}
-  //                 className={
-  //                   profits
-  //                     ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
-  //                     : `${s.counter_tab_header_buttons_out}`
-  //                 }
-  //               >
-  //                 Доход
-  //               </button>
-  //             </Link>
-  //           </div>
-  //         )}
-  //       </div>
-  //       </ButtonsWrapper>
-  //       <TransactionsWrapper>
-  //       {expense ? (
-  //         <div>
-  //           <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
-  //           {viewPort.width > 768 && (
-  //             <TransTable
-  //               transactions={transactions}
-  //               onDelete={onDeleteTransaction}
-  //             />
-  //           )}
-  //           {viewPort.width < 768 && (
-  //             <MobTransTable
-  //               transactions={transactions}
-  //               onDelete={onDeleteTransaction}
-  //             />
-  //           )}
-  //           {/* {viewPort.width > 768 && <Summary />} */}
-  //         </div>
-  //       ) : (
-  //         <div>
-  //           <TransactionForm
-  //             profit={profits}
-  //             options={optionsProfit}
-  //             onSubmit={handleSubmit}
-  //           />
-  //           {viewPort.width > 768 && (
-  //             <TransTable
-  //               profit={profits}
-  //               transactions={transactions}
-  //               onDelete={onDeleteTransaction}
-  //             />
-  //           )}
-  //           {viewPort.width < 768 && (
-  //             <MobTransTable
-  //               profit={profits}
-  //               transactions={transactions}
-  //               onDelete={onDeleteTransaction}
-  //             />
-  //           )}
-  //           {/* {viewPort.width > 768 && <Summary profits={profits} />} */}
-  //         </div>
-  //       )}
-  //       {/* {expense && viewPort.width > 771 && <Summary />}
-  //       {!expense && viewPort.width > 771 && <Summary profits={profits} />} */}
-  //     </TransactionsWrapper>
-  //     <Toaster />
-  //   </>
-  // )
-
-   return (
+  return (
     <>
-
-      {viewPort.width > 768 ? ( <>
-        <NavigationWrapper>
-          <div className={s.navigation}>
-            <Balance />
-            <ReportsButton />
-          </div>
-        </NavigationWrapper>
-        <ButtonsWrapper>
-          <div>
-            <button
-              type="button"
-              onClick={clickExpense}
-              className={
-                expense
-                  ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
-                  : `${s.counter_tab_header_buttons_in}`
-              }
-            >
-              Расход
-            </button>
-            <button
-              type="button"
-              onClick={clickProfits}
-              className={
-                profits
-                  ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
-                  : `${s.counter_tab_header_buttons_out}`
-              }
-            >
-              Доход
-            </button>
-          </div>
-        </ButtonsWrapper>
-        <TransactionsWrapper>
-          {expense ? (
+      {viewPort.width > 768 ? (
+        <>
+          <NavigationWrapper>
+            <div className={s.navigation}>
+              <Balance />
+              <ReportsButton />
+            </div>
+          </NavigationWrapper>
+          <ButtonsWrapper>
             <div>
-              <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
+              <button
+                type="button"
+                onClick={clickExpense}
+                className={
+                  expense
+                    ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+                    : `${s.counter_tab_header_buttons_in}`
+                }
+              >
+                Расход
+              </button>
+              <button
+                type="button"
+                onClick={clickProfits}
+                className={
+                  profits
+                    ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+                    : `${s.counter_tab_header_buttons_out}`
+                }
+              >
+                Доход
+              </button>
+            </div>
+          </ButtonsWrapper>
+          <TransactionsWrapper>
+            {expense ? (
+              <div>
+                <TransactionForm
+                  options={optionsExpense}
+                  onSubmit={handleSubmit}
+                />
                 <TransTable
                   transactions={transactions}
                   onDelete={onDeleteTransaction}
                 />
-            </div>
-          ) : (
-            <div>
-              <TransactionForm
-                profit={profits}
-                options={optionsProfit}
-                onSubmit={handleSubmit}
-              />
+              </div>
+            ) : (
+              <div>
+                <TransactionForm
+                  profit={profits}
+                  options={optionsProfit}
+                  onSubmit={handleSubmit}
+                />
                 <TransTable
                   profit={profits}
                   transactions={transactions}
                   onDelete={onDeleteTransaction}
                 />
-            </div>
-          )}
-        </TransactionsWrapper></>) : (
+              </div>
+            )}
+          </TransactionsWrapper>
+        </>
+      ) : (
         <>
-        <NavigationWrapper>
-          <div className={s.navigation}>
-            <ReportsButton />
-            <Balance />
-            <CalendarWrapper>
-              <CalendarIconWrapper>
-                <CalendarIcon />
-              </CalendarIconWrapper>
+          <NavigationWrapper>
+            <div className={s.navigation}>
+              <ReportsButton />
+              <Balance />
+              <CalendarWrapper>
+                <CalendarIconWrapper>
+                  <CalendarIcon />
+                </CalendarIconWrapper>
                 <ReactDateSelector
                   locale={ru}
                   selected={date}
@@ -364,66 +237,67 @@ const BalanceView = () => {
                   fixedHeight
                   customInput={<ExampleCustomInput />}
                 />
-            </CalendarWrapper>
-          </div>
-        </NavigationWrapper>
-        
-             
-        <TransactionsWrapper>
-          {expense ? (
+              </CalendarWrapper>
+            </div>
+          </NavigationWrapper>
 
-            <div>
-              <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
+          <TransactionsWrapper>
+            {expense ? (
+              <div>
+                <TransactionForm
+                  options={optionsExpense}
+                  onSubmit={handleSubmit}
+                />
                 <MobTransTable
                   transactions={transactions}
                   onDelete={onDeleteTransaction}
                 />
-            </div>
-          ) : (
-            <div>
-              <TransactionForm
-                profit={profits}
-                options={optionsProfit}
-                onSubmit={handleSubmit}
-              />
-              <MobTransTable
-                profit={profits}
-                transactions={transactions}
-                onDelete={onDeleteTransaction}
-              />
-            </div>
-          )}
+              </div>
+            ) : (
+              <div>
+                <TransactionForm
+                  profit={profits}
+                  options={optionsProfit}
+                  onSubmit={handleSubmit}
+                />
+                <MobTransTable
+                  profit={profits}
+                  transactions={transactions}
+                  onDelete={onDeleteTransaction}
+                />
+              </div>
+            )}
           </TransactionsWrapper>
-          <ButtonsWrapper><Link to="/expense">
-                <button
-                  type="button"
-                  onClick={clickExpense}
-                  className={
-                    expense
-                      ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
-                      : `${s.counter_tab_header_buttons_in}`
-                  }
-                >
-                  Расход
-                </button>
-              </Link>
-              <Link to="/profit">
-                <button
-                  type="button"
-                  onClick={clickProfits}
-                  className={
-                    profits
-                      ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
-                      : `${s.counter_tab_header_buttons_out}`
-                  }
-                >
-                  Доход
-                </button>
-              </Link>
-              </ButtonsWrapper>
-          </>
+          <ButtonsWrapper>
+            <Link to="/expense">
+              <button
+                type="button"
+                onClick={clickExpense}
+                className={
+                  expense
+                    ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+                    : `${s.counter_tab_header_buttons_in}`
+                }
+              >
+                Расход
+              </button>
+            </Link>
+            <Link to="/profit">
+              <button
+                type="button"
+                onClick={clickProfits}
+                className={
+                  profits
+                    ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+                    : `${s.counter_tab_header_buttons_out}`
+                }
+              >
+                Доход
+              </button>
+            </Link>
+          </ButtonsWrapper>
+        </>
       )}
-      <Toaster />
     </>
   )
 }
