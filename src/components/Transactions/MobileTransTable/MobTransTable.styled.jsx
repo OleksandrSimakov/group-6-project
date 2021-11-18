@@ -26,6 +26,7 @@ export const Description = styled.p`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
+  margin:0;
 
   color: #52555f;
   max-width: 52.5vw;
@@ -39,7 +40,7 @@ export const CategoryDateWrap = styled.div`
 export const Category = styled.span`
   font-style: normal;
   font-weight: normal;
-  font-size: 8px;
+  font-size: 9px;
   line-height: 9px;
   letter-spacing: 0.04em;
 
@@ -50,7 +51,7 @@ export const DateItem = styled.span`
   margin-right: 20px;
   font-style: normal;
   font-weight: normal;
-  font-size: 8px;
+  font-size: 9px;
   line-height: 9px;
   letter-spacing: 0.04em;
   text-transform: uppercase;

@@ -14,8 +14,8 @@ export const BalanceForm = styled.form`
     align-items: baseline;
     width: 369px;
     margin: 0 ;
+    margin-bottom: 9px;
     padding-left: 35px;
-    // margin-bottom: 58px;
   }
   @media screen and (min-width: 1280px) {
     margin-bottom: 9px;

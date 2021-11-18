@@ -25,9 +25,9 @@ import useWindowDimensions from './hooks/useWindowDimensions'
 
 const LoginPage = lazy(() => import('./views/HomeView'))
 const MainPage = lazy(() => import('./views/BalanceView/BalanceView'))
-// const TransactionView = lazy(() =>
-//   import('./views/TransactionView/TransactionView'),
-// )
+const TransactionView = lazy(() =>
+  import('./views/TransactionView/TransactionView'),
+)
 const WaitPage = lazy(() => import('./views/WaitPage'))
 const ReportPage = lazy(() => import('./views/ReportView/ReportView'))
 
@@ -91,7 +91,15 @@ export default function App() {
                     <PrivateMobileBottomCabbage />
                   </>
                 )}
-              </PrivateRoute>
+                </PrivateRoute>
+                <PrivateRoute exact path="/profit" redirectTo="/">
+                  <TransactionView />
+                  <PrivateMobileBottomCabbage />
+                </PrivateRoute>
+                <PrivateRoute exact path="/expense" redirectTo="/">
+                  <TransactionView />
+                  <PrivateMobileBottomCabbage />
+                </PrivateRoute>
             </Suspense>
           </Switch>
         </Background>

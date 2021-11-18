@@ -5,7 +5,8 @@ export const Form = styled.div`
 
   width: 282px;
   height: auto;
-  margin: 54px auto 0;
+  margin: 0 auto;
+  padding-top: 20px;
 
   font-size: 12px;
   font-weight: 400;
@@ -13,6 +14,7 @@ export const Form = styled.div`
   color: #c7ccdc;
 
   @media (min-width: 768px) {
+    padding-top: 0px;
     display: flex;
     align-items: center;
     width: 604px;
@@ -135,7 +137,7 @@ export const Input = styled.input`
   padding-left: 15px;
   padding-right: 43px;
 
-  text-align: дуае;
+  text-align: left;
 
   font-size: 12px;
   font-weight: 700;
@@ -144,11 +146,9 @@ export const Input = styled.input`
   color: #000000;
   background-color: #f5f6fb;
 
-  border: none;
   outline: none;
-  border-right: 2px solid #ffffff;
-  border-radius: 22px 0px 0px 22px;
-
+  border: none;
+  
   ::-webkit-inner-spin-button,
   ::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -177,14 +177,11 @@ export const Input = styled.input`
 `
 
 export const Currency = styled.span`
-  width: 26px;
-  position: absolute;
-  top: 134.5px;
-  right: 130px;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.02em;
-
+  padding-right: 15px;
+  border-right: 2px solid #ffffff;
   color: #000000;
 
   @media screen and (min-width: 768px) {
@@ -214,6 +211,9 @@ export const InputWrapper = styled.div`
   justify-content: center;
   height: 45px;
   margin-top: 30px;
+  align-items: center;
+  border: 2px solid #FFFFFF;
+  border-radius: 22px 22px 22px;
 
   @media screen and (min-width: 768px) {
     position: absolute;

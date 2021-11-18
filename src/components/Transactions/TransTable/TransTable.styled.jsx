@@ -1,7 +1,7 @@
 import styled from '@emotion/styled/macro'
 
 export const TableContainer = styled.div`
-  // @media screen and (max-width: 767px) {
+  // @media screen and (max-width: 768px) {
   //   display: none;
   // }
 

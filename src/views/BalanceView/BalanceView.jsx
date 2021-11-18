@@ -290,65 +290,66 @@ const BalanceView = () => {
    return (
     <>
 
-      {viewPort.width > 768 ? ( <>
-        <NavigationWrapper>
-          <div className={s.navigation}>
-            <Balance />
-            <ReportsButton />
-          </div>
-        </NavigationWrapper>
-        <ButtonsWrapper>
-          <div>
-            <button
-              type="button"
-              onClick={clickExpense}
-              className={
-                expense
-                  ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
-                  : `${s.counter_tab_header_buttons_in}`
-              }
-            >
-              Расход
-            </button>
-            <button
-              type="button"
-              onClick={clickProfits}
-              className={
-                profits
-                  ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
-                  : `${s.counter_tab_header_buttons_out}`
-              }
-            >
-              Доход
-            </button>
-          </div>
-        </ButtonsWrapper>
-        <TransactionsWrapper>
-          {expense ? (
-            <div>
-              <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
-                <TransTable
-                  transactions={transactions}
-                  onDelete={onDeleteTransaction}
-                />
-            </div>
-          ) : (
-            <div>
-              <TransactionForm
-                profit={profits}
-                options={optionsProfit}
-                onSubmit={handleSubmit}
-              />
-                <TransTable
-                  profit={profits}
-                  transactions={transactions}
-                  onDelete={onDeleteTransaction}
-                />
-            </div>
-          )}
-        </TransactionsWrapper></>) : (
+       {viewPort.width > 767  && (<>
+         {/* <NavigationWrapper> */}
+           <div className={s.navigation}>
+             <Balance />
+             <ReportsButton />
+           </div>
+         {/* </NavigationWrapper> */}
+         <ButtonsWrapper>
+           <div>
+             <button
+               type="button"
+               onClick={clickExpense}
+               className={
+                 expense
+                   ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+                   : `${s.counter_tab_header_buttons_in}`
+               }
+             >
+               Расход
+             </button>
+             <button
+               type="button"
+               onClick={clickProfits}
+               className={
+                 profits
+                   ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+                   : `${s.counter_tab_header_buttons_out}`
+               }
+             >
+               Доход
+             </button>
+           </div>
+         </ButtonsWrapper>
+         <TransactionsWrapper>
+           {expense ? (
+             <div>
+               <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
+               <TransTable
+                 transactions={transactions}
+                 onDelete={onDeleteTransaction}
+               />
+             </div>
+           ) : (
+             <div>
+               <TransactionForm
+                 profit={profits}
+                 options={optionsProfit}
+                 onSubmit={handleSubmit}
+               />
+               <TransTable
+                 profit={profits}
+                 transactions={transactions}
+                 onDelete={onDeleteTransaction}
+               />
+             </div>
+           )}
+         </TransactionsWrapper></>)}
+         {viewPort.width < 768 && (
         <>
-        <NavigationWrapper>
+        {/* <NavigationWrapper> */}
           <div className={s.navigation}>
             <ReportsButton />
             <Balance />
@@ -366,7 +367,7 @@ const BalanceView = () => {
                 />
             </CalendarWrapper>
           </div>
-        </NavigationWrapper>
+        {/* </NavigationWrapper> */}
         
              
         <TransactionsWrapper>
@@ -394,7 +395,8 @@ const BalanceView = () => {
             </div>
           )}
           </TransactionsWrapper>
-          <ButtonsWrapper><Link to="/expense">
+             <ButtonsWrapper>
+               <Link to="/expense">
                 <button
                   type="button"
                   onClick={clickExpense}
