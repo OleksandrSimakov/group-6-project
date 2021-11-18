@@ -1,5 +1,5 @@
 import React from 'react'
-import { SiteTitle, SiteTitleDescr} from '../components/Home/Home.styled'
+import { SiteTitle, SiteTitleDescr } from '../components/Home/Home.styled'
 import Registration from '../components/Registration/Registration'
 
 const HomeView = () => {
