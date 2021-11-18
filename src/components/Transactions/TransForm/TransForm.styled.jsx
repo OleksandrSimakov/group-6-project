@@ -54,21 +54,19 @@ export const FormContainer = styled.div`
   }
 `
 export const CalendarWrapper = styled.div`
-  display: none;
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  margin-top: 40px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (min-width: 768px) {
+    margin-top: 0px;
+    margin-bottom: 0px;}
 `
 export const CalendarIconWrapper = styled.div`
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: flex;
-    align-item: baseline;
-    margin-right: 10px;
-  }
+  display: flex;
+  align-item: baseline;
+  margin-right: 10px;
 `
 
 export const ExampleCustomInput = styled.input`

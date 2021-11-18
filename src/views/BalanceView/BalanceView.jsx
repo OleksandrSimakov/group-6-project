@@ -17,6 +17,16 @@ import TransactionForm from '../../components/Transactions/TransForm/TransForm'
 import { format } from 'date-fns'
 import ReportsButton from '../../components/ReportsButton/ReportsButton'
 import { Link } from 'react-router-dom'
+import ru from 'date-fns/locale/ru'
+import transactionsActions from '../../redux/transactions/transactions-actions'
+import { ReactComponent as CalendarIcon } from '../../images/calendar.svg'
+import ReactDateSelector from 'react-datepicker'
+import {
+  CalendarWrapper,
+  CalendarIconWrapper,
+  ExampleCustomInput,
+} from '../../components/Transactions/TransForm/TransForm.styled'
+
 
 const optionsExpense = [
   { value: 'transport', label: 'Транспорт' },
@@ -41,8 +51,15 @@ const BalanceView = () => {
   const dispatch = useDispatch()
   const [expense, setExpense] = useState(true)
   const [profits, setProfits] = useState(false)
+  const [date, setDate] = useState(new Date())
   const selectedDate = useSelector(transactionsSelectors.currentDate)
   const transactions = useSelector(transactionsSelectors.getTransactions)
+
+  const selectDate = (date) => {
+  setDate(date)
+  const formatDate = format(new Date(date), 'yyyy-MM-dd')
+  dispatch(transactionsActions.setDate(formatDate))
+}
 
   useEffect(() => {
     const date = format(new Date(), 'yyyy-MM-dd')
@@ -148,42 +165,234 @@ const BalanceView = () => {
 
   const viewPort = useWindowDimensions()
 
-  return (
+  // return (
+  //   <>
+  //     <NavigationWrapper>
+  //       {viewPort.width > 768 ?
+  //         <div className={s.navigation}>
+  //           <Balance />
+  //           <ReportsButton />
+  //         </div>
+  //         : <div className={s.navigation}>
+  //           <ReportsButton />
+  //           <Balance />
+  //         </div>
+  //       }      
+  //     </NavigationWrapper>
+  //     <ButtonsWrapper>
+  //       <div>
+  //         {viewPort.width > 768 ? (
+  //           <div>
+  //             <button
+  //               type="button"
+  //               onClick={clickExpense}
+  //               className={
+  //                 expense
+  //                   ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+  //                   : `${s.counter_tab_header_buttons_in}`
+  //               }
+  //             >
+  //               Расход
+  //             </button>
+  //             <button
+  //               type="button"
+  //               onClick={clickProfits}
+  //               className={
+  //                 profits
+  //                   ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+  //                   : `${s.counter_tab_header_buttons_out}`
+  //               }
+  //             >
+  //               Доход
+  //             </button>
+  //           </div>
+  //         ) : (
+  //           <div>
+  //             <Link to="/expense">
+  //               <button
+  //                 type="button"
+  //                 onClick={clickExpense}
+  //                 className={
+  //                   expense
+  //                     ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+  //                     : `${s.counter_tab_header_buttons_in}`
+  //                 }
+  //               >
+  //                 Расход
+  //               </button>
+  //             </Link>
+  //             <Link to="/profit">
+  //               <button
+  //                 type="button"
+  //                 onClick={clickProfits}
+  //                 className={
+  //                   profits
+  //                     ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+  //                     : `${s.counter_tab_header_buttons_out}`
+  //                 }
+  //               >
+  //                 Доход
+  //               </button>
+  //             </Link>
+  //           </div>
+  //         )}
+  //       </div>
+  //       </ButtonsWrapper>
+  //       <TransactionsWrapper>
+  //       {expense ? (
+  //         <div>
+  //           <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
+  //           {viewPort.width > 768 && (
+  //             <TransTable
+  //               transactions={transactions}
+  //               onDelete={onDeleteTransaction}
+  //             />
+  //           )}
+  //           {viewPort.width < 768 && (
+  //             <MobTransTable
+  //               transactions={transactions}
+  //               onDelete={onDeleteTransaction}
+  //             />
+  //           )}
+  //           {/* {viewPort.width > 768 && <Summary />} */}
+  //         </div>
+  //       ) : (
+  //         <div>
+  //           <TransactionForm
+  //             profit={profits}
+  //             options={optionsProfit}
+  //             onSubmit={handleSubmit}
+  //           />
+  //           {viewPort.width > 768 && (
+  //             <TransTable
+  //               profit={profits}
+  //               transactions={transactions}
+  //               onDelete={onDeleteTransaction}
+  //             />
+  //           )}
+  //           {viewPort.width < 768 && (
+  //             <MobTransTable
+  //               profit={profits}
+  //               transactions={transactions}
+  //               onDelete={onDeleteTransaction}
+  //             />
+  //           )}
+  //           {/* {viewPort.width > 768 && <Summary profits={profits} />} */}
+  //         </div>
+  //       )}
+  //       {/* {expense && viewPort.width > 771 && <Summary />}
+  //       {!expense && viewPort.width > 771 && <Summary profits={profits} />} */}
+  //     </TransactionsWrapper>
+  //     <Toaster />
+  //   </>
+  // )
+
+   return (
     <>
-      <NavigationWrapper>
-      <ReportsButton />
-      <Balance />
-      </NavigationWrapper>
-      <ButtonsWrapper>
-        <div>
-          {viewPort.width > 768 ? (
+      {viewPort.width > 768 ? ( <>
+        <NavigationWrapper>
+          <div className={s.navigation}>
+            <Balance />
+            <ReportsButton />
+          </div>
+        </NavigationWrapper>
+        <ButtonsWrapper>
+          <div>
+            <button
+              type="button"
+              onClick={clickExpense}
+              className={
+                expense
+                  ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
+                  : `${s.counter_tab_header_buttons_in}`
+              }
+            >
+              Расход
+            </button>
+            <button
+              type="button"
+              onClick={clickProfits}
+              className={
+                profits
+                  ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
+                  : `${s.counter_tab_header_buttons_out}`
+              }
+            >
+              Доход
+            </button>
+          </div>
+        </ButtonsWrapper>
+        <TransactionsWrapper>
+          {expense ? (
             <div>
-              <button
-                type="button"
-                onClick={clickExpense}
-                className={
-                  expense
-                    ? `${s.counter_tab_header_buttons_in} ${s.counter_tab_active}`
-                    : `${s.counter_tab_header_buttons_in}`
-                }
-              >
-                Расход
-              </button>
-              <button
-                type="button"
-                onClick={clickProfits}
-                className={
-                  profits
-                    ? `${s.counter_tab_header_buttons_out} ${s.counter_tab_active}`
-                    : `${s.counter_tab_header_buttons_out}`
-                }
-              >
-                Доход
-              </button>
+              <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
+                <TransTable
+                  transactions={transactions}
+                  onDelete={onDeleteTransaction}
+                />
             </div>
           ) : (
             <div>
-              <Link to="/expense">
+              <TransactionForm
+                profit={profits}
+                options={optionsProfit}
+                onSubmit={handleSubmit}
+              />
+                <TransTable
+                  profit={profits}
+                  transactions={transactions}
+                  onDelete={onDeleteTransaction}
+                />
+            </div>
+          )}
+        </TransactionsWrapper></>) : (
+        <>
+        <NavigationWrapper>
+          <div className={s.navigation}>
+            <ReportsButton />
+            <Balance />
+            <CalendarWrapper>
+              <CalendarIconWrapper>
+                <CalendarIcon />
+              </CalendarIconWrapper>
+                <ReactDateSelector
+                  locale={ru}
+                  selected={date}
+                  onChange={(date) => selectDate(date)}
+                  dateFormat="dd.MM.yyyy"
+                  fixedHeight
+                  customInput={<ExampleCustomInput />}
+                />
+            </CalendarWrapper>
+          </div>
+        </NavigationWrapper>
+        
+             
+        <TransactionsWrapper>
+          {expense ? (
+            <div>
+              <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
+                <MobTransTable
+                  transactions={transactions}
+                  onDelete={onDeleteTransaction}
+                />
+            </div>
+          ) : (
+            <div>
+              <TransactionForm
+                profit={profits}
+                options={optionsProfit}
+                onSubmit={handleSubmit}
+              />
+              <MobTransTable
+                profit={profits}
+                transactions={transactions}
+                onDelete={onDeleteTransaction}
+              />
+            </div>
+          )}
+          </TransactionsWrapper>
+          <ButtonsWrapper><Link to="/expense">
                 <button
                   type="button"
                   onClick={clickExpense}
@@ -209,55 +418,9 @@ const BalanceView = () => {
                   Доход
                 </button>
               </Link>
-            </div>
-          )}
-        </div>
-        </ButtonsWrapper>
-        <TransactionsWrapper>
-        {expense ? (
-          <div>
-            <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
-            {viewPort.width > 768 && (
-              <TransTable
-                transactions={transactions}
-                onDelete={onDeleteTransaction}
-              />
-            )}
-            {viewPort.width < 768 && (
-              <MobTransTable
-                transactions={transactions}
-                onDelete={onDeleteTransaction}
-              />
-            )}
-            {/* {viewPort.width > 768 && <Summary />} */}
-          </div>
-        ) : (
-          <div>
-            <TransactionForm
-              profit={profits}
-              options={optionsProfit}
-              onSubmit={handleSubmit}
-            />
-            {viewPort.width > 768 && (
-              <TransTable
-                profit={profits}
-                transactions={transactions}
-                onDelete={onDeleteTransaction}
-              />
-            )}
-            {viewPort.width < 768 && (
-              <MobTransTable
-                profit={profits}
-                transactions={transactions}
-                onDelete={onDeleteTransaction}
-              />
-            )}
-            {/* {viewPort.width > 768 && <Summary profits={profits} />} */}
-          </div>
-        )}
-        {/* {expense && viewPort.width > 771 && <Summary />}
-        {!expense && viewPort.width > 771 && <Summary profits={profits} />} */}
-      </TransactionsWrapper>
+              </ButtonsWrapper>
+          </>
+      )}
       <Toaster />
     </>
   )

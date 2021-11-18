@@ -5,12 +5,15 @@ export const StatsChartContainer = styled.div`
   margin: 0 auto;
   max-width: 1060px;
   /* min-width: 422px; */
-  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-  border-radius: 30px;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 50px;
   padding-bottom: 20px;
+
+   @media (min-width: 768px) {
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 30px;
+  }
 
   @media (min-width: 1200px) {
     padding-left: 150px;
