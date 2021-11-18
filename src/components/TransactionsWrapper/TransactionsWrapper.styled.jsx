@@ -1,8 +1,11 @@
 import styled from '@emotion/styled/macro'
 
 export const TransactionsWrapper = styled.div`
-  margin: 0 auto;
+ //margin: 0 auto;
   max-width: 1060px;
+  min-height: calc(100vh - 422px);
+  
+
 
   // min-width: 420px;
 

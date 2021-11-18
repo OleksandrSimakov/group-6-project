@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import ActionButton from '../ActionButton/ActionButton'
+import WindowDimensions from '../../../hooks/useWindowDimensions'
 import ReactDateSelector from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { format } from 'date-fns'
@@ -26,6 +27,7 @@ import {
 } from './TransForm.styled'
 
 export default function TransactionForm({ options, profit, onSubmit }) {
+  const window = WindowDimensions()
   const dispatch = useDispatch()
   const initialDate = new Date()
   const [productName, setProductName] = useState('')
@@ -125,8 +127,9 @@ export default function TransactionForm({ options, profit, onSubmit }) {
     }),
   }
 
-  return (
-    <Form>
+  return (<div>
+    { window.width > 767 ?
+      <Form>
       <FormContainer>
         <CalendarWrapper>
           <CalendarIconWrapper>
@@ -191,6 +194,7 @@ export default function TransactionForm({ options, profit, onSubmit }) {
         />
         <ActionButton type="button" text="Очистить" onClick={resetInput} />
       </ActionBtnWrapper>
-    </Form>
-  )
+    </Form> : null}
+  </div>)
+    
 }

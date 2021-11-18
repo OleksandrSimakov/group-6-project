@@ -2,7 +2,7 @@
 .counter_tab_header_buttons_out {
   margin: 0;
   padding: 14px 48px;
-  width: 159px;
+  width: calc(50% - 2px);
   height: 53px;
   font-weight: bold;
   font-size: 12px;
@@ -12,7 +12,9 @@
   background-color: #f5f6fb;
   /* border-radius: 20px 20px 0 0; */
   border: none;
-  color: inherit;
+
+  color: #000;
+
   background-color: #f5f6fb;
 
   cursor: pointer;
@@ -25,6 +27,13 @@
 .counter_tab_header_buttons_out:hover {
   color: #f5f6fb;
   background-color: #ff751d;
+}
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 @media screen and (min-width: 768px) {
   .counter_tab_header_buttons_in,
@@ -42,4 +51,18 @@
     color: #ff751d;
     background-color: #fafbfd;
   }
+  .navigation {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .navigation {
+    display: flex;
+    align-items: center;
+    margin-left: 300px;
+  }
+
 }

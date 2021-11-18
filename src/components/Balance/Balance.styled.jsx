@@ -5,13 +5,13 @@ export const BalanceForm = styled.form`
   max-width: 1060px;
   // min-width: 420px;
   text-align: center;
-  margin-bottom: 294px;
+  //margin-bottom: 294px;
   // background-color: #f5f6fb;
   // margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     width: 369px;
     margin: 0 ;
     padding-left: 35px;
@@ -22,7 +22,8 @@ export const BalanceForm = styled.form`
   }
 `
 export const BalanceLabel = styled.label`
-  font-family: Roboto;
+  width: 84px;
+  height: 20px;
   font-style: normal;
   font-weight: 700;
   font-size: 12px;

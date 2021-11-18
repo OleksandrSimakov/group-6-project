@@ -117,8 +117,6 @@ const ReportView = () => {
           type={type}
           onHandleChangeType={onHandleChangeType}
         />
-      </div>
-      <div>
         {type === 'expense' ? (
           <SummaryByCategory
             transactions={getExpenseDetail}
@@ -130,7 +128,7 @@ const ReportView = () => {
             onClick={handleCategoryClick}
           />
         )}
-      </div>
+        </div>
       <ChartComponent
         type={type}
         getExpenseDetail={getExpenseDetail}
