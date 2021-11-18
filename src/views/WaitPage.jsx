@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 
 const WaitPage = () => {
     const location = useLocation()
+    console.log('location :>> ', location.search);
     const { email} = queryString.parse(location.search)
     console.log('queryParams :>> ', email);
 

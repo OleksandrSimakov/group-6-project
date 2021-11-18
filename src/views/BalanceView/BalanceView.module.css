@@ -12,7 +12,9 @@
   background-color: #f5f6fb;
   /* border-radius: 20px 20px 0 0; */
   border: none;
+
   color: #000;
+
   background-color: #f5f6fb;
 
   cursor: pointer;
@@ -31,6 +33,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 @media screen and (min-width: 768px) {
   .counter_tab_header_buttons_in,
@@ -61,4 +64,5 @@
     align-items: center;
     margin-left: 300px;
   }
+
 }

@@ -20,10 +20,10 @@ export default function UserMenu() {
   const avatar = useSelector(authSelectors.getUserAvatar)
   // const avatar = defaultAvatar;
   const history = useHistory()
-  
+
   const handleLogOut = () => {
     dispatch(authOperations.logOut())
-    history.push('/login')
+    history.push('/')
   }
   const [show, setShow] = useState(false)
   return (

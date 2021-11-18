@@ -289,6 +289,7 @@ const BalanceView = () => {
 
    return (
     <>
+
       {viewPort.width > 768 ? ( <>
         <NavigationWrapper>
           <div className={s.navigation}>
@@ -370,6 +371,7 @@ const BalanceView = () => {
              
         <TransactionsWrapper>
           {expense ? (
+
             <div>
               <TransactionForm options={optionsExpense} onSubmit={handleSubmit} />
                 <MobTransTable
