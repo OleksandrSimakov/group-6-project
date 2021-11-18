@@ -28,7 +28,7 @@ const MainPage = lazy(() => import('./views/BalanceView/BalanceView'))
 // const TransactionView = lazy(() =>
 //   import('./views/TransactionView/TransactionView'),
 // )
-// const WaitPage = lazy(() => import('./views/WaitPage'))
+const WaitPage = lazy(() => import('./views/WaitPage'))
 const ReportPage = lazy(() => import('./views/ReportView/ReportView'))
 
 export default function App() {
@@ -62,7 +62,17 @@ export default function App() {
                   <MobileBottomCabbage />
                 </Cabbages>
               </PublicRoute>
-              <PrivateRoute path="/balance">
+
+              <PublicRoute
+                exact
+                path="/google-redirect"
+                redirectTo="/"
+                restricted
+              >
+                <WaitPage />
+              </PublicRoute>
+
+              <PrivateRoute exact path="/balance" redirectTo="/">
                 <MainPage />
                 {viewPort.width >= 1280 && <PrivateCabbages />}
                 {viewPort.width > 768 && viewPort.width < 1280 && (
@@ -72,7 +82,7 @@ export default function App() {
                   </>
                 )}
               </PrivateRoute>
-              <PrivateRoute path="/report">
+              <PrivateRoute exact path="/report" redirectTo="/">
                 <ReportPage />
                 {viewPort.width >= 1280 && <PrivateCabbages />}
                 {viewPort.width > 768 && viewPort.width < 1280 && (
