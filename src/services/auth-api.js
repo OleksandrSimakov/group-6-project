@@ -37,5 +37,6 @@ export async function getCurrentUser() {
 
 export async function getGoogleUser(email) {
   const { data } = await axios.get(`api/auth/${email}`)
+  token.set(data.user.token)
   return data
 }

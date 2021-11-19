@@ -86,7 +86,7 @@ const ReportView = () => {
 
   return (
     <div className={s.container}>
-      {window.width > 767 ? (
+      {window.width > 768 ? (
         <div className={s.navigation}>
           <ArrowGoBack />
           <Balance />

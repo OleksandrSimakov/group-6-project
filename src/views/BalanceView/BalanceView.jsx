@@ -229,6 +229,7 @@ const BalanceView = () => {
                 <CalendarIconWrapper>
                   <CalendarIcon />
                 </CalendarIconWrapper>
+
                 <ReactDateSelector
                   locale={ru}
                   selected={date}
@@ -240,7 +241,6 @@ const BalanceView = () => {
               </CalendarWrapper>
             </div>
           </NavigationWrapper>
-
           <TransactionsWrapper>
             {expense ? (
               <div>

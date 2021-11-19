@@ -3,6 +3,11 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  margin-bottom: 15px;
 }
 
 .link {

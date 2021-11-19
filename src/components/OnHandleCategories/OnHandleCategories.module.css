@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   /* padding: 15px; */
   max-width: 1064px;
   margin: 20px auto;

@@ -33,7 +33,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
+.counter_tab_active {
+  color: #000;
 }
 @media screen and (min-width: 768px) {
   .counter_tab_header_buttons_in,
@@ -56,13 +59,18 @@
     align-items: baseline;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+    width: 665px;
+  }
+  .counter_tab_active {
+    color: #ff751d;
   }
 }
 @media screen and (min-width: 1280px) {
   .navigation {
     display: flex;
     align-items: center;
-    margin-left: 300px;
+    width: 1060px;
   }
-
 }

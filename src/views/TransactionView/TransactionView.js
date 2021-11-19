@@ -12,6 +12,7 @@ import transactionOperations from '../../redux/transactions/transactions-operati
 import balanceOperations from '../../redux/balance/balance-operations'
 import summaryOperations from '../../redux/transactions/summary-operations'
 import { ReactComponent as Calculator } from '../../images/calculator.svg'
+import s from './TransactionView.module.css'
 import {
   FormContainer,
   Form,
@@ -191,8 +192,8 @@ export default function TransactionView() {
 
   return (
     <>
-      <ArrowGoBack />
-      <Form>
+       <Form>
+        <ArrowGoBack />
         <FormContainer>
           <DescriptionEntry
             className="input-productName"

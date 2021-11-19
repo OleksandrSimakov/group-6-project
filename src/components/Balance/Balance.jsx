@@ -53,6 +53,9 @@ const Balance = () => {
   return (
     <>
       <BalanceForm onSubmit={handleSubmit}>
+        {balance === '0.00' && notifyShow && (
+          <ZeroBalanceModal handleClose={handleClose}></ZeroBalanceModal>
+        )}
         <BalanceLabel htmlFor="balance">Баланс:</BalanceLabel>
         <BalanceWrapper>
           <InputWrapper>
@@ -74,9 +77,6 @@ const Balance = () => {
           {location.pathname === './report' && <ReportsButton />}
         </BalanceWrapper>
       </BalanceForm>
-      {balance === '0.00' && notifyShow && (
-        <ZeroBalanceModal handleClose={handleClose}></ZeroBalanceModal>
-      )}
     </>
   )
 }
