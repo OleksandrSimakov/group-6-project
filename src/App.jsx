@@ -82,7 +82,7 @@ export default function App() {
                   </>
                 )}
               </PrivateRoute>
-              <PrivateRoute exact path="/report" redirectTo="/">
+              <PrivateRoute exact path="/report" redirectTo="/report">
                 <ReportPage />
                 {viewPort.width >= 1280 && <PrivateCabbages />}
                 {viewPort.width > 768 && viewPort.width < 1280 && (
