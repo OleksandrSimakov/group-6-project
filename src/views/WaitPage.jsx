@@ -14,10 +14,6 @@ const WaitPage = () => {
   const dispatch = useDispatch()
   dispatch(authOperations.userFromGoogleAuth(email))
 
-  useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser())
-  }, [dispatch])
-
   return <WaitText>Подождите, пожалуйста, выполняется вход...</WaitText>
 }
 export default WaitPage
