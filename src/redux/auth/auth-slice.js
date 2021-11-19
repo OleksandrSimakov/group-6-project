@@ -42,7 +42,6 @@ const authSlice = createSlice({
 
     [authOperations.fetchCurrentUser.fulfilled]: (state, action) => {
       state.user.email = action.payload.user.data.email
-      state.user.token = action.payload.user.data.token
       state.user.avatarURL = action.payload.user.data.avatarURL
       state.isLoggedIn = true
       state.isFeatchingCurrentUser = false
