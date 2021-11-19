@@ -54,7 +54,7 @@ export default function App() {
         <Background>
           <Switch>
             <Suspense fallback={<p>Загружаем...</p>}>
-              <PublicRoute path="/" redirectTo="/balance" restricted>
+              <PublicRoute exact path="/" redirectTo="/balance" restricted>
                 <Cabbages>
                   <LoginPage />
                   <MobileTopCabbage />
