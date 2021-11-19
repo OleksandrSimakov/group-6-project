@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useLocation} from 'react-router-dom';
-import toast from 'react-hot-toast'
+import { useLocation } from 'react-router-dom'
+// import toast from 'react-hot-toast'
 import Select from 'react-select'
 import ActionButton from '../../components/Transactions/ActionButton/ActionButton'
 import ArrowGoBack from '../../components/ArrowGoBack/ArrowGoBack'
@@ -53,7 +53,7 @@ export default function TransactionView() {
   const [productName, setProductName] = useState('')
   const [payValue, setPayValue] = useState('')
   const [category, setCategory] = useState([])
-  
+
   useEffect(() => {
     if (location.pathname === '/expense') {
       setExpense(true)
@@ -102,7 +102,7 @@ export default function TransactionView() {
   }, [dispatch])
 
   const onTransactionAddSuccess = () => {
-    toast.success('Транзакция успешно добавлена!')
+    // toast.success('Транзакция успешно добавлена!')
     dispatch(balanceOperations.getBalance())
     if (profit) {
       dispatch(transactionOperations.getIncomeByDate(date))
@@ -114,25 +114,25 @@ export default function TransactionView() {
     }
   }
 
-  const onTransactionAddError = () => {
-    toast.error('Не удалось добавить транзакцию, попробуйте позже!')
-  }
+  // const onTransactionAddError = () => {
+  //   toast.error('Не удалось добавить транзакцию, попробуйте позже!')
+  // }
   const handleSubmit = (data) => {
     if (profit) {
       dispatch(
         transactionOperations.addIncome(
-          data,
-          onTransactionAddSuccess,
-          onTransactionAddError
+          data
+          // onTransactionAddSuccess
+          // onTransactionAddError
         )
       )
     }
     if (expense) {
       dispatch(
         transactionOperations.addExpense(
-          data,
-          onTransactionAddSuccess,
-          onTransactionAddError
+          data
+          // onTransactionAddSuccess
+          // onTransactionAddError
         )
       )
     }
@@ -209,7 +209,7 @@ export default function TransactionView() {
               name="category"
               styles={customStyles}
               placeholder="Категория товара"
-              options={ profit ? optionsProfit : optionsExpense }
+              options={profit ? optionsProfit : optionsExpense}
               value={category}
               onChange={setCategory}
               isSearchable={false}
@@ -242,7 +242,7 @@ export default function TransactionView() {
           />
           <ActionButton type="button" text="Очистить" onClick={resetInput} />
         </ActionBtnWrapper>
-        </Form>
-      </>
+      </Form>
+    </>
   )
 }

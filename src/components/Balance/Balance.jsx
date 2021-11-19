@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useState /* useCallback */ } from 'react'
 // import { useWindowWidth } from '@react-hook/window-size'
-// import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { ZeroBalanceModal } from '../Modal/ZeroBanalceModal/ZeroBalanceModal'
 import {
   BalanceForm,
@@ -14,22 +14,24 @@ import {
 } from './Balance.styled'
 import balanceOperations from '../../redux/balance/balance-operations'
 import balanceSelectors from '../../redux/balance/balance-selectors'
-// import ReportsButton from '../../components/ReportsButton/ReportsButton'
+import ReportsButton from '../../components/ReportsButton/ReportsButton'
+import toast /* { Toaster }  */ from 'react-hot-toast'
 
 const Balance = () => {
   const currentBalance = useSelector(balanceSelectors.balanceCurrent)
+  // console.log(typeof currentBalance)
   const [balance, setBalance] = useState('')
   const [notifyShow, setNotifyShow] = useState(true)
 
   const dispatch = useDispatch()
-  // const location = useLocation()
+  const location = useLocation()
 
   useEffect(() => {
     dispatch(balanceOperations.getBalance())
   }, [dispatch])
 
   useEffect(() => {
-    setBalance(`${parseFloat(currentBalance).toFixed(2)}` || '')
+    setBalance(currentBalance.toFixed(2))
     // console.log(currentBalance)
   }, [currentBalance])
 
@@ -40,7 +42,9 @@ const Balance = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    dispatch(balanceOperations.updateBalance(parseFloat(balance)))
+    dispatch(balanceOperations.updateBalance(balance))
+    toast.success('Баланс успешно обновлен!')
+
     // setBalance('')
   }
 
@@ -70,7 +74,7 @@ const Balance = () => {
           <BalanceButton type="submit" onClick={handleSubmit}>
             ПОДТВЕРДИТЬ
           </BalanceButton>
-          {/* {location.pathname === './report' && <ReportsButton />} */}
+          {location.pathname === './report' && <ReportsButton />}
         </BalanceWrapper>
       </BalanceForm>
     </>

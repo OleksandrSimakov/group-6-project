@@ -25,18 +25,20 @@ const updateUserBalance = async (newBalance) => {
 
   console.log(response)
 
-  return response.data.user.data.balance
+  return response.data.user.balance
 }
 
 const fetchBalance = async () => {
   const { data } = await axios.get('/api/auth/current')
   console.log(data)
-  return data.user.balance
+  return data.user.data.balance
 }
 
 const balanceServices = {
   fetchBalance,
   updateUserBalance,
+  // updatedIncomes,
+  // updatedExpenses,
 }
 
 export default balanceServices
