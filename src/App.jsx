@@ -82,7 +82,7 @@ export default function App() {
                   </>
                 )}
               </PrivateRoute>
-              <PrivateRoute exact path="/report" redirectTo="/">
+              <PrivateRoute exact path="/report" redirectTo="/balance ">
                 <ReportPage />
                 {viewPort.width >= 1280 && <PrivateCabbages />}
                 {viewPort.width > 768 && viewPort.width < 1280 && (
@@ -91,15 +91,15 @@ export default function App() {
                     <PrivateMobileBottomCabbage />
                   </>
                 )}
-                </PrivateRoute>
-                <PrivateRoute exact path="/profit" redirectTo="/">
-                  <TransactionView />
-                  <PrivateMobileBottomCabbage />
-                </PrivateRoute>
-                <PrivateRoute exact path="/expense" redirectTo="/">
-                  <TransactionView />
-                  <PrivateMobileBottomCabbage />
-                </PrivateRoute>
+              </PrivateRoute>
+              <PrivateRoute exact path="/profit" redirectTo="/">
+                <TransactionView />
+                <PrivateMobileBottomCabbage />
+              </PrivateRoute>
+              <PrivateRoute exact path="/expense" redirectTo="/">
+                <TransactionView />
+                <PrivateMobileBottomCabbage />
+              </PrivateRoute>
             </Suspense>
           </Switch>
         </Background>
