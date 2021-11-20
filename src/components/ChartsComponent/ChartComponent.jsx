@@ -10,7 +10,7 @@ export const ChartComponent = ({
   getIncomeDetail,
   getExpenseDetail,
   type,
-  category = "Продукты",
+  category,
 }) => {
   const IsLoading = useSelector(reportSelectors.getIsLoading);
 

@@ -2,14 +2,29 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import reportActions from './report-actions';
 
+export const setActive = array => {
+  if (array.length === 0) return [];
+  const newArr = array.map(el => {
+    return {
+      ...el,
+      isActive: false,
+    };
+  });
+  return [{ ...newArr[0], isActive: true }, ...newArr.slice(1)];
+};
+
 const reportIncome = createReducer([], {
-  [reportActions.getIncomeDetailSuccess]: (_, { payload }) => payload,
+  [reportActions.getIncomeDetailSuccess]: (state, { payload }) =>
+  setActive(payload),
+[reportActions.setActiveIncome]: (_, { payload }) => payload,
 });
 
 const reportExpense = createReducer([], {
-  [reportActions.getExpenseDetailSuccess]: (_, { payload }) => payload,
-});
+  [reportActions.getExpenseDetailSuccess]: (state, { payload }) =>
+  setActive(payload),
 
+[reportActions.setActiveExpense]: (_, { payload }) => payload,
+});
 
 const isLoading = createReducer(false, {
   [reportActions.getIncomeDetailRequest]: () => true,

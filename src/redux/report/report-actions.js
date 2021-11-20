@@ -8,6 +8,9 @@ const getExpenseDetailRequest = createAction('report/getExpenseDetailRequest');
 const getExpenseDetailSuccess = createAction('report/getExpenseDetailSuccess');
 const getExpenseDetailError = createAction('report/getExpenseDetailError');
 
+const setActiveExpense = createAction('reports/setActiveExpense');
+const setActiveIncome = createAction('reports/setActiveIncome');
+
 
 const reportActions = {
   getIncomeDetailRequest,
@@ -16,6 +19,8 @@ const reportActions = {
   getExpenseDetailRequest,
   getExpenseDetailSuccess,
   getExpenseDetailError,
+  setActiveExpense,
+  setActiveIncome,
 };
 
 export default reportActions;
