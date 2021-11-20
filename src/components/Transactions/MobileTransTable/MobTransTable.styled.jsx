@@ -2,11 +2,11 @@ import styled from '@emotion/styled/macro'
 
 export const TransactionsList = styled.ul`
   padding: 10px 20px;
-  height: 160px;
-  overflow-y: scroll;
+  height: 150px;
+  overflow-y: auto;
 
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
   }
 
   ::-webkit-scrollbar-thumb:vertical {
@@ -16,7 +16,6 @@ export const TransactionsList = styled.ul`
   }
 
   overflow-x: hidden;
-
   // @media screen and (min-width: 768px) {
   //   display: none;
   // }
@@ -25,6 +24,7 @@ export const TransactionItem = styled.li`
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
+  border-bottom: 1px solid #f5f6fb;
 `
 export const DescriptionWrap = styled.div`
   display: flex;
