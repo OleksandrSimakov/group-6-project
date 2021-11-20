@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
-// import toast from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import Select from 'react-select'
 import ActionButton from '../../components/Transactions/ActionButton/ActionButton'
 import ArrowGoBack from '../../components/ArrowGoBack/ArrowGoBack'
@@ -114,25 +114,25 @@ export default function TransactionView() {
     }
   }
 
-  // const onTransactionAddError = () => {
-  //   toast.error('Не удалось добавить транзакцию, попробуйте позже!')
-  // }
+  const onTransactionAddError = () => {
+    toast.error('Не удалось добавить транзакцию, попробуйте позже!')
+  }
   const handleSubmit = (data) => {
     if (profit) {
       dispatch(
         transactionOperations.addIncome(
-          data
-          // onTransactionAddSuccess
-          // onTransactionAddError
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
         )
       )
     }
     if (expense) {
       dispatch(
         transactionOperations.addExpense(
-          data
-          // onTransactionAddSuccess
-          // onTransactionAddError
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
         )
       )
     }

@@ -3,9 +3,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import s from './BalanceView.module.css'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { TransactionsWrapper } from '../../components/TransactionsWrapper/TransactionsWrapper.styled'
-import { NavigationWrapper } from '../../components/TransactionsWrapper/NavigationWrapper.styled'
 import { ButtonsWrapper } from '../../components/TransactionsWrapper/ButtonsWrapper.styled'
 import TransTable from '../../components/Transactions/TransTable/TransTable'
 import MobTransTable from '../../components/Transactions/MobileTransTable/MobTransTable'
@@ -149,7 +148,7 @@ const BalanceView = () => {
     }
   }
 
-  const onTransactionRemoveError = (error) => {
+  const onTransactionRemoveError = () => {
     toast.error('Не удалось удалить транзакцию, попробуйте позже!')
   }
 
@@ -157,14 +156,12 @@ const BalanceView = () => {
 
   return (
     <>
-      {viewPort.width > 768 ? (
+      {viewPort.width > 767 && (
         <>
-          <NavigationWrapper>
-            <div className={s.navigation}>
-              <Balance />
-              <ReportsButton />
-            </div>
-          </NavigationWrapper>
+          <div className={s.navigation}>
+            <Balance />
+            <ReportsButton />
+          </div>
           <ButtonsWrapper>
             <div>
               <button
@@ -196,7 +193,7 @@ const BalanceView = () => {
               <div>
                 <TransactionForm
                   options={optionsExpense}
-                  onSubmit={handleSubmit}
+                   onSubmit={handleSubmit}
                 />
                 <TransTable
                   transactions={transactions}
@@ -219,28 +216,26 @@ const BalanceView = () => {
             )}
           </TransactionsWrapper>
         </>
-      ) : (
+      )}
+      {viewPort.width < 768 && (
         <>
-          <NavigationWrapper>
-            <div className={s.navigation}>
-              <ReportsButton />
-              <Balance />
-              <CalendarWrapper>
-                <CalendarIconWrapper>
-                  <CalendarIcon />
-                </CalendarIconWrapper>
-
-                <ReactDateSelector
-                  locale={ru}
-                  selected={date}
-                  onChange={(date) => selectDate(date)}
-                  dateFormat="dd.MM.yyyy"
-                  fixedHeight
-                  customInput={<ExampleCustomInput />}
-                />
-              </CalendarWrapper>
-            </div>
-          </NavigationWrapper>
+          <div className={s.navigation}>
+            <ReportsButton />
+            <Balance />
+            <CalendarWrapper>
+              <CalendarIconWrapper>
+                <CalendarIcon />
+              </CalendarIconWrapper>
+              <ReactDateSelector
+                locale={ru}
+                selected={date}
+                onChange={(date) => selectDate(date)}
+                dateFormat="dd.MM.yyyy"
+                fixedHeight
+                customInput={<ExampleCustomInput />}
+              />
+            </CalendarWrapper>
+          </div>
           <TransactionsWrapper>
             {expense ? (
               <div>
