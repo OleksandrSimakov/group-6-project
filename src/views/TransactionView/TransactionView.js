@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
 // import toast from 'react-hot-toast'
 import Select from 'react-select'
@@ -9,8 +9,8 @@ import { format } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import transactionsActions from '../../redux/transactions/transactions-actions'
 import transactionOperations from '../../redux/transactions/transactions-operations'
-// import balanceOperations from '../../redux/balance/balance-operations'
-// import summaryOperations from '../../redux/transactions/summary-operations'
+import balanceOperations from '../../redux/balance/balance-operations'
+import summaryOperations from '../../redux/transactions/summary-operations'
 import { ReactComponent as Calculator } from '../../images/calculator.svg'
 import toast from 'react-hot-toast'
 
@@ -94,13 +94,13 @@ export default function TransactionView() {
     amount: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
   }
 
-  // const getTransactionIncome = useCallback(() => {
-  //   dispatch(summaryOperations.getIncomeByMonth())
-  // }, [dispatch])
+  const getTransactionIncome = useCallback(() => {
+    dispatch(summaryOperations.getIncomeByMonth())
+  }, [dispatch])
 
-  // const getTransactionExpense = useCallback(() => {
-  //   dispatch(summaryOperations.getExpenseByMonth())
-  // }, [dispatch])
+  const getTransactionExpense = useCallback(() => {
+    dispatch(summaryOperations.getExpenseByMonth())
+  }, [dispatch])
 
   const onTransactionAddSuccess = () => {
     toast.success('Транзакция успешно добавлена!')
