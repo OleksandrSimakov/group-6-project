@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import s from './BalanceView.module.css'
-import toast, { Toaster } from 'react-hot-toast'
+import toast /* , { Toaster } */ from 'react-hot-toast'
 import { TransactionsWrapper } from '../../components/TransactionsWrapper/TransactionsWrapper.styled'
 import { NavigationWrapper } from '../../components/TransactionsWrapper/NavigationWrapper.styled'
 import { ButtonsWrapper } from '../../components/TransactionsWrapper/ButtonsWrapper.styled'
@@ -53,7 +53,6 @@ const BalanceView = () => {
   const [date, setDate] = useState(new Date())
   const selectedDate = useSelector(transactionsSelectors.currentDate)
   const transactions = useSelector(transactionsSelectors.getTransactions)
-  // const getLastTransactions = useSelector(transactionsSelectors.getLast)
 
   const selectDate = (date) => {
     setDate(date)
@@ -242,31 +241,13 @@ const BalanceView = () => {
             </div>
           </NavigationWrapper>
           <TransactionsWrapper>
-            {expense ? (
-              <div>
-                <TransactionForm
-                  options={optionsExpense}
-                  onSubmit={handleSubmit}
-                />
-                <MobTransTable
-                  transactions={transactions}
-                  onDelete={onDeleteTransaction}
-                />
-              </div>
-            ) : (
-              <div>
-                <TransactionForm
-                  profit={profits}
-                  options={optionsProfit}
-                  onSubmit={handleSubmit}
-                />
-                <MobTransTable
-                  profit={profits}
-                  transactions={transactions}
-                  onDelete={onDeleteTransaction}
-                />
-              </div>
-            )}
+            <div>
+              <TransactionForm
+                options={optionsExpense}
+                onSubmit={handleSubmit}
+              />
+              <MobTransTable />
+            </div>
           </TransactionsWrapper>
           <ButtonsWrapper>
             <Link to="/expense">

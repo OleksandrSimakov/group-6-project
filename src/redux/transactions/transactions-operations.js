@@ -85,7 +85,7 @@ const deleteTransaction =
 
     try {
       const response = await axios.delete(`api/transactions/${id}`)
-      console.log(response)
+      // console.log(response)
       dispatch(transactionActions.deleteTransactionSuccess(id))
       onTransactionRemoveSuccess()
 

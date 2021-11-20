@@ -12,7 +12,8 @@ import transactionOperations from '../../redux/transactions/transactions-operati
 import balanceOperations from '../../redux/balance/balance-operations'
 import summaryOperations from '../../redux/transactions/summary-operations'
 import { ReactComponent as Calculator } from '../../images/calculator.svg'
-import s from './TransactionView.module.css'
+import toast from 'react-hot-toast'
+// import s from './TransactionView.module.css'
 import {
   FormContainer,
   Form,
@@ -102,7 +103,7 @@ export default function TransactionView() {
   }, [dispatch])
 
   const onTransactionAddSuccess = () => {
-    // toast.success('Транзакция успешно добавлена!')
+    toast.success('Транзакция успешно добавлена!')
     dispatch(balanceOperations.getBalance())
     if (profit) {
       dispatch(transactionOperations.getIncomeByDate(date))
@@ -114,25 +115,25 @@ export default function TransactionView() {
     }
   }
 
-  // const onTransactionAddError = () => {
-  //   toast.error('Не удалось добавить транзакцию, попробуйте позже!')
-  // }
+  const onTransactionAddError = () => {
+    toast.error('Не удалось добавить транзакцию, попробуйте позже!')
+  }
   const handleSubmit = (data) => {
     if (profit) {
       dispatch(
         transactionOperations.addIncome(
-          data
-          // onTransactionAddSuccess
-          // onTransactionAddError
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
         )
       )
     }
     if (expense) {
       dispatch(
         transactionOperations.addExpense(
-          data
-          // onTransactionAddSuccess
-          // onTransactionAddError
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
         )
       )
     }
@@ -192,7 +193,7 @@ export default function TransactionView() {
 
   return (
     <>
-       <Form>
+      <Form>
         <ArrowGoBack />
         <FormContainer>
           <DescriptionEntry

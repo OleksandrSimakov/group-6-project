@@ -4,6 +4,19 @@ export const TransactionsList = styled.ul`
   padding: 10px 20px;
   height: 160px;
   overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-color: #ff751d;
+    border: 4px solid #f5f6fb;
+    -webkit-border-radius: 10px;
+  }
+
+  overflow-x: hidden;
+
   // @media screen and (min-width: 768px) {
   //   display: none;
   // }
@@ -26,7 +39,7 @@ export const Description = styled.p`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
-  margin:0;
+  margin: 0;
 
   color: #52555f;
   max-width: 52.5vw;
