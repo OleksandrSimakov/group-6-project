@@ -237,31 +237,13 @@ const BalanceView = () => {
             </CalendarWrapper>
           </div>
           <TransactionsWrapper>
-            {expense ? (
-              <div>
-                <TransactionForm
-                  options={optionsExpense}
-                  onSubmit={handleSubmit}
-                />
-                <MobTransTable
-                  transactions={transactions}
-                  onDelete={onDeleteTransaction}
-                />
-              </div>
-            ) : (
-              <div>
-                <TransactionForm
-                  profit={profits}
-                  options={optionsProfit}
-                  onSubmit={handleSubmit}
-                />
-                <MobTransTable
-                  profit={profits}
-                  transactions={transactions}
-                  onDelete={onDeleteTransaction}
-                />
-              </div>
-            )}
+            <div>
+              <TransactionForm
+                options={optionsExpense}
+                onSubmit={handleSubmit}
+              />
+              <MobTransTable />
+            </div>
           </TransactionsWrapper>
           <ButtonsWrapper>
             <Link to="/expense">
