@@ -1,4 +1,3 @@
-
 import { useDispatch } from 'react-redux'
 import { WaitText } from '../components/Registration/Registration.styled'
 import { authOperations } from '../redux/auth'

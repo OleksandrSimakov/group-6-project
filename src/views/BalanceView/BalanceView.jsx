@@ -53,7 +53,6 @@ const BalanceView = () => {
   const [date, setDate] = useState(new Date())
   const selectedDate = useSelector(transactionsSelectors.currentDate)
   const transactions = useSelector(transactionsSelectors.getTransactions)
-  // const getLastTransactions = useSelector(transactionsSelectors.getLast)
 
   const selectDate = (date) => {
     setDate(date)
@@ -242,31 +241,13 @@ const BalanceView = () => {
             </div>
           </NavigationWrapper>
           <TransactionsWrapper>
-            {expense ? (
-              <div>
-                <TransactionForm
-                  options={optionsExpense}
-                  onSubmit={handleSubmit}
-                />
-                <MobTransTable
-                  transactions={transactions}
-                  onDelete={onDeleteTransaction}
-                />
-              </div>
-            ) : (
-              <div>
-                <TransactionForm
-                  profit={profits}
-                  options={optionsProfit}
-                  onSubmit={handleSubmit}
-                />
-                <MobTransTable
-                  profit={profits}
-                  transactions={transactions}
-                  onDelete={onDeleteTransaction}
-                />
-              </div>
-            )}
+            <div>
+              <TransactionForm
+                options={optionsExpense}
+                onSubmit={handleSubmit}
+              />
+              <MobTransTable />
+            </div>
           </TransactionsWrapper>
           <ButtonsWrapper>
             <Link to="/expense">

@@ -1,11 +1,42 @@
 import React from 'react'
-// import { useState } from 'react'
-// import transactionOperations from '../../../redux/transactions/transactions-operations'
-// import items from '../TransTable/data-mock.json'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import balanceOperations from '../../../redux/balance/balance-operations'
+import transactionOperations from '../../../redux/transactions/transactions-operations'
+import transactionsSelectors from '../../../redux/transactions/transactions-selectors'
 import { TransactionsList } from './MobTransTable.styled'
 import MobTransTableItem from './MobTransTableItem'
+import toast from 'react-hot-toast'
+// import items from '../TransTable/data-mock.json'
 
-const MobTransTable = ({ profit, transactions, onDelete }) => {
+const MobTransTable = () => {
+  const transactions = useSelector(transactionsSelectors.getLast)
+  // const isLoading = useSelector(transactionsSelectors.getIsLoading)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(transactionOperations.getLast())
+  }, [dispatch])
+
+  const onDeleteTransaction = (id) => {
+    dispatch(
+      transactionOperations.deleteTransaction(
+        id,
+        onDeleteTransactionSuccess,
+        onDeleteTransactionError
+      )
+    )
+  }
+
+  const onDeleteTransactionSuccess = () => {
+    toast.success('Транзакция успешно удалена!')
+    dispatch(balanceOperations.getBalance())
+    dispatch(transactionOperations.getLast())
+  }
+
+  const onDeleteTransactionError = (error) => {
+    toast.error('Не удалось удалить транзакцию, попробуйте позже!')
+  }
   // console.log(...transactions)
 
   return (
@@ -14,9 +45,8 @@ const MobTransTable = ({ profit, transactions, onDelete }) => {
         transactions.map((transaction) => (
           <MobTransTableItem
             key={transaction._id}
-            item={transaction}
-            profit={profit}
-            onDelete={onDelete}
+            transaction={transaction}
+            onDelete={onDeleteTransaction}
           />
         ))}
     </TransactionsList>

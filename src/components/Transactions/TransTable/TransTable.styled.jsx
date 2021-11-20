@@ -11,12 +11,12 @@ export const TableContainer = styled.div`
   overflow-y: auto;
 
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 14px;
   }
 
   ::-webkit-scrollbar-thumb:vertical {
     background-color: #ff751d;
-    border: 4px solid #f5f6fb;
+    border: 5px solid #f5f6fb;
     -webkit-border-radius: 10px;
   }
 
@@ -30,14 +30,13 @@ export const TableContainer = styled.div`
     margin: 0 auto;
     margin-bottom: 60px;
     margin-top: 122px;
-    background: #FFFFFF;
+    background: #ffffff;
   }
   @media screen and (min-width: 1280px) {
     width: 760px;
     margin-left: 20px;
     margin-right: 30px;
     margin-top: 0;
-
   }
 `
 

@@ -12,6 +12,7 @@ import transactionOperations from '../../redux/transactions/transactions-operati
 // import balanceOperations from '../../redux/balance/balance-operations'
 // import summaryOperations from '../../redux/transactions/summary-operations'
 import { ReactComponent as Calculator } from '../../images/calculator.svg'
+import toast from 'react-hot-toast'
 
 import {
   FormContainer,
@@ -101,38 +102,38 @@ export default function TransactionView() {
   //   dispatch(summaryOperations.getExpenseByMonth())
   // }, [dispatch])
 
-  // const onTransactionAddSuccess = () => {
-    // toast.success('Транзакция успешно добавлена!')
-  //   dispatch(balanceOperations.getBalance())
-  //   if (profit) {
-  //     dispatch(transactionOperations.getIncomeByDate(date))
-  //     getTransactionIncome()
-  //   }
-  //   if (expense) {
-  //     dispatch(transactionOperations.getExpenseByDate(date))
-  //     getTransactionExpense()
-  //   }
-  // }
+  const onTransactionAddSuccess = () => {
+    toast.success('Транзакция успешно добавлена!')
+    dispatch(balanceOperations.getBalance())
+    if (profit) {
+      dispatch(transactionOperations.getIncomeByDate(date))
+      getTransactionIncome()
+    }
+    if (expense) {
+      dispatch(transactionOperations.getExpenseByDate(date))
+      getTransactionExpense()
+    }
+  }
 
-  // const onTransactionAddError = () => {
-  //   toast.error('Не удалось добавить транзакцию, попробуйте позже!')
-  // }
+  const onTransactionAddError = () => {
+    toast.error('Не удалось добавить транзакцию, попробуйте позже!')
+  }
   const handleSubmit = (data) => {
     if (profit) {
       dispatch(
         transactionOperations.addIncome(
-          data
-          // onTransactionAddSuccess
-          // onTransactionAddError
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
         )
       )
     }
     if (expense) {
       dispatch(
         transactionOperations.addExpense(
-          data
-          // onTransactionAddSuccess
-          // onTransactionAddError
+          data,
+          onTransactionAddSuccess,
+          onTransactionAddError
         )
       )
     }
@@ -192,7 +193,7 @@ export default function TransactionView() {
 
   return (
     <>
-       <Form>
+      <Form>
         <ArrowGoBack />
         <FormContainer>
           <DescriptionEntry

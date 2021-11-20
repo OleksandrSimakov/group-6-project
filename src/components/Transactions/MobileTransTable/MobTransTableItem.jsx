@@ -13,25 +13,29 @@ import {
 import { ReactComponent as DeleteIcon } from '../../../images/delete.svg'
 import { format } from 'date-fns'
 
-const MobTransTableItem = ({ item, profit, onDelete }) => {
+const MobTransTableItem = ({
+  transaction: { _id, amount, category, description, date, isIncome },
+  profit,
+  onDelete,
+}) => {
   return (
-    <TransactionItem key={item._id}>
+    <TransactionItem key={_id}>
       <DescriptionWrap>
-        <Description>{item.description}</Description>
+        <Description>{description}</Description>
         <CategoryDateWrap>
-          <DateItem>{format(new Date(item.date), 'dd.MM.yyyy')}</DateItem>
-          <Category>{item.category}</Category>
+          <DateItem>{format(new Date(date), 'dd.MM.yyyy')}</DateItem>
+          <Category>{category}</Category>
         </CategoryDateWrap>
       </DescriptionWrap>
 
       <AmountWrap>
-        {profit ? (
-          <AmountHigh>{`${item.amount.toFixed(2)} грн.`}</AmountHigh>
+        {isIncome ? (
+          <AmountHigh>{`${amount.toFixed(2)} грн.`}</AmountHigh>
         ) : (
-          <AmountLow>{`${-item.amount.toFixed(2)} грн.`}</AmountLow>
+          <AmountLow>{`${-amount.toFixed(2)} грн.`}</AmountLow>
         )}
-        {item.action}
-        <DeleteIconBtnWrapper type="button" onClick={() => onDelete(item._id)}>
+        {/* {action} */}
+        <DeleteIconBtnWrapper type="button" onClick={() => onDelete(_id)}>
           <DeleteIcon />
         </DeleteIconBtnWrapper>
       </AmountWrap>

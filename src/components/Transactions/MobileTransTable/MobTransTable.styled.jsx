@@ -2,8 +2,20 @@ import styled from '@emotion/styled/macro'
 
 export const TransactionsList = styled.ul`
   padding: 10px 20px;
-  height: 160px;
-  overflow-y: scroll;
+  height: 150px;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-color: #ff751d;
+    border: 4px solid #f5f6fb;
+    -webkit-border-radius: 10px;
+  }
+
+  overflow-x: hidden;
   // @media screen and (min-width: 768px) {
   //   display: none;
   // }
@@ -12,6 +24,7 @@ export const TransactionItem = styled.li`
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
+  border-bottom: 1px solid #f5f6fb;
 `
 export const DescriptionWrap = styled.div`
   display: flex;
@@ -26,7 +39,7 @@ export const Description = styled.p`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
-  margin:0;
+  margin: 0;
 
   color: #52555f;
   max-width: 52.5vw;
