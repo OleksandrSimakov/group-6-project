@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
-// import toast from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import Select from 'react-select'
 import ActionButton from '../../components/Transactions/ActionButton/ActionButton'
 import ArrowGoBack from '../../components/ArrowGoBack/ArrowGoBack'

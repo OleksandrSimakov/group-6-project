@@ -27,8 +27,8 @@ export const ZeroBalanceModalContainer = styled.div`
   }
   @media screen and (min-width: 768px) {
     top: 60px;
-    left: 250px;
-    right:-100px;
+    left: 215px;
+    right: -135px;
   }
 `
 export const ModalBodyContainer = styled(Modal.Body)`
