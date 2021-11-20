@@ -7,6 +7,7 @@ import SummaryByCategory from '../../components/SummaryByCategory/SummaryByCateg
 
 import reportOperations from '../../redux/report/report-operations'
 import reportSelectors from '../../redux/report/report-selectors'
+import reportActions from '../../redux/report/report-actions';
 
 const Balance = lazy(() => import('../../components/Balance/Balance'))
 const ChartComponent = lazy(() =>
@@ -33,7 +34,6 @@ const ReportView = () => {
   const [month, setMonth] = useState(date.getMonth() + 1)
   const [year, setYear] = useState(date.getFullYear())
   const [category, setCategory] = useState('')
-  // console.log(category);
   const [type, setType] = useState('expense')
 
   const getIncomeDetail = useSelector(reportSelectors.getIncomeDetail)
@@ -42,6 +42,16 @@ const ReportView = () => {
   const getTotalExpense = useSelector(reportSelectors.getTotalExpense)
   const [totalIncome, setTotalIncome] = useState(getTotalIncome)
   const [totalExpense, setTotalExpense] = useState(getTotalExpense)
+
+  const activeCategory = type === 'income'
+    ? getIncomeDetail?.find(el => el.isActive)
+    : getExpenseDetail?.find(el => el.isActive);
+
+    useEffect(() => {
+      if(!activeCategory) {
+        return
+      } else {setCategory(activeCategory._id)}
+    }, [activeCategory]);
 
   useEffect(() => {
     setTotalIncome(getTotalIncome)
@@ -67,11 +77,9 @@ const ReportView = () => {
   const onHandleChangeType = () => {
     if (type === 'expense') {
       setType('income')
-      setCategory('')
     }
     if (type === 'income') {
       setType('expense')
-      setCategory('')
     }
   }
 
@@ -80,8 +88,32 @@ const ReportView = () => {
     dispatch(reportOperations.getIncomeDetail(`${year}-${month}`))
   }, [dispatch, month, year, type])
 
-  const handleCategoryClick = (category) => {
+  const setActiveCategory = (arr, category) => {
+    const array = arr?.map(el => {
+      if (el.isActive) {
+        return { ...el, isActive: !el.isActive };
+      }
+
+      if (el._id === category) {
+        return { ...el, isActive: !el.isActive };
+      }
+      return el;
+    });
+
+    return array;
+  };
+
+  const handleExpenseCategoryClick = (category) => {
     setCategory(category)
+    const expense = setActiveCategory(getExpenseDetail, category);
+    dispatch(reportActions.setActiveExpense(expense));
+  }
+
+  const handleIncomeCategoryClick = (category) => {
+    setCategory(category)
+    
+    const income = setActiveCategory(getIncomeDetail, category);
+    dispatch(reportActions.setActiveIncome(income));
   }
 
   return (
@@ -120,12 +152,12 @@ const ReportView = () => {
         {type === 'expense' ? (
           <SummaryByCategory
             transactions={getExpenseDetail}
-            onClick={handleCategoryClick}
+            onClick={handleExpenseCategoryClick}
           />
         ) : (
           <SummaryByCategory
             transactions={getIncomeDetail}
-            onClick={handleCategoryClick}
+            onClick={handleIncomeCategoryClick}
           />
         )}
         </div>
