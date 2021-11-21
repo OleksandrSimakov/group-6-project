@@ -1,24 +1,37 @@
-import React from 'react'
+import React, { useState } from "react";
 // import { useState } from 'react'
 // import items from './data-mock.json'
-import DataTableItem from './TransTableItem'
+import DataTableItem from "./TransTableItem";
 import {
   TableContainer,
   TransactionTable,
   Header,
   ColumnHeader,
   ScrollBar,
-} from './TransTable.styled'
-import Summary from '../../Summary'
-import useWindowDimensions from '../../../hooks/useWindowDimensions'
-import styles from './TransTable.module.css'
+} from "./TransTable.styled";
+import Summary from "../../Summary";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import styles from "./TransTable.module.css";
+import { AcceptModalComponent } from "../../Modal/AcceptModal/AcceptModalComponent";
 
 const TransTable = ({ profit, transactions, onDelete }) => {
-  const viewPort = useWindowDimensions()
+  const viewPort = useWindowDimensions();
+  const [show, setShow] = useState(false);
+  const [idItem, setIdItem] = useState(null);
   return (
     <>
       <div className={viewPort.width > 1279 ? `${styles.desktop}` : ``}>
         <TableContainer>
+          <AcceptModalComponent
+            show={show}
+            setShow={setShow}
+            cb={() => {
+              onDelete(idItem);
+              setShow(!show);
+            }}
+          >
+            Вы хотите удалить транзакцию?
+          </AcceptModalComponent>
           <TransactionTable>
             <Header>
               <tr>
@@ -39,6 +52,9 @@ const TransTable = ({ profit, transactions, onDelete }) => {
                     item={item}
                     profit={profit}
                     onDelete={onDelete}
+                    show={show}
+                    setShow={setShow}
+                    setIdItem={setIdItem}
                   />
                 ))}
             </tbody>
@@ -48,7 +64,7 @@ const TransTable = ({ profit, transactions, onDelete }) => {
         <Summary profits={profit} />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TransTable
+export default TransTable;

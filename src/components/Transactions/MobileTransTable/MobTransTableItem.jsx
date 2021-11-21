@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   TransactionItem,
   DescriptionWrap,
@@ -13,14 +13,15 @@ import {
 } from "./MobTransTable.styled";
 import { ReactComponent as DeleteIcon } from "../../../images/delete.svg";
 import { format } from "date-fns";
-import { AcceptModalComponent } from "../../Modal/AcceptModal/AcceptModalComponent";
 
 const MobTransTableItem = ({
   transaction: { _id, amount, category, description, date, isIncome },
   profit,
   onDelete,
+  show,
+  setShow,
+  setIdItem,
 }) => {
-  const [show, setShow] = useState(false);
   return (
     <TransactionItem key={_id}>
       <DescriptionWrap>
@@ -38,16 +39,15 @@ const MobTransTableItem = ({
           <AmountLow>{`${-amount.toFixed(2)} грн.`}</AmountLow>
         )}
         {/* {action} */}
-        <DeleteIconBtnWrapper type="button" onClick={() => setShow(!show)}>
+        <DeleteIconBtnWrapper
+          type="button"
+          onClick={() => {
+            setShow(!show);
+            setIdItem(_id);
+          }}
+        >
           <DeleteIcon />
         </DeleteIconBtnWrapper>
-        <AcceptModalComponent
-          show={show}
-          setShow={setShow}
-          cb={() => onDelete(_id)}
-        >
-          Вы хотите удалить транзакцию?
-        </AcceptModalComponent>
       </AmountWrap>
     </TransactionItem>
   );
