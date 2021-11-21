@@ -40,8 +40,7 @@ const MobTransTable = () => {
   const onDeleteTransactionError = (error) => {
     toast.error("Не удалось удалить транзакцию, попробуйте позже!");
   };
-  // console.log(...transactions)
-  ////прописать удаление транзакции на мобильной версии
+
   return (
     <>
       <AcceptModalComponent
