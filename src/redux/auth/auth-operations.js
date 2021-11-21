@@ -24,7 +24,7 @@ const logIn = createAsyncThunk(
       // console.log(`data in auth-operation`, data)
       return data
     } catch (error) {
-      console.log(`error.messageLogIn`, error)
+      // console.log(`error.messageLogIn`, error)
       return rejectWithValue(error.message)
     }
   },
