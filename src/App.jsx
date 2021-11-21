@@ -94,11 +94,9 @@ export default function App() {
               </PrivateRoute>
               <PrivateRoute exact path="/profit" redirectTo="/">
                 <TransactionView />
-                <PrivateMobileBottomCabbage />
               </PrivateRoute>
               <PrivateRoute exact path="/expense" redirectTo="/">
                 <TransactionView />
-                <PrivateMobileBottomCabbage />
               </PrivateRoute>
             </Suspense>
           </Switch>

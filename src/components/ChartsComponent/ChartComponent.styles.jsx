@@ -7,12 +7,13 @@ export const StatsChartContainer = styled.div`
   /* min-width: 422px; */
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 50px;
+  padding-top: 0px;
   padding-bottom: 20px;
 
    @media (min-width: 768px) {
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   border-radius: 30px;
+  padding-top: 50px;
   }
 
   @media (min-width: 1200px) {
