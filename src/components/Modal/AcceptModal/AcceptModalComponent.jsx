@@ -1,5 +1,5 @@
 // import { Button } from 'react-bootstrap'
-import React from 'react'
+import React from "react";
 import {
   AcceptModalContainer,
   AcceptModalBody,
@@ -7,20 +7,15 @@ import {
   AcceptModal,
   AcceptModalFooterButton,
   AcceptModalHeader,
-} from './AcceptModal.styled'
+} from "./AcceptModal.styled";
 
-export const AcceptModalComponent = ({
-  children,
-  show,
-  setShow,
-  handleLogOut,
-}) => {
-  const handleClose = () => setShow(false)
+export const AcceptModalComponent = ({ children, show, setShow, cb }) => {
+  const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
   return (
     <AcceptModalContainer closeButton>
       <AcceptModal
-        contentClassName={'extra-content'}
+        contentClassName={"extra-content"}
         centered
         show={show}
         onHide={handleClose}
@@ -28,7 +23,7 @@ export const AcceptModalComponent = ({
         <AcceptModalHeader closeButton></AcceptModalHeader>
         <AcceptModalBody>{children}</AcceptModalBody>
         <AcceptModalFooter>
-          <AcceptModalFooterButton variant="secondary" onClick={handleLogOut}>
+          <AcceptModalFooterButton variant="secondary" onClick={cb}>
             Да
           </AcceptModalFooterButton>
           <AcceptModalFooterButton variant="primary" onClick={handleClose}>
@@ -37,5 +32,5 @@ export const AcceptModalComponent = ({
         </AcceptModalFooter>
       </AcceptModal>
     </AcceptModalContainer>
-  )
-}
+  );
+};
