@@ -71,9 +71,20 @@ const Balance = () => {
             />
             <CurrencyText>UAH</CurrencyText>
           </InputWrapper>
-          <BalanceButton type="submit" onClick={handleSubmit}>
-            ПОДТВЕРДИТЬ
-          </BalanceButton>
+          {balance !== '' ? (
+            <BalanceButton type="submit" onClick={handleSubmit}>
+              ПОДТВЕРДИТЬ
+            </BalanceButton>
+          ) : (
+            <BalanceButton
+              type="submit"
+              disabled={true}
+              style={{ pointerEvents: 'none' }}
+              onClick={handleSubmit}
+            >
+              ПОДТВЕРДИТЬ
+            </BalanceButton>
+          )}
           {location.pathname === './report' && <ReportsButton />}
         </BalanceWrapper>
       </BalanceForm>
