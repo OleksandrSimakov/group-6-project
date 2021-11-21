@@ -12,7 +12,6 @@ import transactionOperations from '../../redux/transactions/transactions-operati
 import balanceOperations from '../../redux/balance/balance-operations'
 import summaryOperations from '../../redux/transactions/summary-operations'
 import { ReactComponent as Calculator } from '../../images/calculator.svg'
-import toast from 'react-hot-toast'
 
 import {
   FormContainer,
