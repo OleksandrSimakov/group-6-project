@@ -4,7 +4,7 @@
 
 > Team project from GOIT.
 
-![screenshot](../src/images/screenshot.png)
+![screenshot](./src/images/screenshot.png)
 
 Additional description about the project and its features.
 
