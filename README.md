@@ -27,9 +27,13 @@ Additional description about the project and its features.
   ![](https://img.shields.io/badge/redux-logger-teal)
   ![](https://img.shields.io/badge/emotion-teal)
 
-## Live Demo
+## BackEnd
 
-[Live Demo Link](kapusta-group-6-project.netlify.app)
+[BackEnd Link](https://github.com/Ivanka1991/group-6-project_back_end)
+
+## Website
+
+[Live Demo Link](https://kapusta-group-6-project.netlify.app)
 
 ## Authors
 
