@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+![](https://img.shields.io/badge/%D0%A1%D0%B5%D1%81%D1%82%D1%80%D0%B8%D0%BD%D1%81%D1%82%D0%B2%D0%BE%D0%9A%D0%BE%D0%B4%D0%B0-teal)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FinanceCabbege
 
-## Available Scripts
+> Team project from GOIT.
 
-In the project directory, you can run:
+![screenshot](./src/images/screenshot.jpg)
 
-### `yarn start`
+Additional description about the project and its features.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Built With
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Major language - ![](https://img.shields.io/badge/JavaScript-teal)
+- Framework - ![](https://img.shields.io/badge/React-teal)
+- Technologies used ![](https://img.shields.io/badge/React-redux-teal)
+  ![](https://img.shields.io/badge/axios-teal)
+  ![](https://img.shields.io/badge/@reduxjs-/toolkit-bl)
+  ![](https://img.shields.io/badge/redux-persist-teal)
+  ![](https://img.shields.io/badge/chart.js-teal)
+  ![](https://img.shields.io/badge/react-router-dom-teal)
+  ![](https://img.shields.io/badge/react-chartjs-2-teal)
+  ![](https://img.shields.io/badge/chartjs-plugin-datalabels-teal)
+  ![](https://img.shields.io/badge/react-datepicker-teal)
+  ![](https://img.shields.io/badge/react-number-format-teal)
+  ![](https://img.shields.io/badge/react-toastify-teal)
+  ![](https://img.shields.io/badge/react-select-teal)
+  ![](https://img.shields.io/badge/redux-logger-teal)
+  ![](https://img.shields.io/badge/emotion-teal)
 
-### `yarn test`
+## Live Demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Live Demo Link](kapusta-group-6-project.netlify.app)
 
-### `yarn build`
+## Authors
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<a href="https://github.com/Sima7777/group-6-project/graphs/contributors"></a>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<a align="center" href="https://github.com/veraivaniuk">![GitHub](https://img.shields.io/badge/-VeraIvaniuk-05122A?style=flat&logo=github)</a>
+<a align="center" href="https://github.com/Ivanka1991">![GitHub](https://img.shields.io/badge/-IvankaBuravetska-05122A?style=flat&logo=github)</a>
+<a align="center" href="https://github.com/AlexeyGrk">![GitHub](https://img.shields.io/badge/-AlexeyGrk-05122A?style=flat&logo=github)</a>
+<a align="center" href="https://github.com/NataliiaChernieva">![GitHub](https://img.shields.io/badge/-NataliiaChernieva-05122A?style=flat&logo=github)</a>
+<a align="center" href="https://github.com/Kateryna993">![GitHub](https://img.shields.io/badge/-KaterynaDem4enko-05122A?style=flat&logo=github)</a>
+<a align="center" href="https://github.com/Sima7777">![GitHub](https://img.shields.io/badge/-AlecsandrSimakov-05122A?style=flat&logo=github)</a>
+<a align="center" href="https://github.com/ichyryk">![GitHub](https://img.shields.io/badge/-IrynaChyryk-05122A?style=flat&logo=github)</a>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Show your support
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Give a ⭐️ if you like this project!
