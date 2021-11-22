@@ -4,7 +4,7 @@
 
 > Team project from GOIT.
 
-![screenshot](./src/images/screenshot.jpg)
+![screenshot](../src/images/screenshot.png)
 
 Additional description about the project and its features.
 
@@ -14,7 +14,7 @@ Additional description about the project and its features.
 - Framework - ![](https://img.shields.io/badge/React-teal)
 - Technologies used ![](https://img.shields.io/badge/React-redux-teal)
   ![](https://img.shields.io/badge/axios-teal)
-  ![](https://img.shields.io/badge/@reduxjs-/toolkit-bl)
+  ![](https://img.shields.io/badge/@reduxjs-toolkit-teal)
   ![](https://img.shields.io/badge/redux-persist-teal)
   ![](https://img.shields.io/badge/chart.js-teal)
   ![](https://img.shields.io/badge/react-router-dom-teal)
